@@ -8,10 +8,13 @@ public class ColorTypeController : MonoBehaviour
     [SerializeField] private CustomColorsUIController customColors;
     [SerializeField] private Image leftSelected;
     [SerializeField] private Image rightSelected;
+    [SerializeField] private Image rightYellowSelected;
     [SerializeField] private Image leftNote;
     [SerializeField] private Image leftLight;
     [SerializeField] private Image rightNote;
     [SerializeField] private Image rightLight;
+    [SerializeField] private Image rightYellowNote;
+    [SerializeField] private Image rightYellowLight;
 
     private PlatformDescriptor platform;
 
@@ -41,6 +44,8 @@ public class ColorTypeController : MonoBehaviour
         leftLight.color = platform.Colors.RedColor;
         rightNote.color = platform.Colors.BlueNoteColor;
         rightLight.color = platform.Colors.BlueColor;
+        rightYellowNote.color = platform.Colors.YellowNoteColor;
+        rightYellowLight.color = platform.Colors.YellowColor;
     }
 
     public void RedNote(bool active)
@@ -51,6 +56,11 @@ public class ColorTypeController : MonoBehaviour
     public void BlueNote(bool active)
     {
         if (active) UpdateValue(BeatmapNote.NoteTypeB);
+    }
+
+    public void YellowNote(bool active)
+    {
+        if (active) UpdateValue(BeatmapNote.NoteTypeC);
     }
 
     public void UpdateValue(int type)
@@ -64,7 +74,9 @@ public class ColorTypeController : MonoBehaviour
     {
         leftSelected.enabled = notePlacement.queuedData.Type == BeatmapNote.NoteTypeA;
         rightSelected.enabled = notePlacement.queuedData.Type == BeatmapNote.NoteTypeB;
+        rightYellowSelected.enabled = notePlacement.queuedData.Type == BeatmapNote.NoteTypeC;
     }
 
     public bool LeftSelectedEnabled() => leftSelected.enabled;
+    public bool RightSelectedEnabled() => rightSelected.enabled;
 }

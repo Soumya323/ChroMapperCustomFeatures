@@ -1215,6 +1215,14 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Place Yellow Note or Event"",
+                    ""type"": ""Button"",
+                    ""id"": ""d4183d05-1079-40f5-a25d-1b24755b8436"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -1265,7 +1273,7 @@ public class @CMInput : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""087476d7-5798-4db2-b4ed-15d0951c095c"",
-                    ""path"": ""<Keyboard>/3"",
+                    ""path"": ""<Keyboard>/4"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""ChroMapper Default"",
@@ -1276,7 +1284,7 @@ public class @CMInput : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""62b1eb0b-5a29-47e6-820e-952771708ad1"",
-                    ""path"": ""<Keyboard>/4"",
+                    ""path"": ""<Keyboard>/5"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""ChroMapper Default"",
@@ -1287,7 +1295,7 @@ public class @CMInput : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""5dc2e98d-6185-400c-b701-95aad571a194"",
-                    ""path"": ""<Keyboard>/5"",
+                    ""path"": ""<Keyboard>/6"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""ChroMapper Default"",
@@ -1404,6 +1412,17 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""action"": ""Toggle Note or Event"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0abfaa85-7f47-48b3-b21a-fa75884b434b"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Place Yellow Note or Event"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -3778,6 +3797,7 @@ public class @CMInput : IInputActionCollection, IDisposable
         m_Workflows_Mirror = m_Workflows.FindAction("Mirror", throwIfNotFound: true);
         m_Workflows_MirrorinTime = m_Workflows.FindAction("Mirror in Time", throwIfNotFound: true);
         m_Workflows_MirrorColoursOnly = m_Workflows.FindAction("Mirror Colours Only", throwIfNotFound: true);
+        m_Workflows_PlaceYellowNoteorEvent = m_Workflows.FindAction("Place Yellow Note or Event", throwIfNotFound: true);
         // Event UI
         m_EventUI = asset.FindActionMap("Event UI", throwIfNotFound: true);
         m_EventUI_TypeOn = m_EventUI.FindAction("Type On", throwIfNotFound: true);
@@ -4460,6 +4480,7 @@ public class @CMInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Workflows_Mirror;
     private readonly InputAction m_Workflows_MirrorinTime;
     private readonly InputAction m_Workflows_MirrorColoursOnly;
+    private readonly InputAction m_Workflows_PlaceYellowNoteorEvent;
     public struct WorkflowsActions
     {
         private @CMInput m_Wrapper;
@@ -4475,6 +4496,7 @@ public class @CMInput : IInputActionCollection, IDisposable
         public InputAction @Mirror => m_Wrapper.m_Workflows_Mirror;
         public InputAction @MirrorinTime => m_Wrapper.m_Workflows_MirrorinTime;
         public InputAction @MirrorColoursOnly => m_Wrapper.m_Workflows_MirrorColoursOnly;
+        public InputAction @PlaceYellowNoteorEvent => m_Wrapper.m_Workflows_PlaceYellowNoteorEvent;
         public InputActionMap Get() { return m_Wrapper.m_Workflows; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -4517,6 +4539,9 @@ public class @CMInput : IInputActionCollection, IDisposable
                 @MirrorColoursOnly.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnMirrorColoursOnly;
                 @MirrorColoursOnly.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnMirrorColoursOnly;
                 @MirrorColoursOnly.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnMirrorColoursOnly;
+                @PlaceYellowNoteorEvent.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceYellowNoteorEvent;
+                @PlaceYellowNoteorEvent.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceYellowNoteorEvent;
+                @PlaceYellowNoteorEvent.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceYellowNoteorEvent;
             }
             m_Wrapper.m_WorkflowsActionsCallbackInterface = instance;
             if (instance != null)
@@ -4554,6 +4579,9 @@ public class @CMInput : IInputActionCollection, IDisposable
                 @MirrorColoursOnly.started += instance.OnMirrorColoursOnly;
                 @MirrorColoursOnly.performed += instance.OnMirrorColoursOnly;
                 @MirrorColoursOnly.canceled += instance.OnMirrorColoursOnly;
+                @PlaceYellowNoteorEvent.started += instance.OnPlaceYellowNoteorEvent;
+                @PlaceYellowNoteorEvent.performed += instance.OnPlaceYellowNoteorEvent;
+                @PlaceYellowNoteorEvent.canceled += instance.OnPlaceYellowNoteorEvent;
             }
         }
     }
@@ -6016,6 +6044,7 @@ public class @CMInput : IInputActionCollection, IDisposable
         void OnMirror(InputAction.CallbackContext context);
         void OnMirrorinTime(InputAction.CallbackContext context);
         void OnMirrorColoursOnly(InputAction.CallbackContext context);
+        void OnPlaceYellowNoteorEvent(InputAction.CallbackContext context);
     }
     public interface IEventUIActions
     {

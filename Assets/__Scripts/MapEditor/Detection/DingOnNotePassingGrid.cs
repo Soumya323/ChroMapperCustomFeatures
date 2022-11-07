@@ -8,14 +8,14 @@ public class DingOnNotePassingGrid : MonoBehaviour
 {
     public static Dictionary<int, bool> NoteTypeToDing = new Dictionary<int, bool>
     {
-        {BeatmapNote.NoteTypeA, true}, {BeatmapNote.NoteTypeB, true}, {BeatmapNote.NoteTypeBomb, false}
+        {BeatmapNote.NoteTypeA, true}, {BeatmapNote.NoteTypeB, true},{BeatmapNote.NoteTypeC, true}, {BeatmapNote.NoteTypeBomb, false}
     };
 
     [SerializeField] private AudioTimeSyncController atsc;
     [SerializeField] private AudioSource source;
     [SerializeField] private SoundList[] soundLists;
-    [FormerlySerializedAs("DensityCheckOffset")] [SerializeField] private int densityCheckOffset = 2;
-    [FormerlySerializedAs("ThresholdInNoteTime")] [SerializeField] private float thresholdInNoteTime = 0.25f;
+    [FormerlySerializedAs("DensityCheckOffset")][SerializeField] private int densityCheckOffset = 2;
+    [FormerlySerializedAs("ThresholdInNoteTime")][SerializeField] private float thresholdInNoteTime = 0.25f;
     [SerializeField] private AudioUtil audioUtil;
     [SerializeField] private NotesContainer container;
     [SerializeField] private BeatmapObjectCallbackController defaultCallbackController;
@@ -35,6 +35,7 @@ public class DingOnNotePassingGrid : MonoBehaviour
     {
         NoteTypeToDing[BeatmapNote.NoteTypeA] = Settings.Instance.Ding_Red_Notes;
         NoteTypeToDing[BeatmapNote.NoteTypeB] = Settings.Instance.Ding_Blue_Notes;
+        NoteTypeToDing[BeatmapNote.NoteTypeC] = Settings.Instance.Ding_Yellow_Notes;
         NoteTypeToDing[BeatmapNote.NoteTypeBomb] = Settings.Instance.Ding_Bombs;
 
         beatSaberCutCallbackController.Offset = container.AudioTimeSyncController.GetBeatFromSeconds(0.5f);
@@ -49,6 +50,7 @@ public class DingOnNotePassingGrid : MonoBehaviour
     {
         Settings.NotifyBySettingName("Ding_Red_Notes", UpdateRedNoteDing);
         Settings.NotifyBySettingName("Ding_Blue_Notes", UpdateBlueNoteDing);
+        Settings.NotifyBySettingName("Ding_Yellow_Notes", UpdateYellowNoteDing);
         Settings.NotifyBySettingName("Ding_Bombs", UpdateBombDing);
         Settings.NotifyBySettingName("NoteHitSound", UpdateHitSoundType);
         Settings.NotifyBySettingName("SongSpeed", UpdateSongSpeed);
@@ -64,6 +66,7 @@ public class DingOnNotePassingGrid : MonoBehaviour
 
         Settings.ClearSettingNotifications("Ding_Red_Notes");
         Settings.ClearSettingNotifications("Ding_Blue_Notes");
+        Settings.ClearSettingNotifications("Ding_Yellow_Notes");
         Settings.ClearSettingNotifications("Ding_Bombs");
         Settings.ClearSettingNotifications("NoteHitSound");
         Settings.ClearSettingNotifications("SongSpeed");
@@ -94,6 +97,8 @@ public class DingOnNotePassingGrid : MonoBehaviour
     private void UpdateRedNoteDing(object obj) => NoteTypeToDing[BeatmapNote.NoteTypeA] = (bool)obj;
 
     private void UpdateBlueNoteDing(object obj) => NoteTypeToDing[BeatmapNote.NoteTypeB] = (bool)obj;
+
+    private void UpdateYellowNoteDing(object obj) => NoteTypeToDing[BeatmapNote.NoteTypeC] = (bool)obj;
 
     private void UpdateBombDing(object obj) => NoteTypeToDing[BeatmapNote.NoteTypeBomb] = (bool)obj;
 

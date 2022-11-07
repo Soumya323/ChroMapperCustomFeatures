@@ -13,8 +13,11 @@ public class BeatSaberSong
 {
     public static readonly Color DefaultLeftColor = Color.red;
     public static readonly Color DefaultRightColor = new Color(0, 0.282353f, 1, 1);
+    public static readonly Color DefaultYellowColor = new Color(1, 0.673f, 0.0f);
     public static readonly Color DefaultLeftNote = new Color(0.7352942f, 0, 0);
     public static readonly Color DefaultRightNote = new Color(0, 0.3701827f, 0.7352942f);
+    public static readonly Color DefaultYellowNote = new Color(0.745f, 0.5675f, 0.0941f);
+
 
     // These values piggy back off of Application.productName and Application.version here.
     // It's so that anyone maintaining a ChroMapper fork, but wants its identity to be separate, can easily just change

@@ -19,6 +19,8 @@ public class BeatmapNote : BeatmapObject, IBeatmapObjectBounds
 
     public const int NoteTypeB = 1;
 
+    public const int NoteTypeC = 2;     // 4
+
     //public const int NOTE_TYPE_GHOST = 2;
     public const int NoteTypeBomb = 3;
 

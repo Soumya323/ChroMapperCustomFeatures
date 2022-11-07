@@ -1202,6 +1202,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
+                },
+                {
+                    "name": "Place Yellow Note or Event",
+                    "type": "Button",
+                    "id": "d4183d05-1079-40f5-a25d-1b24755b8436",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -1252,7 +1260,7 @@
                 {
                     "name": "",
                     "id": "087476d7-5798-4db2-b4ed-15d0951c095c",
-                    "path": "<Keyboard>/3",
+                    "path": "<Keyboard>/4",
                     "interactions": "",
                     "processors": "",
                     "groups": "ChroMapper Default",
@@ -1263,7 +1271,7 @@
                 {
                     "name": "",
                     "id": "62b1eb0b-5a29-47e6-820e-952771708ad1",
-                    "path": "<Keyboard>/4",
+                    "path": "<Keyboard>/5",
                     "interactions": "",
                     "processors": "",
                     "groups": "ChroMapper Default",
@@ -1274,7 +1282,7 @@
                 {
                     "name": "",
                     "id": "5dc2e98d-6185-400c-b701-95aad571a194",
-                    "path": "<Keyboard>/5",
+                    "path": "<Keyboard>/6",
                     "interactions": "",
                     "processors": "",
                     "groups": "ChroMapper Default",
@@ -1391,6 +1399,17 @@
                     "action": "Toggle Note or Event",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "0abfaa85-7f47-48b3-b21a-fa75884b434b",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Place Yellow Note or Event",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

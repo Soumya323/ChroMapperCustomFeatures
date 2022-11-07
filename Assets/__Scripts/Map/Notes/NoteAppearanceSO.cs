@@ -5,14 +5,14 @@ public class NoteAppearanceSO : ScriptableObject
 {
     [SerializeField] private GameObject notePrefab;
 
-    [Space(10)] [SerializeField] private Sprite unknownSprite;
+    [Space(10)][SerializeField] private Sprite unknownSprite;
 
     [SerializeField] private Sprite arrowSprite;
     [SerializeField] private Sprite dotSprite;
 
-    [Space(10)] [SerializeField] private Material unknownNoteMaterial;
+    [Space(10)][SerializeField] private Material unknownNoteMaterial;
 
-    [Space(10)] [SerializeField] private Material blueNoteSharedMaterial;
+    [Space(10)][SerializeField] private Material blueNoteSharedMaterial;
 
     [SerializeField] private Material redNoteSharedMaterial;
 
@@ -21,18 +21,19 @@ public class NoteAppearanceSO : ScriptableObject
     [SerializeField]
     private Sprite deflectSprite;
 
-    [Space(10)] [SerializeField] private Material greenNoteSharedMaterial;
+    [Space(10)][SerializeField] private Material greenNoteSharedMaterial;
 
     [SerializeField] private Material magentaNoteSharedMaterial;
 
-    [Space(10)] [SerializeField] private Material monochromeSharedNoteMaterial;
+    [Space(10)][SerializeField] private Material monochromeSharedNoteMaterial;
 
     [SerializeField] private Material duochromeSharedNoteMaterial;
 
-    [Space(10)] [SerializeField] private Material superNoteSharedMaterial;
+    [Space(10)][SerializeField] private Material superNoteSharedMaterial;
 
     public Color RedColor { get; private set; } = BeatSaberSong.DefaultLeftNote;
     public Color BlueColor { get; private set; } = BeatSaberSong.DefaultRightNote;
+    public Color YellowColor { get; private set; } = BeatSaberSong.DefaultYellowNote;
 
     public void UpdateColor(Color red, Color blue)
     {
@@ -64,6 +65,9 @@ public class NoteAppearanceSO : ScriptableObject
                     break;
                 case BeatmapNote.NoteTypeB:
                     note.SetColor(BlueColor);
+                    break;
+                case BeatmapNote.NoteTypeC:
+                    note.SetColor(YellowColor);
                     break;
                 default:
                     note.SetColor(null);

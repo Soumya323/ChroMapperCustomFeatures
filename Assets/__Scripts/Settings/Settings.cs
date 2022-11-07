@@ -18,12 +18,12 @@ public class Settings
     public string CustomWIPSongsFolder => Path.Combine(BeatSaberInstallation, "Beat Saber_Data", "CustomWIPLevels");
     public string CustomPlatformsFolder => Path.Combine(BeatSaberInstallation, "CustomPlatforms");
 
-    #if UNITY_STANDALONE_OSX
+#if UNITY_STANDALONE_OSX
     // TODO: Test
     public static string AndroidPlatformTools => Path.Combine(Application.dataPath,"../../", "quest-utils");
-    #else
+#else
     public static string AndroidPlatformTools => Path.Combine(Directory.GetParent(Application.dataPath)!.FullName, "quest-utils");
-    #endif
+#endif
 
     public bool DiscordRPCEnabled = true;
     public float EditorScale = 4;
@@ -88,6 +88,7 @@ public class Settings
     public int TimeValueDecimalPrecision = 3;
     public bool Ding_Red_Notes = true;
     public bool Ding_Blue_Notes = true;
+    public bool Ding_Yellow_Notes = true;
     public bool Ding_Bombs = false;
     public bool MeasureLinesShowOnTop = false;
     public bool Reflections = true;

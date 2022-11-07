@@ -16,6 +16,7 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
     [SerializeField] private MeshRenderer dotRenderer;
     [SerializeField] private MeshRenderer arrowRenderer;
     [SerializeField] private SpriteRenderer swingArcRenderer;
+    [SerializeField] private GameObject yellowNoteLabel;
 
     public override BeatmapObject ObjectData { get => MapNoteData; set => MapNoteData = (BeatmapNote)value; }
 
@@ -93,6 +94,11 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
 
         bombRenderer.gameObject.SetActive(b);
         bombRenderer.enabled = b;
+    }
+
+    public void SetYellowNote(bool b)
+    {
+        yellowNoteLabel.SetActive(b);
     }
 
     public void SetArcVisible(bool showArcVisualizer)
