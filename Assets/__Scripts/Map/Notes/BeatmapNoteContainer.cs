@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using TMPro;
 
 public class BeatmapNoteContainer : BeatmapObjectContainer
 {
@@ -16,7 +17,14 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
     [SerializeField] private MeshRenderer dotRenderer;
     [SerializeField] private MeshRenderer arrowRenderer;
     [SerializeField] private SpriteRenderer swingArcRenderer;
+    [SerializeField] private GameObject redNoteLabel;
+    [SerializeField] private GameObject blueNoteLabel;
     [SerializeField] private GameObject yellowNoteLabel;
+    [SerializeField] private GameObject purpleNoteLabel;
+    [SerializeField] private GameObject pinkNoteLabel;
+    [SerializeField] private GameObject greyNoteLabel;
+    [SerializeField] private GameObject brownNoteLabel;
+    [SerializeField] private bool debugShowCustomMesh = false;
 
     public override BeatmapObject ObjectData { get => MapNoteData; set => MapNoteData = (BeatmapNote)value; }
 
@@ -96,9 +104,65 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
         bombRenderer.enabled = b;
     }
 
+    public void SetRedNote(bool b)
+    {
+        redNoteLabel.SetActive(b);
+        if (b && debugShowCustomMesh)
+        {
+            TextMeshPro textMeshProComp = this.GetComponentInChildren<TextMeshPro>();
+            if (textMeshProComp != null) textMeshProComp.enabled = false;
+            simpleBlock.SetActive(false);
+            complexBlock.SetActive(false);
+            arrowRenderer.enabled = false;
+        }
+    }
+
+    public void SetBlueNote(bool b)
+    {
+        blueNoteLabel.SetActive(b);
+        if (b && debugShowCustomMesh)
+        {
+            TextMeshPro textMeshProComp = this.GetComponentInChildren<TextMeshPro>();
+            if (textMeshProComp != null) textMeshProComp.enabled = false;
+            simpleBlock.SetActive(false);
+            complexBlock.SetActive(false);
+            arrowRenderer.enabled = false;
+        }
+    }
+
     public void SetYellowNote(bool b)
     {
         yellowNoteLabel.SetActive(b);
+        if (b && debugShowCustomMesh)
+        {
+            TextMeshPro textMeshProComp = this.GetComponentInChildren<TextMeshPro>();
+            if (textMeshProComp != null) textMeshProComp.enabled = false;
+            simpleBlock.SetActive(false);
+            complexBlock.SetActive(false);
+            arrowRenderer.enabled = false;
+        }
+    }
+
+    public void SetPurpleNote(bool b)
+    {
+        purpleNoteLabel.SetActive(b);
+    }
+
+    public void SetPinkNote(bool b)
+    {
+        pinkNoteLabel.SetActive(b);
+        if (b)
+            Debug.Log("BeatmapNoteContainer : " + "pink note line index : " + MapNoteData.LineIndex + "    layer : " + MapNoteData.LineLayer);
+    }
+
+    public void SetGreyNote(bool b)
+    {
+        greyNoteLabel.SetActive(b);
+    }
+
+    public void SetBrownNote(bool b)
+    {
+        brownNoteLabel.SetActive(b);
     }
 
     public void SetArcVisible(bool showArcVisualizer)

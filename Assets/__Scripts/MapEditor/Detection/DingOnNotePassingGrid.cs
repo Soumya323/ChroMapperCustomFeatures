@@ -8,7 +8,8 @@ public class DingOnNotePassingGrid : MonoBehaviour
 {
     public static Dictionary<int, bool> NoteTypeToDing = new Dictionary<int, bool>
     {
-        {BeatmapNote.NoteTypeA, true}, {BeatmapNote.NoteTypeB, true},{BeatmapNote.NoteTypeC, true}, {BeatmapNote.NoteTypeBomb, false}
+        {BeatmapNote.NoteTypeA, true}, {BeatmapNote.NoteTypeB, true},{BeatmapNote.NoteTypeC, true},{BeatmapNote.NoteTypeSkaterTricks, true},
+        {BeatmapNote.NoteTypePlayerDance, true},{BeatmapNote.NoteTypeEmptyNote, true},{BeatmapNote.NoteTypeBomb, false}
     };
 
     [SerializeField] private AudioTimeSyncController atsc;

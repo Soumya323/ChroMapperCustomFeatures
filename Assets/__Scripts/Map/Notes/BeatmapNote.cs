@@ -20,9 +20,13 @@ public class BeatmapNote : BeatmapObject, IBeatmapObjectBounds
     public const int NoteTypeB = 1;
 
     public const int NoteTypeC = 2;     // 4
+    public const int NoteTypeSkaterTricks = 3;
+    public const int NoteTypePlayerDance = 4;
+    public const int NoteTypeCameraPoint = 8;
+    public const int NoteTypeEmptyNote = 9;
 
     //public const int NOTE_TYPE_GHOST = 2;
-    public const int NoteTypeBomb = 3;
+    public const int NoteTypeBomb = 12;     // previous "3" conflicted with other notes above
 
     public const int NoteCutDirectionUp = 0;
     public const int NoteCutDirectionDown = 1;

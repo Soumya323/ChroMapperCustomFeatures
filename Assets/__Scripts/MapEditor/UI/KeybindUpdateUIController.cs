@@ -16,6 +16,10 @@ public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsAction
     [SerializeField] private Toggle redToggle;
     [SerializeField] private Toggle blueToggle;
     [SerializeField] private Toggle yellowToggle;
+    [SerializeField] private Toggle purpleToggle;
+    [SerializeField] private Toggle pinkToggle;
+    [SerializeField] private Toggle greyToggle;
+    [SerializeField] private Toggle brownToggle;
     [SerializeField] private GameObject precisionRotationContainer;
 
     private void Awake() => UpdatePrecisionRotationGameObjectState();
@@ -88,6 +92,34 @@ public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsAction
         placeMode.SetMode(PlacementModeController.PlacementMode.Note);
     }
 
+    public void OnPlacePurpleNoteorEvent(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        purpleToggle.onValueChanged.Invoke(true);
+        placeMode.SetMode(PlacementModeController.PlacementMode.Note);
+    }
+
+    public void OnPlacePinkNoteorEvent(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        pinkToggle.onValueChanged.Invoke(true);
+        placeMode.SetMode(PlacementModeController.PlacementMode.Note);
+    }
+
+    public void OnPlaceGreyNoteorEvent(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        greyToggle.onValueChanged.Invoke(true);
+        placeMode.SetMode(PlacementModeController.PlacementMode.Note);
+    }
+
+    public void OnPlaceBrownNoteorEvent(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        brownToggle.onValueChanged.Invoke(true);
+        placeMode.SetMode(PlacementModeController.PlacementMode.Note);
+    }
+
     public void OnToggleNoteorEvent(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
@@ -95,8 +127,16 @@ public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsAction
             blueToggle.onValueChanged.Invoke(true);
         else if (colorType.RightSelectedEnabled())
             redToggle.onValueChanged.Invoke(true);
-        else
+        else if (colorType.YellowSelectedEnabled())
             yellowToggle.onValueChanged.Invoke(true);
+        else if (colorType.PurpleSelectedEnabled())
+            purpleToggle.onValueChanged.Invoke(true);
+        else if (colorType.PinkSelectedEnabled())
+            pinkToggle.onValueChanged.Invoke(true);
+        else if (colorType.GreySelectedEnabled())
+            greyToggle.onValueChanged.Invoke(true);
+        else if (colorType.BrownSelectedEnabled())
+            brownToggle.onValueChanged.Invoke(true);
         lightMode.UpdateValue();
     }
 

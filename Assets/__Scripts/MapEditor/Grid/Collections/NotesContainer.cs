@@ -7,7 +7,7 @@ public class NotesContainer : BeatmapObjectContainerCollection
 {
     [SerializeField] private GameObject notePrefab;
     [SerializeField] private GameObject bombPrefab;
-    [FormerlySerializedAs("noteAppearanceSO")] [SerializeField] private NoteAppearanceSO noteAppearanceSo;
+    [FormerlySerializedAs("noteAppearanceSO")][SerializeField] private NoteAppearanceSO noteAppearanceSo;
     [SerializeField] private TracksManager tracksManager;
 
     [SerializeField] private CountersPlusController countersPlus;
@@ -91,7 +91,13 @@ public class NotesContainer : BeatmapObjectContainerCollection
         noteAppearanceSo.SetNoteAppearance(note);
         note.Setup();
         note.SetBomb(noteData.Type == BeatmapNote.NoteTypeBomb);
-        note.SetYellowNote(noteData.Type== BeatmapNote.NoteTypeC);
+        note.SetRedNote(noteData.Type == BeatmapNote.NoteTypeA);
+        note.SetBlueNote(noteData.Type == BeatmapNote.NoteTypeB);
+        note.SetYellowNote(noteData.Type == BeatmapNote.NoteTypeC);
+        note.SetPurpleNote(noteData.Type == BeatmapNote.NoteTypeSkaterTricks);
+        note.SetPinkNote(noteData.Type == BeatmapNote.NoteTypePlayerDance);
+        note.SetGreyNote(noteData.Type == BeatmapNote.NoteTypeEmptyNote);
+        note.SetBrownNote(noteData.Type == BeatmapNote.NoteTypeCameraPoint);
         note.transform.localEulerAngles = BeatmapNoteContainer.Directionalize(noteData);
 
         var track = tracksManager.GetTrackAtTime(obj.Time);

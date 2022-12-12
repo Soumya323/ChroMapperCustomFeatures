@@ -1223,6 +1223,30 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Place Purple Note or Event"",
+                    ""type"": ""Button"",
+                    ""id"": ""5cba45fb-7ca7-4fd2-9166-147df6d57250"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Place Pink Note or Event"",
+                    ""type"": ""Button"",
+                    ""id"": ""3b7bb731-bbc0-445c-ad1b-082a34018529"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Place Grey Note or Event"",
+                    ""type"": ""Button"",
+                    ""id"": ""ad8ebecd-8754-489e-87cd-d9cdcdafb105"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -1273,7 +1297,7 @@ public class @CMInput : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""087476d7-5798-4db2-b4ed-15d0951c095c"",
-                    ""path"": ""<Keyboard>/4"",
+                    ""path"": ""<Keyboard>/6"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""ChroMapper Default"",
@@ -1284,7 +1308,7 @@ public class @CMInput : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""62b1eb0b-5a29-47e6-820e-952771708ad1"",
-                    ""path"": ""<Keyboard>/5"",
+                    ""path"": ""<Keyboard>/7"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""ChroMapper Default"",
@@ -1295,7 +1319,7 @@ public class @CMInput : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""5dc2e98d-6185-400c-b701-95aad571a194"",
-                    ""path"": ""<Keyboard>/6"",
+                    ""path"": ""<Keyboard>/8"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""ChroMapper Default"",
@@ -1421,6 +1445,39 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Place Yellow Note or Event"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""326b3767-ab45-4fa6-983e-1557689b2f89"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Place Purple Note or Event"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3af4fbc0-522b-4ab7-84d2-adc06fee7d04"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Place Pink Note or Event"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1807b2a8-03b2-44e3-8785-b8a5bf36768e"",
+                    ""path"": ""<Keyboard>/9"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Place Grey Note or Event"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -3798,6 +3855,9 @@ public class @CMInput : IInputActionCollection, IDisposable
         m_Workflows_MirrorinTime = m_Workflows.FindAction("Mirror in Time", throwIfNotFound: true);
         m_Workflows_MirrorColoursOnly = m_Workflows.FindAction("Mirror Colours Only", throwIfNotFound: true);
         m_Workflows_PlaceYellowNoteorEvent = m_Workflows.FindAction("Place Yellow Note or Event", throwIfNotFound: true);
+        m_Workflows_PlacePurpleNoteorEvent = m_Workflows.FindAction("Place Purple Note or Event", throwIfNotFound: true);
+        m_Workflows_PlacePinkNoteorEvent = m_Workflows.FindAction("Place Pink Note or Event", throwIfNotFound: true);
+        m_Workflows_PlaceGreyNoteorEvent = m_Workflows.FindAction("Place Grey Note or Event", throwIfNotFound: true);
         // Event UI
         m_EventUI = asset.FindActionMap("Event UI", throwIfNotFound: true);
         m_EventUI_TypeOn = m_EventUI.FindAction("Type On", throwIfNotFound: true);
@@ -4481,6 +4541,9 @@ public class @CMInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Workflows_MirrorinTime;
     private readonly InputAction m_Workflows_MirrorColoursOnly;
     private readonly InputAction m_Workflows_PlaceYellowNoteorEvent;
+    private readonly InputAction m_Workflows_PlacePurpleNoteorEvent;
+    private readonly InputAction m_Workflows_PlacePinkNoteorEvent;
+    private readonly InputAction m_Workflows_PlaceGreyNoteorEvent;
     public struct WorkflowsActions
     {
         private @CMInput m_Wrapper;
@@ -4497,6 +4560,9 @@ public class @CMInput : IInputActionCollection, IDisposable
         public InputAction @MirrorinTime => m_Wrapper.m_Workflows_MirrorinTime;
         public InputAction @MirrorColoursOnly => m_Wrapper.m_Workflows_MirrorColoursOnly;
         public InputAction @PlaceYellowNoteorEvent => m_Wrapper.m_Workflows_PlaceYellowNoteorEvent;
+        public InputAction @PlacePurpleNoteorEvent => m_Wrapper.m_Workflows_PlacePurpleNoteorEvent;
+        public InputAction @PlacePinkNoteorEvent => m_Wrapper.m_Workflows_PlacePinkNoteorEvent;
+        public InputAction @PlaceGreyNoteorEvent => m_Wrapper.m_Workflows_PlaceGreyNoteorEvent;
         public InputActionMap Get() { return m_Wrapper.m_Workflows; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -4542,6 +4608,15 @@ public class @CMInput : IInputActionCollection, IDisposable
                 @PlaceYellowNoteorEvent.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceYellowNoteorEvent;
                 @PlaceYellowNoteorEvent.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceYellowNoteorEvent;
                 @PlaceYellowNoteorEvent.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceYellowNoteorEvent;
+                @PlacePurpleNoteorEvent.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlacePurpleNoteorEvent;
+                @PlacePurpleNoteorEvent.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlacePurpleNoteorEvent;
+                @PlacePurpleNoteorEvent.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlacePurpleNoteorEvent;
+                @PlacePinkNoteorEvent.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlacePinkNoteorEvent;
+                @PlacePinkNoteorEvent.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlacePinkNoteorEvent;
+                @PlacePinkNoteorEvent.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlacePinkNoteorEvent;
+                @PlaceGreyNoteorEvent.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceGreyNoteorEvent;
+                @PlaceGreyNoteorEvent.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceGreyNoteorEvent;
+                @PlaceGreyNoteorEvent.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceGreyNoteorEvent;
             }
             m_Wrapper.m_WorkflowsActionsCallbackInterface = instance;
             if (instance != null)
@@ -4582,6 +4657,15 @@ public class @CMInput : IInputActionCollection, IDisposable
                 @PlaceYellowNoteorEvent.started += instance.OnPlaceYellowNoteorEvent;
                 @PlaceYellowNoteorEvent.performed += instance.OnPlaceYellowNoteorEvent;
                 @PlaceYellowNoteorEvent.canceled += instance.OnPlaceYellowNoteorEvent;
+                @PlacePurpleNoteorEvent.started += instance.OnPlacePurpleNoteorEvent;
+                @PlacePurpleNoteorEvent.performed += instance.OnPlacePurpleNoteorEvent;
+                @PlacePurpleNoteorEvent.canceled += instance.OnPlacePurpleNoteorEvent;
+                @PlacePinkNoteorEvent.started += instance.OnPlacePinkNoteorEvent;
+                @PlacePinkNoteorEvent.performed += instance.OnPlacePinkNoteorEvent;
+                @PlacePinkNoteorEvent.canceled += instance.OnPlacePinkNoteorEvent;
+                @PlaceGreyNoteorEvent.started += instance.OnPlaceGreyNoteorEvent;
+                @PlaceGreyNoteorEvent.performed += instance.OnPlaceGreyNoteorEvent;
+                @PlaceGreyNoteorEvent.canceled += instance.OnPlaceGreyNoteorEvent;
             }
         }
     }
@@ -6045,6 +6129,9 @@ public class @CMInput : IInputActionCollection, IDisposable
         void OnMirrorinTime(InputAction.CallbackContext context);
         void OnMirrorColoursOnly(InputAction.CallbackContext context);
         void OnPlaceYellowNoteorEvent(InputAction.CallbackContext context);
+        void OnPlacePurpleNoteorEvent(InputAction.CallbackContext context);
+        void OnPlacePinkNoteorEvent(InputAction.CallbackContext context);
+        void OnPlaceGreyNoteorEvent(InputAction.CallbackContext context);
     }
     public interface IEventUIActions
     {
