@@ -22,6 +22,10 @@ public class BeatmapNote : BeatmapObject, IBeatmapObjectBounds
     public const int NoteTypeC = 2;     // 4
     public const int NoteTypeSkaterTricks = 3;
     public const int NoteTypePlayerDance = 4;
+    //public const int NoteTypeSkaterSteer = 5;
+    public const int NoteTypeSkaterSteerHold = 5;
+    public const int NoteTypeSkaterSteerRelease = 6;
+    public const int NoteTypeSkaterSteerEnd = 7;
     public const int NoteTypeCameraPoint = 8;
     public const int NoteTypeEmptyNote = 9;
 

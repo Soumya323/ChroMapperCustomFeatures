@@ -89,6 +89,9 @@ public class Settings
     public bool Ding_Red_Notes = true;
     public bool Ding_Blue_Notes = true;
     public bool Ding_Yellow_Notes = true;
+    public bool Ding_GreenSteerHold_Notes = true;
+    public bool Ding_GreenSteerRelease_Notes = true;
+    public bool Ding_GreenSteerEnd_Notes = true;
     public bool Ding_Bombs = false;
     public bool MeasureLinesShowOnTop = false;
     public bool Reflections = true;

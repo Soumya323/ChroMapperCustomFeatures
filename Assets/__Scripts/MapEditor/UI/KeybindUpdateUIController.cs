@@ -16,6 +16,7 @@ public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsAction
     [SerializeField] private Toggle redToggle;
     [SerializeField] private Toggle blueToggle;
     [SerializeField] private Toggle yellowToggle;
+    [SerializeField] private Dropdown greenDropdown;
     [SerializeField] private Toggle purpleToggle;
     [SerializeField] private Toggle pinkToggle;
     [SerializeField] private Toggle greyToggle;
@@ -92,6 +93,14 @@ public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsAction
         placeMode.SetMode(PlacementModeController.PlacementMode.Note);
     }
 
+    public void OnPlaceGreenNoteorEvent(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        //yellowToggle.onValueChanged.Invoke(true);
+        greenDropdown.onValueChanged.Invoke(greenDropdown.value);
+        placeMode.SetMode(PlacementModeController.PlacementMode.Note);
+    }
+
     public void OnPlacePurpleNoteorEvent(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
@@ -129,6 +138,8 @@ public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsAction
             redToggle.onValueChanged.Invoke(true);
         else if (colorType.YellowSelectedEnabled())
             yellowToggle.onValueChanged.Invoke(true);
+        //else if (colorType.GreenSelectedEnabled())
+          //  greenDropdown.onValueChanged.Invoke(1);
         else if (colorType.PurpleSelectedEnabled())
             purpleToggle.onValueChanged.Invoke(true);
         else if (colorType.PinkSelectedEnabled())

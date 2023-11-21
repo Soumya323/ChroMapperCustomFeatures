@@ -1212,6 +1212,14 @@
                     "interactions": "Press"
                 },
                 {
+                    "name": "Place Green Note or Event",
+                    "type": "Button",
+                    "id": "7146c6e4-845f-40c1-947c-f3d1dc017c88",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
                     "name": "Place Purple Note or Event",
                     "type": "Button",
                     "id": "5cba45fb-7ca7-4fd2-9166-147df6d57250",
@@ -1465,6 +1473,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Place Grey Note or Event",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7f8e67d3-2bab-44d4-871d-37eb2b99c628",
+                    "path": "<Keyboard>/6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Place Green Note or Event",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -20,6 +20,9 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
     [SerializeField] private GameObject redNoteLabel;
     [SerializeField] private GameObject blueNoteLabel;
     [SerializeField] private GameObject yellowNoteLabel;
+    [SerializeField] private GameObject greenNoteSteerHoldLabel;
+    [SerializeField] private GameObject greenNoteSteerReleaseLabel;
+    [SerializeField] private GameObject greenNoteSteerEndLabel;
     [SerializeField] private GameObject purpleNoteLabel;
     [SerializeField] private GameObject pinkNoteLabel;
     [SerializeField] private GameObject greyNoteLabel;
@@ -133,6 +136,45 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
     public void SetYellowNote(bool b)
     {
         yellowNoteLabel.SetActive(b);
+        if (b && debugShowCustomMesh)
+        {
+            TextMeshPro textMeshProComp = this.GetComponentInChildren<TextMeshPro>();
+            if (textMeshProComp != null) textMeshProComp.enabled = false;
+            simpleBlock.SetActive(false);
+            complexBlock.SetActive(false);
+            arrowRenderer.enabled = false;
+        }
+    }
+    
+    public void SetGreenSteerHoldNote(bool b)
+    {
+        greenNoteSteerHoldLabel.SetActive(b);
+        if (b && debugShowCustomMesh)
+        {
+            TextMeshPro textMeshProComp = this.GetComponentInChildren<TextMeshPro>();
+            if (textMeshProComp != null) textMeshProComp.enabled = false;
+            simpleBlock.SetActive(false);
+            complexBlock.SetActive(false);
+            arrowRenderer.enabled = false;
+        }
+    }
+    
+    public void SetGreenSteerReleaseNote(bool b)
+    {
+        greenNoteSteerReleaseLabel.SetActive(b);
+        if (b && debugShowCustomMesh)
+        {
+            TextMeshPro textMeshProComp = this.GetComponentInChildren<TextMeshPro>();
+            if (textMeshProComp != null) textMeshProComp.enabled = false;
+            simpleBlock.SetActive(false);
+            complexBlock.SetActive(false);
+            arrowRenderer.enabled = false;
+        }
+    }
+    
+    public void SetGreenSteerEndNote(bool b)
+    {
+        greenNoteSteerEndLabel.SetActive(b);
         if (b && debugShowCustomMesh)
         {
             TextMeshPro textMeshProComp = this.GetComponentInChildren<TextMeshPro>();

@@ -34,6 +34,7 @@ public class NoteAppearanceSO : ScriptableObject
     public Color RedColor { get; private set; } = BeatSaberSong.DefaultLeftNote;
     public Color BlueColor { get; private set; } = BeatSaberSong.DefaultRightNote;
     public Color YellowColor { get; private set; } = BeatSaberSong.DefaultYellowNote;
+    public Color GreenColor { get; private set; } = BeatSaberSong.DefaultGreenNote;
     public Color PurpleColor { get; private set; } = BeatSaberSong.DefaultPurpleNote;
     public Color PinkColor { get; private set; } = BeatSaberSong.DefaultPinkNote;
     public Color GreyColor { get; private set; } = BeatSaberSong.DefaultGreyNote;
@@ -72,6 +73,18 @@ public class NoteAppearanceSO : ScriptableObject
                     break;
                 case BeatmapNote.NoteTypeC:
                     note.SetColor(YellowColor);
+                    break;
+                /*case BeatmapNote.NoteTypeSkaterSteer:
+                    note.SetColor(GreenColor);
+                    break;*/
+                case BeatmapNote.NoteTypeSkaterSteerHold:
+                    note.SetColor(GreenColor);
+                    break;
+                case BeatmapNote.NoteTypeSkaterSteerRelease:
+                    note.SetColor(GreenColor);
+                    break;
+                case BeatmapNote.NoteTypeSkaterSteerEnd:
+                    note.SetColor(GreenColor);
                     break;
                 case BeatmapNote.NoteTypeSkaterTricks:
                     note.SetColor(PurpleColor);

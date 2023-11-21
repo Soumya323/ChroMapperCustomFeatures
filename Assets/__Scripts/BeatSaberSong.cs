@@ -14,6 +14,7 @@ public class BeatSaberSong
     public static readonly Color DefaultLeftColor = Color.red;
     public static readonly Color DefaultRightColor = new Color(0, 0.282353f, 1, 1);
     public static readonly Color DefaultYellowColor = new Color(1, 0.673f, 0.0f);
+    public static readonly Color DefaultGreenColor = new Color(0, 1f, 0.164f);
     public static readonly Color DefaultPurpleColor = new Color(0.6313f, 0.4156f, 0.9098f);
     public static readonly Color DefaultPinkColor = new Color(1f, 0.3160f, 0.9628f);
     public static readonly Color DefaultGreyColor = new Color(1f, 0.8093f, 0.6839f);
@@ -21,6 +22,7 @@ public class BeatSaberSong
     public static readonly Color DefaultLeftNote = new Color(0.7352942f, 0, 0);
     public static readonly Color DefaultRightNote = new Color(0, 0.3701827f, 0.7352942f);
     public static readonly Color DefaultYellowNote = new Color(0.745f, 0.5675f, 0.0941f);
+    public static readonly Color DefaultGreenNote = new Color(0f, 1f, 0f);
     public static readonly Color DefaultPurpleNote = new Color(0.7223f, 0.5876f, 0.8962f);
     public static readonly Color DefaultPinkNote = new Color(1f, 0.5707f, 0.9409f);
     public static readonly Color DefaultGreyNote = new Color(0.783f, 0.6738f, 0.6020f);

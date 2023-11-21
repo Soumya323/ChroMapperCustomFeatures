@@ -37,6 +37,9 @@ public class DingOnNotePassingGrid : MonoBehaviour
         NoteTypeToDing[BeatmapNote.NoteTypeA] = Settings.Instance.Ding_Red_Notes;
         NoteTypeToDing[BeatmapNote.NoteTypeB] = Settings.Instance.Ding_Blue_Notes;
         NoteTypeToDing[BeatmapNote.NoteTypeC] = Settings.Instance.Ding_Yellow_Notes;
+        NoteTypeToDing[BeatmapNote.NoteTypeSkaterSteerHold] = Settings.Instance.Ding_GreenSteerHold_Notes;
+        NoteTypeToDing[BeatmapNote.NoteTypeSkaterSteerRelease] = Settings.Instance.Ding_GreenSteerRelease_Notes;
+        NoteTypeToDing[BeatmapNote.NoteTypeSkaterSteerEnd] = Settings.Instance.Ding_GreenSteerEnd_Notes;
         NoteTypeToDing[BeatmapNote.NoteTypeBomb] = Settings.Instance.Ding_Bombs;
 
         beatSaberCutCallbackController.Offset = container.AudioTimeSyncController.GetBeatFromSeconds(0.5f);
@@ -52,6 +55,9 @@ public class DingOnNotePassingGrid : MonoBehaviour
         Settings.NotifyBySettingName("Ding_Red_Notes", UpdateRedNoteDing);
         Settings.NotifyBySettingName("Ding_Blue_Notes", UpdateBlueNoteDing);
         Settings.NotifyBySettingName("Ding_Yellow_Notes", UpdateYellowNoteDing);
+        Settings.NotifyBySettingName("Ding_GreenSteerHold_Notes", UpdateGreenSteerHoldNoteDing);
+        Settings.NotifyBySettingName("Ding_GreenSteerRelease_Notes", UpdateGreenSteerReleaseNoteDing);
+        Settings.NotifyBySettingName("Ding_GreenSteerEnd_Notes", UpdateGreenSteerEndNoteDing);
         Settings.NotifyBySettingName("Ding_Bombs", UpdateBombDing);
         Settings.NotifyBySettingName("NoteHitSound", UpdateHitSoundType);
         Settings.NotifyBySettingName("SongSpeed", UpdateSongSpeed);
@@ -100,6 +106,12 @@ public class DingOnNotePassingGrid : MonoBehaviour
     private void UpdateBlueNoteDing(object obj) => NoteTypeToDing[BeatmapNote.NoteTypeB] = (bool)obj;
 
     private void UpdateYellowNoteDing(object obj) => NoteTypeToDing[BeatmapNote.NoteTypeC] = (bool)obj;
+
+    private void UpdateGreenSteerHoldNoteDing(object obj) => NoteTypeToDing[BeatmapNote.NoteTypeSkaterSteerHold] = (bool)obj;
+
+    private void UpdateGreenSteerReleaseNoteDing(object obj) => NoteTypeToDing[BeatmapNote.NoteTypeSkaterSteerRelease] = (bool)obj;
+
+    private void UpdateGreenSteerEndNoteDing(object obj) => NoteTypeToDing[BeatmapNote.NoteTypeSkaterSteerEnd] = (bool)obj;
 
     private void UpdateBombDing(object obj) => NoteTypeToDing[BeatmapNote.NoteTypeBomb] = (bool)obj;
 

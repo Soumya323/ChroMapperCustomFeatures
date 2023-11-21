@@ -88,12 +88,17 @@ public class NotesContainer : BeatmapObjectContainerCollection
     {
         var note = con as BeatmapNoteContainer;
         var noteData = obj as BeatmapNote;
+        //var steerMode = "";
         noteAppearanceSo.SetNoteAppearance(note);
         note.Setup();
         note.SetBomb(noteData.Type == BeatmapNote.NoteTypeBomb);
         note.SetRedNote(noteData.Type == BeatmapNote.NoteTypeA);
         note.SetBlueNote(noteData.Type == BeatmapNote.NoteTypeB);
         note.SetYellowNote(noteData.Type == BeatmapNote.NoteTypeC);
+        //note.SetGreenNote(noteData.Type == BeatmapNote.NoteTypeSkaterSteer);
+        note.SetGreenSteerHoldNote(noteData.Type == BeatmapNote.NoteTypeSkaterSteerHold);
+        note.SetGreenSteerReleaseNote(noteData.Type == BeatmapNote.NoteTypeSkaterSteerRelease);
+        note.SetGreenSteerEndNote(noteData.Type == BeatmapNote.NoteTypeSkaterSteerEnd);
         note.SetPurpleNote(noteData.Type == BeatmapNote.NoteTypeSkaterTricks);
         note.SetPinkNote(noteData.Type == BeatmapNote.NoteTypePlayerDance);
         note.SetGreyNote(noteData.Type == BeatmapNote.NoteTypeEmptyNote);

@@ -1225,6 +1225,14 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""interactions"": ""Press""
                 },
                 {
+                    ""name"": ""Place Green Note or Event"",
+                    ""type"": ""Button"",
+                    ""id"": ""7146c6e4-845f-40c1-947c-f3d1dc017c88"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
                     ""name"": ""Place Purple Note or Event"",
                     ""type"": ""Button"",
                     ""id"": ""5cba45fb-7ca7-4fd2-9166-147df6d57250"",
@@ -1478,6 +1486,17 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Place Grey Note or Event"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7f8e67d3-2bab-44d4-871d-37eb2b99c628"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Place Green Note or Event"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -3855,6 +3874,7 @@ public class @CMInput : IInputActionCollection, IDisposable
         m_Workflows_MirrorinTime = m_Workflows.FindAction("Mirror in Time", throwIfNotFound: true);
         m_Workflows_MirrorColoursOnly = m_Workflows.FindAction("Mirror Colours Only", throwIfNotFound: true);
         m_Workflows_PlaceYellowNoteorEvent = m_Workflows.FindAction("Place Yellow Note or Event", throwIfNotFound: true);
+        m_Workflows_PlaceGreenNoteorEvent = m_Workflows.FindAction("Place Green Note or Event", throwIfNotFound: true);
         m_Workflows_PlacePurpleNoteorEvent = m_Workflows.FindAction("Place Purple Note or Event", throwIfNotFound: true);
         m_Workflows_PlacePinkNoteorEvent = m_Workflows.FindAction("Place Pink Note or Event", throwIfNotFound: true);
         m_Workflows_PlaceGreyNoteorEvent = m_Workflows.FindAction("Place Grey Note or Event", throwIfNotFound: true);
@@ -4541,6 +4561,7 @@ public class @CMInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Workflows_MirrorinTime;
     private readonly InputAction m_Workflows_MirrorColoursOnly;
     private readonly InputAction m_Workflows_PlaceYellowNoteorEvent;
+    private readonly InputAction m_Workflows_PlaceGreenNoteorEvent;
     private readonly InputAction m_Workflows_PlacePurpleNoteorEvent;
     private readonly InputAction m_Workflows_PlacePinkNoteorEvent;
     private readonly InputAction m_Workflows_PlaceGreyNoteorEvent;
@@ -4560,6 +4581,7 @@ public class @CMInput : IInputActionCollection, IDisposable
         public InputAction @MirrorinTime => m_Wrapper.m_Workflows_MirrorinTime;
         public InputAction @MirrorColoursOnly => m_Wrapper.m_Workflows_MirrorColoursOnly;
         public InputAction @PlaceYellowNoteorEvent => m_Wrapper.m_Workflows_PlaceYellowNoteorEvent;
+        public InputAction @PlaceGreenNoteorEvent => m_Wrapper.m_Workflows_PlaceGreenNoteorEvent;
         public InputAction @PlacePurpleNoteorEvent => m_Wrapper.m_Workflows_PlacePurpleNoteorEvent;
         public InputAction @PlacePinkNoteorEvent => m_Wrapper.m_Workflows_PlacePinkNoteorEvent;
         public InputAction @PlaceGreyNoteorEvent => m_Wrapper.m_Workflows_PlaceGreyNoteorEvent;
@@ -4608,6 +4630,9 @@ public class @CMInput : IInputActionCollection, IDisposable
                 @PlaceYellowNoteorEvent.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceYellowNoteorEvent;
                 @PlaceYellowNoteorEvent.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceYellowNoteorEvent;
                 @PlaceYellowNoteorEvent.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceYellowNoteorEvent;
+                @PlaceGreenNoteorEvent.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceGreenNoteorEvent;
+                @PlaceGreenNoteorEvent.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceGreenNoteorEvent;
+                @PlaceGreenNoteorEvent.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceGreenNoteorEvent;
                 @PlacePurpleNoteorEvent.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlacePurpleNoteorEvent;
                 @PlacePurpleNoteorEvent.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlacePurpleNoteorEvent;
                 @PlacePurpleNoteorEvent.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlacePurpleNoteorEvent;
@@ -4657,6 +4682,9 @@ public class @CMInput : IInputActionCollection, IDisposable
                 @PlaceYellowNoteorEvent.started += instance.OnPlaceYellowNoteorEvent;
                 @PlaceYellowNoteorEvent.performed += instance.OnPlaceYellowNoteorEvent;
                 @PlaceYellowNoteorEvent.canceled += instance.OnPlaceYellowNoteorEvent;
+                @PlaceGreenNoteorEvent.started += instance.OnPlaceGreenNoteorEvent;
+                @PlaceGreenNoteorEvent.performed += instance.OnPlaceGreenNoteorEvent;
+                @PlaceGreenNoteorEvent.canceled += instance.OnPlaceGreenNoteorEvent;
                 @PlacePurpleNoteorEvent.started += instance.OnPlacePurpleNoteorEvent;
                 @PlacePurpleNoteorEvent.performed += instance.OnPlacePurpleNoteorEvent;
                 @PlacePurpleNoteorEvent.canceled += instance.OnPlacePurpleNoteorEvent;
@@ -6129,6 +6157,7 @@ public class @CMInput : IInputActionCollection, IDisposable
         void OnMirrorinTime(InputAction.CallbackContext context);
         void OnMirrorColoursOnly(InputAction.CallbackContext context);
         void OnPlaceYellowNoteorEvent(InputAction.CallbackContext context);
+        void OnPlaceGreenNoteorEvent(InputAction.CallbackContext context);
         void OnPlacePurpleNoteorEvent(InputAction.CallbackContext context);
         void OnPlacePinkNoteorEvent(InputAction.CallbackContext context);
         void OnPlaceGreyNoteorEvent(InputAction.CallbackContext context);
