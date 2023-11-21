@@ -200,7 +200,7 @@ public class CameraController : MonoBehaviour, CMInput.ICameraActions
 
     public void OnElevateCamera(CallbackContext context)
     {
-        //Elevation change is controlled by Space and Ctrl.
+        //Elevation change is controlled by Space/E and Ctrl/Q.
         var elevationChange = context.ReadValue<float>();
         y = elevationChange;
     }
