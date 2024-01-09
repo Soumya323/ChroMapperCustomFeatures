@@ -41,6 +41,15 @@ public class BeatmapNote : BeatmapObject, IBeatmapObjectBounds
     public const int NoteCutDirectionDownLeft = 6;
     public const int NoteCutDirectionDownRight = 7;
 
+    public const int NoteTypeTransformPosition = -1;
+    public const int NoteTypeTransformRotation = -2;
+    public const int NoteTypeTransformScale = -3;
+    public const int NoteTypeColorOnTime = -4;
+    public const int NoteTypeEventOnTime = -5;
+    public const int NoteTypeChangeActiveState = -6;
+    public const int NoteTypeAnimationTrigger = -7;
+    public const int NoteTypeSequenceTrigger = -8;
+
     public const int NoteCutDirectionAny = 8;
     public const int NoteCutDirectionNone = 9;
     [FormerlySerializedAs("_lineIndex")] public int LineIndex;

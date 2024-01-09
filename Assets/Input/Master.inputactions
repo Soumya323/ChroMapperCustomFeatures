@@ -1162,7 +1162,7 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "Place Red Note or Event",
+                    "name": "PlaceSkaterJump",
                     "type": "Button",
                     "id": "7c3ce073-947a-41d5-900e-0afddf733685",
                     "expectedControlType": "",
@@ -1170,10 +1170,50 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "Place Blue Note or Event",
+                    "name": "PlaceSkaterDrift",
                     "type": "Button",
                     "id": "15a1d710-c76f-42b5-81fd-53dc8bde4712",
                     "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "PlaceSkaterSlam",
+                    "type": "Button",
+                    "id": "d4183d05-1079-40f5-a25d-1b24755b8436",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "PlaceSteerHold",
+                    "type": "Button",
+                    "id": "5cba45fb-7ca7-4fd2-9166-147df6d57250",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "PlaceSteerRelease",
+                    "type": "Button",
+                    "id": "3b7bb731-bbc0-445c-ad1b-082a34018529",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "PlaceSteerEnd",
+                    "type": "Button",
+                    "id": "7146c6e4-845f-40c1-947c-f3d1dc017c88",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "PlacePlayerDance",
+                    "type": "Button",
+                    "id": "ad8ebecd-8754-489e-87cd-d9cdcdafb105",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
                 },
@@ -1224,46 +1264,6 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
-                },
-                {
-                    "name": "Place Yellow Note or Event",
-                    "type": "Button",
-                    "id": "d4183d05-1079-40f5-a25d-1b24755b8436",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press"
-                },
-                {
-                    "name": "Place Green Note or Event",
-                    "type": "Button",
-                    "id": "7146c6e4-845f-40c1-947c-f3d1dc017c88",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press"
-                },
-                {
-                    "name": "Place Purple Note or Event",
-                    "type": "Button",
-                    "id": "5cba45fb-7ca7-4fd2-9166-147df6d57250",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press"
-                },
-                {
-                    "name": "Place Pink Note or Event",
-                    "type": "Button",
-                    "id": "3b7bb731-bbc0-445c-ad1b-082a34018529",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press"
-                },
-                {
-                    "name": "Place Grey Note or Event",
-                    "type": "Button",
-                    "id": "ad8ebecd-8754-489e-87cd-d9cdcdafb105",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -1296,7 +1296,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "ChroMapper Default",
-                    "action": "Place Red Note or Event",
+                    "action": "PlaceSkaterJump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1307,7 +1307,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "ChroMapper Default",
-                    "action": "Place Blue Note or Event",
+                    "action": "PlaceSkaterDrift",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1461,7 +1461,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Place Yellow Note or Event",
+                    "action": "PlaceSkaterSlam",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1472,7 +1472,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Place Purple Note or Event",
+                    "action": "PlaceSteerHold",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1483,18 +1483,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Place Pink Note or Event",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1807b2a8-03b2-44e3-8785-b8a5bf36768e",
-                    "path": "<Keyboard>/9",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Place Grey Note or Event",
+                    "action": "PlaceSteerRelease",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1505,7 +1494,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Place Green Note or Event",
+                    "action": "PlaceSteerEnd",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1807b2a8-03b2-44e3-8785-b8a5bf36768e",
+                    "path": "<Keyboard>/7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlacePlayerDance",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

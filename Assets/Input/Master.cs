@@ -1175,7 +1175,7 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""interactions"": ""Press""
                 },
                 {
-                    ""name"": ""Place Red Note or Event"",
+                    ""name"": ""PlaceSkaterJump"",
                     ""type"": ""Button"",
                     ""id"": ""7c3ce073-947a-41d5-900e-0afddf733685"",
                     ""expectedControlType"": """",
@@ -1183,10 +1183,50 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""interactions"": ""Press""
                 },
                 {
-                    ""name"": ""Place Blue Note or Event"",
+                    ""name"": ""PlaceSkaterDrift"",
                     ""type"": ""Button"",
                     ""id"": ""15a1d710-c76f-42b5-81fd-53dc8bde4712"",
                     ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""PlaceSkaterSlam"",
+                    ""type"": ""Button"",
+                    ""id"": ""d4183d05-1079-40f5-a25d-1b24755b8436"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""PlaceSteerHold"",
+                    ""type"": ""Button"",
+                    ""id"": ""5cba45fb-7ca7-4fd2-9166-147df6d57250"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""PlaceSteerRelease"",
+                    ""type"": ""Button"",
+                    ""id"": ""3b7bb731-bbc0-445c-ad1b-082a34018529"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""PlaceSteerEnd"",
+                    ""type"": ""Button"",
+                    ""id"": ""7146c6e4-845f-40c1-947c-f3d1dc017c88"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""PlacePlayerDance"",
+                    ""type"": ""Button"",
+                    ""id"": ""ad8ebecd-8754-489e-87cd-d9cdcdafb105"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
                 },
@@ -1237,46 +1277,6 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
-                },
-                {
-                    ""name"": ""Place Yellow Note or Event"",
-                    ""type"": ""Button"",
-                    ""id"": ""d4183d05-1079-40f5-a25d-1b24755b8436"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
-                },
-                {
-                    ""name"": ""Place Green Note or Event"",
-                    ""type"": ""Button"",
-                    ""id"": ""7146c6e4-845f-40c1-947c-f3d1dc017c88"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
-                },
-                {
-                    ""name"": ""Place Purple Note or Event"",
-                    ""type"": ""Button"",
-                    ""id"": ""5cba45fb-7ca7-4fd2-9166-147df6d57250"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
-                },
-                {
-                    ""name"": ""Place Pink Note or Event"",
-                    ""type"": ""Button"",
-                    ""id"": ""3b7bb731-bbc0-445c-ad1b-082a34018529"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
-                },
-                {
-                    ""name"": ""Place Grey Note or Event"",
-                    ""type"": ""Button"",
-                    ""id"": ""ad8ebecd-8754-489e-87cd-d9cdcdafb105"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -1309,7 +1309,7 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Place Red Note or Event"",
+                    ""action"": ""PlaceSkaterJump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1320,7 +1320,7 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""ChroMapper Default"",
-                    ""action"": ""Place Blue Note or Event"",
+                    ""action"": ""PlaceSkaterDrift"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1474,7 +1474,7 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Place Yellow Note or Event"",
+                    ""action"": ""PlaceSkaterSlam"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1485,7 +1485,7 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Place Purple Note or Event"",
+                    ""action"": ""PlaceSteerHold"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1496,18 +1496,7 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Place Pink Note or Event"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1807b2a8-03b2-44e3-8785-b8a5bf36768e"",
-                    ""path"": ""<Keyboard>/9"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Place Grey Note or Event"",
+                    ""action"": ""PlaceSteerRelease"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1518,7 +1507,18 @@ public class @CMInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Place Green Note or Event"",
+                    ""action"": ""PlaceSteerEnd"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1807b2a8-03b2-44e3-8785-b8a5bf36768e"",
+                    ""path"": ""<Keyboard>/7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlacePlayerDance"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -3887,19 +3887,19 @@ public class @CMInput : IInputActionCollection, IDisposable
         m_Workflows_ToggleRightButtonPanel = m_Workflows.FindAction("Toggle Right Button Panel", throwIfNotFound: true);
         m_Workflows_UpdateSwingArcVisualizer = m_Workflows.FindAction("Update Swing Arc Visualizer", throwIfNotFound: true);
         m_Workflows_ToggleNoteorEvent = m_Workflows.FindAction("Toggle Note or Event", throwIfNotFound: true);
-        m_Workflows_PlaceRedNoteorEvent = m_Workflows.FindAction("Place Red Note or Event", throwIfNotFound: true);
-        m_Workflows_PlaceBlueNoteorEvent = m_Workflows.FindAction("Place Blue Note or Event", throwIfNotFound: true);
+        m_Workflows_PlaceSkaterJump = m_Workflows.FindAction("PlaceSkaterJump", throwIfNotFound: true);
+        m_Workflows_PlaceSkaterDrift = m_Workflows.FindAction("PlaceSkaterDrift", throwIfNotFound: true);
+        m_Workflows_PlaceSkaterSlam = m_Workflows.FindAction("PlaceSkaterSlam", throwIfNotFound: true);
+        m_Workflows_PlaceSteerHold = m_Workflows.FindAction("PlaceSteerHold", throwIfNotFound: true);
+        m_Workflows_PlaceSteerRelease = m_Workflows.FindAction("PlaceSteerRelease", throwIfNotFound: true);
+        m_Workflows_PlaceSteerEnd = m_Workflows.FindAction("PlaceSteerEnd", throwIfNotFound: true);
+        m_Workflows_PlacePlayerDance = m_Workflows.FindAction("PlacePlayerDance", throwIfNotFound: true);
         m_Workflows_PlaceBomb = m_Workflows.FindAction("Place Bomb", throwIfNotFound: true);
         m_Workflows_PlaceObstacle = m_Workflows.FindAction("Place Obstacle", throwIfNotFound: true);
         m_Workflows_ToggleDeleteTool = m_Workflows.FindAction("Toggle Delete Tool", throwIfNotFound: true);
         m_Workflows_Mirror = m_Workflows.FindAction("Mirror", throwIfNotFound: true);
         m_Workflows_MirrorinTime = m_Workflows.FindAction("Mirror in Time", throwIfNotFound: true);
         m_Workflows_MirrorColoursOnly = m_Workflows.FindAction("Mirror Colours Only", throwIfNotFound: true);
-        m_Workflows_PlaceYellowNoteorEvent = m_Workflows.FindAction("Place Yellow Note or Event", throwIfNotFound: true);
-        m_Workflows_PlaceGreenNoteorEvent = m_Workflows.FindAction("Place Green Note or Event", throwIfNotFound: true);
-        m_Workflows_PlacePurpleNoteorEvent = m_Workflows.FindAction("Place Purple Note or Event", throwIfNotFound: true);
-        m_Workflows_PlacePinkNoteorEvent = m_Workflows.FindAction("Place Pink Note or Event", throwIfNotFound: true);
-        m_Workflows_PlaceGreyNoteorEvent = m_Workflows.FindAction("Place Grey Note or Event", throwIfNotFound: true);
         // Event UI
         m_EventUI = asset.FindActionMap("Event UI", throwIfNotFound: true);
         m_EventUI_TypeOn = m_EventUI.FindAction("Type On", throwIfNotFound: true);
@@ -4574,19 +4574,19 @@ public class @CMInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Workflows_ToggleRightButtonPanel;
     private readonly InputAction m_Workflows_UpdateSwingArcVisualizer;
     private readonly InputAction m_Workflows_ToggleNoteorEvent;
-    private readonly InputAction m_Workflows_PlaceRedNoteorEvent;
-    private readonly InputAction m_Workflows_PlaceBlueNoteorEvent;
+    private readonly InputAction m_Workflows_PlaceSkaterJump;
+    private readonly InputAction m_Workflows_PlaceSkaterDrift;
+    private readonly InputAction m_Workflows_PlaceSkaterSlam;
+    private readonly InputAction m_Workflows_PlaceSteerHold;
+    private readonly InputAction m_Workflows_PlaceSteerRelease;
+    private readonly InputAction m_Workflows_PlaceSteerEnd;
+    private readonly InputAction m_Workflows_PlacePlayerDance;
     private readonly InputAction m_Workflows_PlaceBomb;
     private readonly InputAction m_Workflows_PlaceObstacle;
     private readonly InputAction m_Workflows_ToggleDeleteTool;
     private readonly InputAction m_Workflows_Mirror;
     private readonly InputAction m_Workflows_MirrorinTime;
     private readonly InputAction m_Workflows_MirrorColoursOnly;
-    private readonly InputAction m_Workflows_PlaceYellowNoteorEvent;
-    private readonly InputAction m_Workflows_PlaceGreenNoteorEvent;
-    private readonly InputAction m_Workflows_PlacePurpleNoteorEvent;
-    private readonly InputAction m_Workflows_PlacePinkNoteorEvent;
-    private readonly InputAction m_Workflows_PlaceGreyNoteorEvent;
     public struct WorkflowsActions
     {
         private @CMInput m_Wrapper;
@@ -4594,19 +4594,19 @@ public class @CMInput : IInputActionCollection, IDisposable
         public InputAction @ToggleRightButtonPanel => m_Wrapper.m_Workflows_ToggleRightButtonPanel;
         public InputAction @UpdateSwingArcVisualizer => m_Wrapper.m_Workflows_UpdateSwingArcVisualizer;
         public InputAction @ToggleNoteorEvent => m_Wrapper.m_Workflows_ToggleNoteorEvent;
-        public InputAction @PlaceRedNoteorEvent => m_Wrapper.m_Workflows_PlaceRedNoteorEvent;
-        public InputAction @PlaceBlueNoteorEvent => m_Wrapper.m_Workflows_PlaceBlueNoteorEvent;
+        public InputAction @PlaceSkaterJump => m_Wrapper.m_Workflows_PlaceSkaterJump;
+        public InputAction @PlaceSkaterDrift => m_Wrapper.m_Workflows_PlaceSkaterDrift;
+        public InputAction @PlaceSkaterSlam => m_Wrapper.m_Workflows_PlaceSkaterSlam;
+        public InputAction @PlaceSteerHold => m_Wrapper.m_Workflows_PlaceSteerHold;
+        public InputAction @PlaceSteerRelease => m_Wrapper.m_Workflows_PlaceSteerRelease;
+        public InputAction @PlaceSteerEnd => m_Wrapper.m_Workflows_PlaceSteerEnd;
+        public InputAction @PlacePlayerDance => m_Wrapper.m_Workflows_PlacePlayerDance;
         public InputAction @PlaceBomb => m_Wrapper.m_Workflows_PlaceBomb;
         public InputAction @PlaceObstacle => m_Wrapper.m_Workflows_PlaceObstacle;
         public InputAction @ToggleDeleteTool => m_Wrapper.m_Workflows_ToggleDeleteTool;
         public InputAction @Mirror => m_Wrapper.m_Workflows_Mirror;
         public InputAction @MirrorinTime => m_Wrapper.m_Workflows_MirrorinTime;
         public InputAction @MirrorColoursOnly => m_Wrapper.m_Workflows_MirrorColoursOnly;
-        public InputAction @PlaceYellowNoteorEvent => m_Wrapper.m_Workflows_PlaceYellowNoteorEvent;
-        public InputAction @PlaceGreenNoteorEvent => m_Wrapper.m_Workflows_PlaceGreenNoteorEvent;
-        public InputAction @PlacePurpleNoteorEvent => m_Wrapper.m_Workflows_PlacePurpleNoteorEvent;
-        public InputAction @PlacePinkNoteorEvent => m_Wrapper.m_Workflows_PlacePinkNoteorEvent;
-        public InputAction @PlaceGreyNoteorEvent => m_Wrapper.m_Workflows_PlaceGreyNoteorEvent;
         public InputActionMap Get() { return m_Wrapper.m_Workflows; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -4625,12 +4625,27 @@ public class @CMInput : IInputActionCollection, IDisposable
                 @ToggleNoteorEvent.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnToggleNoteorEvent;
                 @ToggleNoteorEvent.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnToggleNoteorEvent;
                 @ToggleNoteorEvent.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnToggleNoteorEvent;
-                @PlaceRedNoteorEvent.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceRedNoteorEvent;
-                @PlaceRedNoteorEvent.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceRedNoteorEvent;
-                @PlaceRedNoteorEvent.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceRedNoteorEvent;
-                @PlaceBlueNoteorEvent.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceBlueNoteorEvent;
-                @PlaceBlueNoteorEvent.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceBlueNoteorEvent;
-                @PlaceBlueNoteorEvent.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceBlueNoteorEvent;
+                @PlaceSkaterJump.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceSkaterJump;
+                @PlaceSkaterJump.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceSkaterJump;
+                @PlaceSkaterJump.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceSkaterJump;
+                @PlaceSkaterDrift.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceSkaterDrift;
+                @PlaceSkaterDrift.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceSkaterDrift;
+                @PlaceSkaterDrift.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceSkaterDrift;
+                @PlaceSkaterSlam.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceSkaterSlam;
+                @PlaceSkaterSlam.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceSkaterSlam;
+                @PlaceSkaterSlam.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceSkaterSlam;
+                @PlaceSteerHold.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceSteerHold;
+                @PlaceSteerHold.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceSteerHold;
+                @PlaceSteerHold.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceSteerHold;
+                @PlaceSteerRelease.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceSteerRelease;
+                @PlaceSteerRelease.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceSteerRelease;
+                @PlaceSteerRelease.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceSteerRelease;
+                @PlaceSteerEnd.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceSteerEnd;
+                @PlaceSteerEnd.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceSteerEnd;
+                @PlaceSteerEnd.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceSteerEnd;
+                @PlacePlayerDance.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlacePlayerDance;
+                @PlacePlayerDance.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlacePlayerDance;
+                @PlacePlayerDance.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlacePlayerDance;
                 @PlaceBomb.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceBomb;
                 @PlaceBomb.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceBomb;
                 @PlaceBomb.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceBomb;
@@ -4649,21 +4664,6 @@ public class @CMInput : IInputActionCollection, IDisposable
                 @MirrorColoursOnly.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnMirrorColoursOnly;
                 @MirrorColoursOnly.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnMirrorColoursOnly;
                 @MirrorColoursOnly.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnMirrorColoursOnly;
-                @PlaceYellowNoteorEvent.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceYellowNoteorEvent;
-                @PlaceYellowNoteorEvent.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceYellowNoteorEvent;
-                @PlaceYellowNoteorEvent.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceYellowNoteorEvent;
-                @PlaceGreenNoteorEvent.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceGreenNoteorEvent;
-                @PlaceGreenNoteorEvent.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceGreenNoteorEvent;
-                @PlaceGreenNoteorEvent.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceGreenNoteorEvent;
-                @PlacePurpleNoteorEvent.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlacePurpleNoteorEvent;
-                @PlacePurpleNoteorEvent.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlacePurpleNoteorEvent;
-                @PlacePurpleNoteorEvent.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlacePurpleNoteorEvent;
-                @PlacePinkNoteorEvent.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlacePinkNoteorEvent;
-                @PlacePinkNoteorEvent.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlacePinkNoteorEvent;
-                @PlacePinkNoteorEvent.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlacePinkNoteorEvent;
-                @PlaceGreyNoteorEvent.started -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceGreyNoteorEvent;
-                @PlaceGreyNoteorEvent.performed -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceGreyNoteorEvent;
-                @PlaceGreyNoteorEvent.canceled -= m_Wrapper.m_WorkflowsActionsCallbackInterface.OnPlaceGreyNoteorEvent;
             }
             m_Wrapper.m_WorkflowsActionsCallbackInterface = instance;
             if (instance != null)
@@ -4677,12 +4677,27 @@ public class @CMInput : IInputActionCollection, IDisposable
                 @ToggleNoteorEvent.started += instance.OnToggleNoteorEvent;
                 @ToggleNoteorEvent.performed += instance.OnToggleNoteorEvent;
                 @ToggleNoteorEvent.canceled += instance.OnToggleNoteorEvent;
-                @PlaceRedNoteorEvent.started += instance.OnPlaceRedNoteorEvent;
-                @PlaceRedNoteorEvent.performed += instance.OnPlaceRedNoteorEvent;
-                @PlaceRedNoteorEvent.canceled += instance.OnPlaceRedNoteorEvent;
-                @PlaceBlueNoteorEvent.started += instance.OnPlaceBlueNoteorEvent;
-                @PlaceBlueNoteorEvent.performed += instance.OnPlaceBlueNoteorEvent;
-                @PlaceBlueNoteorEvent.canceled += instance.OnPlaceBlueNoteorEvent;
+                @PlaceSkaterJump.started += instance.OnPlaceSkaterJump;
+                @PlaceSkaterJump.performed += instance.OnPlaceSkaterJump;
+                @PlaceSkaterJump.canceled += instance.OnPlaceSkaterJump;
+                @PlaceSkaterDrift.started += instance.OnPlaceSkaterDrift;
+                @PlaceSkaterDrift.performed += instance.OnPlaceSkaterDrift;
+                @PlaceSkaterDrift.canceled += instance.OnPlaceSkaterDrift;
+                @PlaceSkaterSlam.started += instance.OnPlaceSkaterSlam;
+                @PlaceSkaterSlam.performed += instance.OnPlaceSkaterSlam;
+                @PlaceSkaterSlam.canceled += instance.OnPlaceSkaterSlam;
+                @PlaceSteerHold.started += instance.OnPlaceSteerHold;
+                @PlaceSteerHold.performed += instance.OnPlaceSteerHold;
+                @PlaceSteerHold.canceled += instance.OnPlaceSteerHold;
+                @PlaceSteerRelease.started += instance.OnPlaceSteerRelease;
+                @PlaceSteerRelease.performed += instance.OnPlaceSteerRelease;
+                @PlaceSteerRelease.canceled += instance.OnPlaceSteerRelease;
+                @PlaceSteerEnd.started += instance.OnPlaceSteerEnd;
+                @PlaceSteerEnd.performed += instance.OnPlaceSteerEnd;
+                @PlaceSteerEnd.canceled += instance.OnPlaceSteerEnd;
+                @PlacePlayerDance.started += instance.OnPlacePlayerDance;
+                @PlacePlayerDance.performed += instance.OnPlacePlayerDance;
+                @PlacePlayerDance.canceled += instance.OnPlacePlayerDance;
                 @PlaceBomb.started += instance.OnPlaceBomb;
                 @PlaceBomb.performed += instance.OnPlaceBomb;
                 @PlaceBomb.canceled += instance.OnPlaceBomb;
@@ -4701,21 +4716,6 @@ public class @CMInput : IInputActionCollection, IDisposable
                 @MirrorColoursOnly.started += instance.OnMirrorColoursOnly;
                 @MirrorColoursOnly.performed += instance.OnMirrorColoursOnly;
                 @MirrorColoursOnly.canceled += instance.OnMirrorColoursOnly;
-                @PlaceYellowNoteorEvent.started += instance.OnPlaceYellowNoteorEvent;
-                @PlaceYellowNoteorEvent.performed += instance.OnPlaceYellowNoteorEvent;
-                @PlaceYellowNoteorEvent.canceled += instance.OnPlaceYellowNoteorEvent;
-                @PlaceGreenNoteorEvent.started += instance.OnPlaceGreenNoteorEvent;
-                @PlaceGreenNoteorEvent.performed += instance.OnPlaceGreenNoteorEvent;
-                @PlaceGreenNoteorEvent.canceled += instance.OnPlaceGreenNoteorEvent;
-                @PlacePurpleNoteorEvent.started += instance.OnPlacePurpleNoteorEvent;
-                @PlacePurpleNoteorEvent.performed += instance.OnPlacePurpleNoteorEvent;
-                @PlacePurpleNoteorEvent.canceled += instance.OnPlacePurpleNoteorEvent;
-                @PlacePinkNoteorEvent.started += instance.OnPlacePinkNoteorEvent;
-                @PlacePinkNoteorEvent.performed += instance.OnPlacePinkNoteorEvent;
-                @PlacePinkNoteorEvent.canceled += instance.OnPlacePinkNoteorEvent;
-                @PlaceGreyNoteorEvent.started += instance.OnPlaceGreyNoteorEvent;
-                @PlaceGreyNoteorEvent.performed += instance.OnPlaceGreyNoteorEvent;
-                @PlaceGreyNoteorEvent.canceled += instance.OnPlaceGreyNoteorEvent;
             }
         }
     }
@@ -6170,19 +6170,19 @@ public class @CMInput : IInputActionCollection, IDisposable
         void OnToggleRightButtonPanel(InputAction.CallbackContext context);
         void OnUpdateSwingArcVisualizer(InputAction.CallbackContext context);
         void OnToggleNoteorEvent(InputAction.CallbackContext context);
-        void OnPlaceRedNoteorEvent(InputAction.CallbackContext context);
-        void OnPlaceBlueNoteorEvent(InputAction.CallbackContext context);
+        void OnPlaceSkaterJump(InputAction.CallbackContext context);
+        void OnPlaceSkaterDrift(InputAction.CallbackContext context);
+        void OnPlaceSkaterSlam(InputAction.CallbackContext context);
+        void OnPlaceSteerHold(InputAction.CallbackContext context);
+        void OnPlaceSteerRelease(InputAction.CallbackContext context);
+        void OnPlaceSteerEnd(InputAction.CallbackContext context);
+        void OnPlacePlayerDance(InputAction.CallbackContext context);
         void OnPlaceBomb(InputAction.CallbackContext context);
         void OnPlaceObstacle(InputAction.CallbackContext context);
         void OnToggleDeleteTool(InputAction.CallbackContext context);
         void OnMirror(InputAction.CallbackContext context);
         void OnMirrorinTime(InputAction.CallbackContext context);
         void OnMirrorColoursOnly(InputAction.CallbackContext context);
-        void OnPlaceYellowNoteorEvent(InputAction.CallbackContext context);
-        void OnPlaceGreenNoteorEvent(InputAction.CallbackContext context);
-        void OnPlacePurpleNoteorEvent(InputAction.CallbackContext context);
-        void OnPlacePinkNoteorEvent(InputAction.CallbackContext context);
-        void OnPlaceGreyNoteorEvent(InputAction.CallbackContext context);
     }
     public interface IEventUIActions
     {

@@ -16,11 +16,11 @@ public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsAction
     [SerializeField] private Toggle redToggle;
     [SerializeField] private Toggle blueToggle;
     [SerializeField] private Toggle yellowToggle;
-    [SerializeField] private Dropdown greenDropdown;
-    [SerializeField] private Toggle purpleToggle;
+    [SerializeField] private Toggle steerHoldToggle;
+    [SerializeField] private Toggle steerReleaseToggle;
+    [SerializeField] private Toggle steerEndToggle;
     [SerializeField] private Toggle pinkToggle;
     [SerializeField] private Toggle greyToggle;
-    [SerializeField] private Toggle brownToggle;
     [SerializeField] private GameObject precisionRotationContainer;
 
     private void Awake() => UpdatePrecisionRotationGameObjectState();
@@ -72,43 +72,49 @@ public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsAction
         rightButtonPanel.TogglePanel();
     }
 
-    public void OnPlaceBlueNoteorEvent(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
-        blueToggle.onValueChanged.Invoke(true);
-        placeMode.SetMode(PlacementModeController.PlacementMode.Note);
-    }
-
-    public void OnPlaceRedNoteorEvent(InputAction.CallbackContext context)
+    public void OnPlaceSkaterJump(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         redToggle.onValueChanged.Invoke(true);
         placeMode.SetMode(PlacementModeController.PlacementMode.Note);
     }
 
-    public void OnPlaceYellowNoteorEvent(InputAction.CallbackContext context)
+    public void OnPlaceSkaterDrift(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        blueToggle.onValueChanged.Invoke(true);
+        placeMode.SetMode(PlacementModeController.PlacementMode.Note);
+    }
+
+    public void OnPlaceSkaterSlam(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         yellowToggle.onValueChanged.Invoke(true);
         placeMode.SetMode(PlacementModeController.PlacementMode.Note);
     }
 
-    public void OnPlaceGreenNoteorEvent(InputAction.CallbackContext context)
+    public void OnPlaceSteerHold(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        //yellowToggle.onValueChanged.Invoke(true);
-        greenDropdown.onValueChanged.Invoke(greenDropdown.value);
+        steerHoldToggle.onValueChanged.Invoke(true);
         placeMode.SetMode(PlacementModeController.PlacementMode.Note);
     }
 
-    public void OnPlacePurpleNoteorEvent(InputAction.CallbackContext context)
+    public void OnPlaceSteerRelease(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        purpleToggle.onValueChanged.Invoke(true);
+        steerReleaseToggle.onValueChanged.Invoke(true);
         placeMode.SetMode(PlacementModeController.PlacementMode.Note);
     }
 
-    public void OnPlacePinkNoteorEvent(InputAction.CallbackContext context)
+    public void OnPlaceSteerEnd(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        steerEndToggle.onValueChanged.Invoke(true);
+        placeMode.SetMode(PlacementModeController.PlacementMode.Note);
+    }
+
+    public void OnPlacePlayerDance(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         pinkToggle.onValueChanged.Invoke(true);
@@ -119,13 +125,6 @@ public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsAction
     {
         if (!context.performed) return;
         greyToggle.onValueChanged.Invoke(true);
-        placeMode.SetMode(PlacementModeController.PlacementMode.Note);
-    }
-
-    public void OnPlaceBrownNoteorEvent(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
-        brownToggle.onValueChanged.Invoke(true);
         placeMode.SetMode(PlacementModeController.PlacementMode.Note);
     }
 
@@ -140,14 +139,14 @@ public class KeybindUpdateUIController : MonoBehaviour, CMInput.IWorkflowsAction
             yellowToggle.onValueChanged.Invoke(true);
         //else if (colorType.GreenSelectedEnabled())
           //  greenDropdown.onValueChanged.Invoke(1);
-        else if (colorType.PurpleSelectedEnabled())
-            purpleToggle.onValueChanged.Invoke(true);
+        //else if (colorType.PurpleSelectedEnabled())
+            //purpleToggle.onValueChanged.Invoke(true);
         else if (colorType.PinkSelectedEnabled())
             pinkToggle.onValueChanged.Invoke(true);
         else if (colorType.GreySelectedEnabled())
             greyToggle.onValueChanged.Invoke(true);
-        else if (colorType.BrownSelectedEnabled())
-            brownToggle.onValueChanged.Invoke(true);
+        //else if (colorType.BrownSelectedEnabled())
+            //brownToggle.onValueChanged.Invoke(true);
         lightMode.UpdateValue();
     }
 

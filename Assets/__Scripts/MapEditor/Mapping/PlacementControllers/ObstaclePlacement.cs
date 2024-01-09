@@ -160,11 +160,13 @@ public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObs
         }
     }
 
+     //called when clicking and draging the wall / obstacle for creating
     public override void OnMousePositionUpdate(InputAction.CallbackContext context)
     {
         base.OnMousePositionUpdate(context);
         if (IsPlacing)
         {
+
             instantiatedContainer.transform.localPosition = new Vector3(instantiatedContainer.transform.localPosition.x,
                 instantiatedContainer.transform.localPosition.y,
                 startTime * EditorScaleController.EditorScale
@@ -175,6 +177,7 @@ public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObs
         }
     }
 
+     //Wall getting placed in the editor
     internal override void ApplyToMap()
     {
         if (IsPlacing)
@@ -195,6 +198,7 @@ public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObs
             obstacleAppearanceSo.SetObstacleAppearance(instantiatedContainer);
             instantiatedContainer.transform.localScale = new Vector3(
                 1, instantiatedContainer.transform.localPosition.y == 0 ? 3.5f : 2, 0);
+
         }
         else
         {
@@ -210,6 +214,7 @@ public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObs
         dragged.LineIndex = queued.LineIndex;
     }
 
+    //Called when we are canceled the dragged wall
     public override void CancelPlacement()
     {
         if (IsPlacing)

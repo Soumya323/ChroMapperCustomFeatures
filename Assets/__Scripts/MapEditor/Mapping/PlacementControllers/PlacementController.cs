@@ -208,7 +208,10 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
             if (Intersections.Raycast(dragRay, 9, out var dragHit))
             {
                 var con = dragHit.GameObject.GetComponentInParent<BeatmapObjectContainer>();
-                if (StartDrag(con)) IsDraggingObject = true;
+                if (StartDrag(con))
+                {
+                     IsDraggingObject = true;
+                }
             }
         }
         else if (context.canceled && IsDraggingObject && instantiatedContainer != null)
