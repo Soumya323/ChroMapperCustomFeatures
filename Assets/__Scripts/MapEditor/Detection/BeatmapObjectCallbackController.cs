@@ -12,35 +12,44 @@ public class BeatmapObjectCallbackController : MonoBehaviour
 
     [SerializeField] private NotesContainer notesContainer;
     [SerializeField] private EventsContainer eventsContainer;
+    [SerializeField] private BehavioursContainer behavioursContainer;
 
     [SerializeField] private AudioTimeSyncController timeSyncController;
     [SerializeField] private UIMode uiMode;
 
     [SerializeField] private bool useOffsetFromConfig = true;
 
-    [Tooltip("Whether or not to use the Despawn or Spawn offset from settings.")]
-    [SerializeField]
+    [Tooltip("Whether or not to use the Despawn or Spawn offset from settings.")] [SerializeField]
     private bool useDespawnOffset;
 
     [FormerlySerializedAs("offset")] public float Offset;
 
     [SerializeField] private int nextNoteIndex;
     [SerializeField] private int nextEventIndex;
+    [SerializeField] private int nextBehaviourIndex;
 
     [FormerlySerializedAs("useAudioTime")] public bool UseAudioTime;
 
     private readonly HashSet<BeatmapObject> nextEvents = new HashSet<BeatmapObject>();
     private readonly HashSet<BeatmapObject> nextNotes = new HashSet<BeatmapObject>();
+    private readonly HashSet<BeatmapObject> nextBehaviours = new HashSet<BeatmapObject>();
+
     private HashSet<BeatmapObject> allEvents = new HashSet<BeatmapObject>();
     private HashSet<BeatmapObject> allNotes = new HashSet<BeatmapObject>();
+    private HashSet<BeatmapObject> allBehaviours = new HashSet<BeatmapObject>();
+
     private HashSet<BeatmapObject> queuedToClear = new HashSet<BeatmapObject>();
 
     private float curTime;
     public Action<bool, int, BeatmapObject> EventPassedThreshold;
 
     public Action<bool, int, BeatmapObject> NotePassedThreshold;
+    public Action<bool, int, BeatmapObject> BehaviourPassedThreshold;
+
     public Action<bool, int> RecursiveEventCheckFinished;
     public Action<bool, int> RecursiveNoteCheckFinished;
+    public Action<bool, int> RecursiveBehaviourCheckFinished;
+
 
     private void Start()
     {
@@ -48,6 +57,8 @@ public class BeatmapObjectCallbackController : MonoBehaviour
         notesContainer.ObjectDeletedEvent += NotesContainer_ObjectDeletedEvent;
         eventsContainer.ObjectSpawnedEvent += EventsContainer_ObjectSpawnedEvent;
         eventsContainer.ObjectDeletedEvent += EventsContainer_ObjectDeletedEvent;
+        behavioursContainer.ObjectSpawnedEvent += BehavioursContainer_ObjectSpawnedEvent;
+        behavioursContainer.ObjectDeletedEvent += BehavioursContainer_ObjectDeletedEvent;
     }
 
     private void LateUpdate()
@@ -92,6 +103,11 @@ public class BeatmapObjectCallbackController : MonoBehaviour
                     allEvents.Remove(toClear);
                     nextEvents.Remove(toClear);
                 }
+                else if (toClear is MapBehaviour)
+                {
+                    allBehaviours.Remove(toClear);
+                    nextBehaviours.Remove(toClear);
+                }
             }
 
             queuedToClear.Clear();
@@ -102,6 +118,7 @@ public class BeatmapObjectCallbackController : MonoBehaviour
             curTime = UseAudioTime ? timeSyncController.CurrentSongBeats : timeSyncController.CurrentBeat;
             RecursiveCheckNotes(true, true);
             RecursiveCheckEvents(true, true);
+            RecursiveCheckBehaviours(true, true);
         }
     }
 
@@ -115,6 +132,7 @@ public class BeatmapObjectCallbackController : MonoBehaviour
         {
             CheckAllNotes(false);
             CheckAllEvents(false);
+            CheckAllBehaviours(false);
         }
     }
 
@@ -150,6 +168,21 @@ public class BeatmapObjectCallbackController : MonoBehaviour
         }
     }
 
+    private void CheckAllBehaviours(bool natural)
+    {
+        allBehaviours.Clear();
+        allBehaviours = new HashSet<BeatmapObject>(behavioursContainer.LoadedObjects.Where(x => x.Time >= curTime + Offset));
+
+        nextBehaviourIndex = behavioursContainer.LoadedObjects.Count - allBehaviours.Count;
+        RecursiveBehaviourCheckFinished?.Invoke(natural, nextBehaviourIndex - 1);
+        nextBehaviours.Clear();
+
+        for (var i = 0; i < eventsToLookAhead; i++)
+        {
+            if (allBehaviours.Count > 0) QueueNextObject(allBehaviours, nextBehaviours);
+        }
+    }
+
     private void RecursiveCheckNotes(bool init, bool natural)
     {
         var passed = nextNotes.Where(x => x.Time <= curTime + Offset).ToArray();
@@ -174,6 +207,18 @@ public class BeatmapObjectCallbackController : MonoBehaviour
         }
     }
 
+    private void RecursiveCheckBehaviours(bool init, bool natural)
+    {
+        var passed = nextBehaviours.Where(x => x.Time <= curTime + Offset).ToArray();
+        foreach (var newlyAdded in passed)
+        {
+            if (natural) BehaviourPassedThreshold?.Invoke(init, nextBehaviourIndex, newlyAdded);
+            nextBehaviours.Remove(newlyAdded);
+            if (allEvents.Count > 0 && natural) QueueNextObject(allBehaviours, nextBehaviours);
+            nextBehaviourIndex++;
+        }
+    }
+
     private void NotesContainer_ObjectSpawnedEvent(BeatmapObject obj) => OnObjSpawn(obj, nextNotes);
 
     private void NotesContainer_ObjectDeletedEvent(BeatmapObject obj) => OnObjDeleted(obj);
@@ -181,6 +226,10 @@ public class BeatmapObjectCallbackController : MonoBehaviour
     private void EventsContainer_ObjectSpawnedEvent(BeatmapObject obj) => OnObjSpawn(obj, nextEvents);
 
     private void EventsContainer_ObjectDeletedEvent(BeatmapObject obj) => OnObjDeleted(obj);
+
+    private void BehavioursContainer_ObjectSpawnedEvent(BeatmapObject obj) => OnObjSpawn(obj, nextEvents);
+
+    private void BehavioursContainer_ObjectDeletedEvent(BeatmapObject obj) => OnObjDeleted(obj);
 
     private void OnObjSpawn(BeatmapObject obj, HashSet<BeatmapObject> nextObjects)
     {
@@ -216,5 +265,7 @@ public class BeatmapObjectCallbackController : MonoBehaviour
         notesContainer.ObjectDeletedEvent -= NotesContainer_ObjectDeletedEvent;
         eventsContainer.ObjectSpawnedEvent -= EventsContainer_ObjectSpawnedEvent;
         eventsContainer.ObjectDeletedEvent -= EventsContainer_ObjectDeletedEvent;
+        behavioursContainer.ObjectSpawnedEvent -= BehavioursContainer_ObjectSpawnedEvent;
+        behavioursContainer.ObjectDeletedEvent -= BehavioursContainer_ObjectDeletedEvent;
     }
 }

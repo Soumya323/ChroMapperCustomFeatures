@@ -1,95 +1,93 @@
+using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class BehaviourController : MonoBehaviour
 {
-    [SerializeField] 
-    private NotePlacement notePlacement;
+    [SerializeField] private BehaviourPlacement behaviourPlacement;
 
-    [SerializeField] 
-    private PlacementModeController placeMode;
+    [SerializeField] private Image positionSelectedImage;
 
-    [SerializeField]
-    private Image positionSelectedImage;
+    [SerializeField] private Image rotationSelectedImage;
 
-    [SerializeField]
-    private Image rotationSelectedImage;
+    [SerializeField] private Image scaleSelectedImage;
 
-    [SerializeField]
-    private Image scaleSelectedImage;
+    [SerializeField] private Image colorSelectedImage;
 
-    [SerializeField]
-    private Image colorSelectedImage;
+    [SerializeField] private Image eventSelectedImage;
 
-    [SerializeField]
-    private Image eventSelectedImage;
+    [SerializeField] private Image changeActiveStatesSelectedImage;
 
-    [SerializeField]
-    private Image changeActiveStatesSelectedImage;
+    [SerializeField] private Image animationSelectedImage;
 
-    [SerializeField]
-    private Image animationSelectedImage;
+    [SerializeField] private Image sequenceSelectedImage;
 
-    [SerializeField]
-    private Image sequenceSelectedImage;
+    private void Start() => StartCoroutine(DelayStart());
+
+    IEnumerator DelayStart()
+    {
+        yield return new WaitForSeconds(1);
+        UpdateValue(BehaviourType.MoveBehaviour);
+    }
 
     public void OnPosition()
     {
-        UpdateValue(BeatmapNote.NoteTypeTransformPosition);
+        UpdateValue(BehaviourType.MoveBehaviour);
     }
 
     public void OnRotation()
     {
-        UpdateValue(BeatmapNote.NoteTypeTransformRotation);
+        UpdateValue(BehaviourType.RotateBehaviour);
     }
 
     public void OnScale()
     {
-        UpdateValue(BeatmapNote.NoteTypeTransformScale);
+        UpdateValue(BehaviourType.ScaleBehaviour);
     }
 
     public void OnColor()
     {
-        UpdateValue(BeatmapNote.NoteTypeColorOnTime);
+        UpdateValue(BehaviourType.ColorBehaviour);
     }
 
     public void OnEvent()
     {
-        UpdateValue(BeatmapNote.NoteTypeEventOnTime);
+        UpdateValue(BehaviourType.EventBehaviour);
     }
 
     public void OnChangeActiveState()
     {
-        UpdateValue(BeatmapNote.NoteTypeChangeActiveState);
+        UpdateValue(BehaviourType.ChangeActiveStateBehaviour);
     }
 
     public void OnAnimationTrigger()
     {
-        UpdateValue(BeatmapNote.NoteTypeAnimationTrigger);
+        UpdateValue(BehaviourType.AnimationBehaviour);
     }
 
     public void OnSequenceTrigger()
     {
-        UpdateValue(BeatmapNote.NoteTypeSequenceTrigger);
+        UpdateValue(BehaviourType.SequenceTriggerBehaviour);
     }
 
-    public void UpdateValue(int type)
+    public void UpdateValue(BehaviourType type)
     {
-        notePlacement.UpdateType(type);
-        placeMode.SetMode(PlacementModeController.PlacementMode.Note);
+        behaviourPlacement.UpdateType(type);
 
         UpdateBehaviourSelectedUI();
     }
 
     public void UpdateBehaviourSelectedUI()
     {
-        positionSelectedImage.enabled = notePlacement.queuedData.Type == BeatmapNote.NoteTypeTransformPosition;
-        rotationSelectedImage.enabled = notePlacement.queuedData.Type == BeatmapNote.NoteTypeTransformRotation; 
-        scaleSelectedImage.enabled = notePlacement.queuedData.Type == BeatmapNote.NoteTypeTransformScale;
-        colorSelectedImage.enabled = notePlacement.queuedData.Type == BeatmapNote.NoteTypeColorOnTime;
-        eventSelectedImage.enabled = notePlacement.queuedData.Type == BeatmapNote.NoteTypeEventOnTime;
-        changeActiveStatesSelectedImage.enabled = notePlacement.queuedData.Type == BeatmapNote.NoteTypeChangeActiveState;
-        animationSelectedImage.enabled = notePlacement.queuedData.Type == BeatmapNote.NoteTypeAnimationTrigger;
-        sequenceSelectedImage.enabled = notePlacement.queuedData.Type == BeatmapNote.NoteTypeSequenceTrigger;
+        positionSelectedImage.enabled = behaviourPlacement.queuedData.Type == BehaviourType.MoveBehaviour;
+        rotationSelectedImage.enabled = behaviourPlacement.queuedData.Type == BehaviourType.RotateBehaviour;
+        scaleSelectedImage.enabled = behaviourPlacement.queuedData.Type == BehaviourType.ScaleBehaviour;
+        colorSelectedImage.enabled = behaviourPlacement.queuedData.Type == BehaviourType.ColorBehaviour;
+        eventSelectedImage.enabled = behaviourPlacement.queuedData.Type == BehaviourType.EventBehaviour;
+        changeActiveStatesSelectedImage.enabled = behaviourPlacement.queuedData.Type == BehaviourType.ChangeActiveStateBehaviour;
+        animationSelectedImage.enabled = behaviourPlacement.queuedData.Type == BehaviourType.AnimationBehaviour;
+        sequenceSelectedImage.enabled = behaviourPlacement.queuedData.Type == BehaviourType.SequenceTriggerBehaviour;
     }
 }

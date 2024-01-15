@@ -3315,6 +3315,52 @@ public class @CMInput : IInputActionCollection, IDisposable
             ]
         },
         {
+            ""name"": ""Behaviour Grid"",
+            ""id"": ""46785839-819a-4dad-bfd0-b72d80d1d5be"",
+            ""actions"": [
+                {
+                    ""name"": ""Cycle Page Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""fcb98864-9be9-49b2-852e-72ca89238796"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Cycle Page Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""0e979a72-f987-4e98-aa49-f86eb665ad36"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""4465a865-bd3d-4204-8991-078849fd4975"",
+                    ""path"": ""<Keyboard>/pageUp"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cycle Page Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c0833b5-174b-4398-bfbd-b78836099f6b"",
+                    ""path"": ""<Keyboard>/pageDown"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cycle Page Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
             ""name"": ""Event Grid"",
             ""id"": ""f8ccba1c-4f16-4025-a961-27d464f268cc"",
             ""actions"": [
@@ -4001,6 +4047,10 @@ public class @CMInput : IInputActionCollection, IDisposable
         m_BPMChangeObjects = asset.FindActionMap("BPM Change Objects", throwIfNotFound: true);
         m_BPMChangeObjects_ReplaceBPM = m_BPMChangeObjects.FindAction("Replace BPM", throwIfNotFound: true);
         m_BPMChangeObjects_TweakBPMValue = m_BPMChangeObjects.FindAction("Tweak BPM Value", throwIfNotFound: true);
+        // Behaviour Grid
+        m_BehaviourGrid = asset.FindActionMap("Behaviour Grid", throwIfNotFound: true);
+        m_BehaviourGrid_CyclePageUp = m_BehaviourGrid.FindAction("Cycle Page Up", throwIfNotFound: true);
+        m_BehaviourGrid_CyclePageDown = m_BehaviourGrid.FindAction("Cycle Page Down", throwIfNotFound: true);
         // Event Grid
         m_EventGrid = asset.FindActionMap("Event Grid", throwIfNotFound: true);
         m_EventGrid_ToggleLightPropagation = m_EventGrid.FindAction("Toggle Light Propagation", throwIfNotFound: true);
@@ -5736,6 +5786,47 @@ public class @CMInput : IInputActionCollection, IDisposable
     }
     public BPMChangeObjectsActions @BPMChangeObjects => new BPMChangeObjectsActions(this);
 
+    // Behaviour Grid
+    private readonly InputActionMap m_BehaviourGrid;
+    private IBehaviourGridActions m_BehaviourGridActionsCallbackInterface;
+    private readonly InputAction m_BehaviourGrid_CyclePageUp;
+    private readonly InputAction m_BehaviourGrid_CyclePageDown;
+    public struct BehaviourGridActions
+    {
+        private @CMInput m_Wrapper;
+        public BehaviourGridActions(@CMInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @CyclePageUp => m_Wrapper.m_BehaviourGrid_CyclePageUp;
+        public InputAction @CyclePageDown => m_Wrapper.m_BehaviourGrid_CyclePageDown;
+        public InputActionMap Get() { return m_Wrapper.m_BehaviourGrid; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(BehaviourGridActions set) { return set.Get(); }
+        public void SetCallbacks(IBehaviourGridActions instance)
+        {
+            if (m_Wrapper.m_BehaviourGridActionsCallbackInterface != null)
+            {
+                @CyclePageUp.started -= m_Wrapper.m_BehaviourGridActionsCallbackInterface.OnCyclePageUp;
+                @CyclePageUp.performed -= m_Wrapper.m_BehaviourGridActionsCallbackInterface.OnCyclePageUp;
+                @CyclePageUp.canceled -= m_Wrapper.m_BehaviourGridActionsCallbackInterface.OnCyclePageUp;
+                @CyclePageDown.started -= m_Wrapper.m_BehaviourGridActionsCallbackInterface.OnCyclePageDown;
+                @CyclePageDown.performed -= m_Wrapper.m_BehaviourGridActionsCallbackInterface.OnCyclePageDown;
+                @CyclePageDown.canceled -= m_Wrapper.m_BehaviourGridActionsCallbackInterface.OnCyclePageDown;
+            }
+            m_Wrapper.m_BehaviourGridActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @CyclePageUp.started += instance.OnCyclePageUp;
+                @CyclePageUp.performed += instance.OnCyclePageUp;
+                @CyclePageUp.canceled += instance.OnCyclePageUp;
+                @CyclePageDown.started += instance.OnCyclePageDown;
+                @CyclePageDown.performed += instance.OnCyclePageDown;
+                @CyclePageDown.canceled += instance.OnCyclePageDown;
+            }
+        }
+    }
+    public BehaviourGridActions @BehaviourGrid => new BehaviourGridActions(this);
+
     // Event Grid
     private readonly InputActionMap m_EventGrid;
     private IEventGridActions m_EventGridActionsCallbackInterface;
@@ -6307,6 +6398,11 @@ public class @CMInput : IInputActionCollection, IDisposable
     {
         void OnReplaceBPM(InputAction.CallbackContext context);
         void OnTweakBPMValue(InputAction.CallbackContext context);
+    }
+    public interface IBehaviourGridActions
+    {
+        void OnCyclePageUp(InputAction.CallbackContext context);
+        void OnCyclePageDown(InputAction.CallbackContext context);
     }
     public interface IEventGridActions
     {

@@ -3302,6 +3302,52 @@
             ]
         },
         {
+            "name": "Behaviour Grid",
+            "id": "46785839-819a-4dad-bfd0-b72d80d1d5be",
+            "actions": [
+                {
+                    "name": "Cycle Page Up",
+                    "type": "Button",
+                    "id": "fcb98864-9be9-49b2-852e-72ca89238796",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "Cycle Page Down",
+                    "type": "Button",
+                    "id": "0e979a72-f987-4e98-aa49-f86eb665ad36",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4465a865-bd3d-4204-8991-078849fd4975",
+                    "path": "<Keyboard>/pageUp",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cycle Page Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2c0833b5-174b-4398-bfbd-b78836099f6b",
+                    "path": "<Keyboard>/pageDown",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cycle Page Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "Event Grid",
             "id": "f8ccba1c-4f16-4025-a961-27d464f268cc",
             "actions": [
