@@ -63,6 +63,7 @@ public class Settings
     public bool FormatJson = false;
     public bool RemoveNotesOutsideMap = true; // Hidden setting
     public bool RemoveEventsOutsideMap = true; // Hidden setting
+    public bool RemoveBehavioursOutsideMap = true; // Hidden setting
     public bool RemoveObstaclesOutsideMap = true; // Hidden setting
     public bool VanillaOnlyShift = true;
     public bool InstantEscapeMenuTransitions = false;
@@ -80,6 +81,7 @@ public class Settings
     public bool WaveformWorkflow = true;
     public bool Load_Events = true;
     public bool Load_Notes = true;
+    public bool Load_Behaviours = true;
     public bool Load_Obstacles = true;
     public bool Load_Others = true;
     public bool DisplayDiffDetailsInEditor = true;

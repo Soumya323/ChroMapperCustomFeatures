@@ -655,6 +655,12 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
                 BeatSaberSongContainer.Instance.Map.Notes =
                     newObjects[BeatmapObject.ObjectType.Note].Cast<BeatmapNote>().ToList();
             }
+            
+            if (Settings.Instance.Load_Behaviours)
+            {
+                BeatSaberSongContainer.Instance.Map.Behaviours =
+                    newObjects[BeatmapObject.ObjectType.Behaviour].Cast<MapBehaviour>().ToList();
+            }
 
             if (Settings.Instance.Load_Obstacles)
             {

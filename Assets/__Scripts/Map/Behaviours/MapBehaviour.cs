@@ -27,7 +27,7 @@ public class MapBehaviour : BeatmapObject
 
     public int LineIndex;
     public int LineLayer;
-    [FormerlySerializedAs("Types")] public BehaviourType Type;
+    public BehaviourType Type;
     public uint ID;
 
     public MapBehaviour(JSONNode node)
@@ -35,7 +35,7 @@ public class MapBehaviour : BeatmapObject
         Time = RetrieveRequiredNode(node, "_time").AsFloat;
         LineIndex = RetrieveRequiredNode(node, "_lineIndex").AsInt;
         LineLayer = RetrieveRequiredNode(node, "_lineLayer").AsInt;
-        Type = (BehaviourType)RetrieveRequiredNode(node, "_types").AsInt;
+        Type = (BehaviourType)RetrieveRequiredNode(node, "_type").AsInt;
         CustomData = node["_customData"];
     }
 
@@ -57,7 +57,7 @@ public class MapBehaviour : BeatmapObject
         node["_time"] = Math.Round(Time, DecimalPrecision);
         node["_lineIndex"] = LineIndex;
         node["_lineLayer"] = LineLayer;
-        node["_types"] = (int)Type;
+        node["_type"] = (int)Type;
 
         return node;
     }
