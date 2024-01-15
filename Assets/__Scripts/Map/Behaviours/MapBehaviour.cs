@@ -64,7 +64,7 @@ public class MapBehaviour : BeatmapObject
 
     protected override bool IsConflictingWithObjectAtSameTime(BeatmapObject other, bool deletion = false)
     {
-        if (other is BeatmapNote note)
+        if (other is MapBehaviour note)
             // Only down to 1/4 spacing
             return Vector2.Distance(note.GetPosition(), GetPosition()) < 0.1;
         return false;

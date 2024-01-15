@@ -100,11 +100,9 @@ public class BehavioursContainer : BeatmapObjectContainerCollection, CMInput.IBe
 
     protected override void OnContainerSpawn(BeatmapObjectContainer container, BeatmapObject obj)
     {
-        
     }
 
     protected override void OnContainerDespawn(BeatmapObjectContainer container, BeatmapObject obj)
     {
-        Debug.LogWarning("Trying to Despawn");
     }
 }
