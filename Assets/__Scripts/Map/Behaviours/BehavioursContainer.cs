@@ -9,9 +9,11 @@ public class BehavioursContainer : BeatmapObjectContainerCollection, CMInput.IBe
     [SerializeField] private GameObject behaviourPrefab;
 
     [SerializeField] private BehaviourAppearanceSO behaviourAppearanceSo;
+    [SerializeField] private TracksManagerRight tracksManagerRight;
     [SerializeField] private CreateBehaviourLanesLabels labels;
     [SerializeField] private CountersPlusController countersPlus;
 
+    public List<MapEvent> AllRotationEvents = new List<MapEvent>();
 
     private int currentPage = 0;
     private const int maxPage = 10;
@@ -90,11 +92,25 @@ public class BehavioursContainer : BeatmapObjectContainerCollection, CMInput.IBe
 
     protected override void OnObjectSpawned(BeatmapObject obj)
     {
+        if (obj is MapEvent e)
+        {
+            if (e.IsRotationEvent)
+                AllRotationEvents.Add(e);
+        }
+        
         countersPlus.UpdateStatistic(CountersPlusStatistic.Behaviours);
     }
 
     protected override void OnObjectDelete(BeatmapObject obj)
     {
+        if (obj is MapEvent e)
+        {
+            if (e.IsRotationEvent)
+            {
+                AllRotationEvents.Remove(e);
+                tracksManagerRight.RefreshTracks();
+            }
+        }
         countersPlus.UpdateStatistic(CountersPlusStatistic.Behaviours);
     }
 

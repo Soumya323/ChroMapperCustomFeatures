@@ -154,6 +154,14 @@ public class AutoSaveController : MonoBehaviour, CMInput.ISavingActions
                 behaviourCollection.DeleteObject(beh);
             }
         }
+        if (Settings.Instance.RemoveSequencesOutsideMap)
+        {
+            var sequenceCollection = BeatmapObjectContainerCollection.GetCollectionForType(BeatmapObject.ObjectType.Sequence);
+            foreach (var seq in BeatSaberSongContainer.Instance.Map.Sequences.Where(seq => seq.Time >= maxBeatTime))
+            {
+                sequenceCollection.DeleteObject(seq);
+            }
+        }
         if (Settings.Instance.RemoveObstaclesOutsideMap)
         {
             var obstacleCollection = BeatmapObjectContainerCollection.GetCollectionForType(BeatmapObject.ObjectType.Obstacle);
@@ -179,6 +187,11 @@ public class AutoSaveController : MonoBehaviour, CMInput.ISavingActions
         if (Settings.Instance.RemoveBehavioursOutsideMap)
         {
             if (BeatSaberSongContainer.Instance.Map.Behaviours.Any(beh => beh.Time >= maxBeatTime))
+                return true;
+        }
+        if (Settings.Instance.RemoveSequencesOutsideMap)
+        {
+            if (BeatSaberSongContainer.Instance.Map.Sequences.Any(seq => seq.Time >= maxBeatTime))
                 return true;
         }
         if (Settings.Instance.RemoveObstaclesOutsideMap)
@@ -238,6 +251,7 @@ public class AutoSaveController : MonoBehaviour, CMInput.ISavingActions
                         if (Settings.Instance.RemoveNotesOutsideMap) BeatSaberSongContainer.Instance.Map.Notes.RemoveAll(note => note.Time >= maxBeatTime);
                         if (Settings.Instance.RemoveEventsOutsideMap) BeatSaberSongContainer.Instance.Map.Events.RemoveAll(evt => evt.Time >= maxBeatTime);
                         if (Settings.Instance.RemoveBehavioursOutsideMap) BeatSaberSongContainer.Instance.Map.Behaviours.RemoveAll(beh => beh.Time >= maxBeatTime);
+                        if (Settings.Instance.RemoveSequencesOutsideMap) BeatSaberSongContainer.Instance.Map.Sequences.RemoveAll(seq => seq.Time >= maxBeatTime);
                         if (Settings.Instance.RemoveObstaclesOutsideMap) BeatSaberSongContainer.Instance.Map.Obstacles.RemoveAll(obst => obst.Time >= maxBeatTime);
                     }
 

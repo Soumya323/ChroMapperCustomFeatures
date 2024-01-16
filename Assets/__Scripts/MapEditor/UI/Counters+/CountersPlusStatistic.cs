@@ -9,5 +9,6 @@ public enum CountersPlusStatistic
     Events = 4,
     BpmChanges = 8,
     Selection = 16,
-    Behaviours = 32
+    Behaviours = 32,
+    Sequence = 64
 }

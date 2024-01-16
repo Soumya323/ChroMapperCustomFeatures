@@ -20,7 +20,8 @@ public abstract class BeatmapObject
         CustomNote,
         CustomEvent,
         BpmChange,
-        Behaviour
+        Behaviour,
+        Sequence
     }
 
     public abstract ObjectType BeatmapType { get; set; }

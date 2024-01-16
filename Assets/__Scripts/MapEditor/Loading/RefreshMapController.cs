@@ -34,7 +34,7 @@ public class RefreshMapController : MonoBehaviour, CMInput.IRefreshMapActions
             new[]
             {
                 "refreshmap.notes", "refreshmap.walls", "refreshmap.events", "refreshmap.other", "refreshmap.full",
-                "refreshmap.cancel", "refreshmap.behaviours"
+                "refreshmap.cancel", "refreshmap.behaviours", "refreshmap.sequences"
             },
             new[]
             {
@@ -47,29 +47,30 @@ public class RefreshMapController : MonoBehaviour, CMInput.IRefreshMapActions
         switch (res)
         {
             case 0:
-                StartCoroutine(RefreshMap(true, false, false, false, false, false));
+                StartCoroutine(RefreshMap(true, false, false, false, false, false, false));
                 break;
             case 1:
-                StartCoroutine(RefreshMap(false, true, false, false, false, false));
+                StartCoroutine(RefreshMap(false, true, false, false, false, false, false));
                 break;
             case 2:
-                StartCoroutine(RefreshMap(false, false, true, false, false, false));
+                StartCoroutine(RefreshMap(false, false, true, false, false, false, false));
                 break;
             case 3:
-                StartCoroutine(RefreshMap(false, false, false, true, false, false));
+                StartCoroutine(RefreshMap(false, false, false, true, false, false, false));
                 break;
             case 4:
-                StartCoroutine(RefreshMap(false, false, false, false, true, false));
+                StartCoroutine(RefreshMap(false, false, false, false, true, false, false));
                 break;
             case 5:
-            StartCoroutine(RefreshMap(false, false, false, false, false, true));
-            break;
-          
-                
+                StartCoroutine(RefreshMap(false, false, false, false, false, true, false));
+                break;
+            case 6:
+                StartCoroutine(RefreshMap(false, false, false, false, false, false, true));
+                break;
         }
     }
 
-    private IEnumerator RefreshMap(bool notes, bool obstacles, bool events, bool others, bool full, bool behaviours)
+    private IEnumerator RefreshMap(bool notes, bool obstacles, bool events, bool others, bool full, bool behaviours, bool sequences)
     {
         yield return PersistentUI.Instance.FadeInLoadingScreen();
         map = song.GetMapFromDifficultyBeatmap(diff);
@@ -78,6 +79,7 @@ public class RefreshMapController : MonoBehaviour, CMInput.IRefreshMapActions
         atsc.MoveToTimeInBeats(0);
         if (notes || full) yield return StartCoroutine(loader.LoadObjects(map.Notes));
         if (behaviours || full) yield return StartCoroutine(loader.LoadObjects(map.Behaviours));
+        if (sequences || full) yield return StartCoroutine(loader.LoadObjects(map.Sequences));
         if (obstacles || full) yield return StartCoroutine(loader.LoadObjects(map.Obstacles));
         if (events || full) yield return StartCoroutine(loader.LoadObjects(map.Events));
         if (others || full) yield return StartCoroutine(loader.LoadObjects(map.BpmChanges));

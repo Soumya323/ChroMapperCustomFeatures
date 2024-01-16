@@ -22,6 +22,8 @@ public enum BehaviourType : int
 public class MapBehaviour : BeatmapObject
 {
     
+    public const int EventTypeEarlyRotation = 14;
+    public const int EventTypeLateRotation = 15;
 
     //============// VALUES //============//
 

@@ -1,26 +1,27 @@
-﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Serialization;
 
-public class BeatmapObstacleContainer : BeatmapObjectContainer
+public class BeatmapSequenceContainer : BeatmapObjectContainer
 {
     private static readonly int colorTint = Shader.PropertyToID("_ColorTint");
     private static readonly int shaderScale = Shader.PropertyToID("_WorldScale");
 
-    [SerializeField] private TracksManager manager;
+    [SerializeField] private TracksManagerRight manager;
 
-    [FormerlySerializedAs("ObstacleData")] [FormerlySerializedAs("obstacleData")] public BeatmapObstacle SequenceData;
+    public BeatmapSequence SequenceData;
 
-    public override BeatmapObject ObjectData { get => SequenceData; set => SequenceData = (BeatmapObstacle)value; }
+    public override BeatmapObject ObjectData { get => SequenceData; set => SequenceData = (BeatmapSequence)value; }
 
     public int ChunkEnd => (int)((SequenceData.Time + SequenceData.Duration) / Intersections.ChunkSize);
 
     public bool IsRotatedByNoodleExtensions =>
         SequenceData.CustomData != null && (SequenceData.CustomData?.HasKey("_rotation") ?? false);
 
-    public static BeatmapObstacleContainer SpawnObstacle(BeatmapObstacle data, TracksManager manager,
-        ref GameObject prefab)
+    public static BeatmapSequenceContainer SpawnSequence(BeatmapSequence data, TracksManagerRight manager, ref GameObject prefab)
     {
-        var container = Instantiate(prefab).GetComponent<BeatmapObstacleContainer>();
+        var container = Instantiate(prefab).GetComponent<BeatmapSequenceContainer>();
         container.SequenceData = data;
         container.manager = manager;
         return container;
@@ -92,7 +93,7 @@ public class BeatmapObstacleContainer : BeatmapObjectContainer
 
         var bounds = SequenceData.GetShape();
 
-        // Enforce positive scale, offset our obstacles to match.
+        // Enforce positive scale, offset our sequences to match.
         transform.localPosition = new Vector3(
             bounds.Position + (bounds.Width < 0 ? bounds.Width : 0),
             bounds.StartHeight + (bounds.Height < 0 ? bounds.Height : 0),

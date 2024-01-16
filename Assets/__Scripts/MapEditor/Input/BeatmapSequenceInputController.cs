@@ -1,26 +1,25 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class BeatmapObstacleInputController : BeatmapInputController<BeatmapObstacleContainer>,
-    CMInput.IObstacleObjectsActions
+public class BeatmapSequenceInputController : BeatmapInputController<BeatmapSequenceContainer>, CMInput.IObstacleObjectsActions
 {
     [SerializeField] private AudioTimeSyncController atsc;
     [SerializeField] private BPMChangesContainer bpmChangesContainer;
-    [FormerlySerializedAs("obstacleAppearanceSO")] [SerializeField] private ObstacleAppearanceSO obstacleAppearanceSo;
+    [SerializeField] private SequenceAppearanceSO sequenceAppearanceSo;
 
     public void OnChangeWallDuration(InputAction.CallbackContext context)
     {
         if (CustomStandaloneInputModule.IsPointerOverGameObject<GraphicRaycaster>(-1, true)) return;
-        RaycastFirstObject(out var obs);
-        if (obs != null && !obs.Dragging && context.performed)
+        RaycastFirstObject(out var seq);
+        if (seq != null && !seq.Dragging && context.performed)
         {
-            var original = BeatmapObject.GenerateCopy(obs.ObjectData);
+            var original = BeatmapObject.GenerateCopy(seq.ObjectData);
             var snapping = 1f / atsc.GridMeasureSnapping;
             snapping *= context.ReadValue<float>() > 0 ? 1 : -1;
 
-            var wallEndTime = obs.SequenceData.Time + obs.SequenceData.Duration;
+            var wallEndTime = seq.SequenceData.Time + seq.SequenceData.Duration;
 
             var bpmChange = bpmChangesContainer.FindLastBpm(wallEndTime);
 
@@ -43,29 +42,28 @@ public class BeatmapObstacleInputController : BeatmapInputController<BeatmapObst
                 }
             }
 
-            obs.SequenceData.Duration += durationTweak;
-            obs.UpdateGridPosition();
-            obstacleAppearanceSo.SetObstacleAppearance(obs);
-            BeatmapActionContainer.AddAction(new BeatmapObjectModifiedAction(obs.ObjectData, obs.ObjectData, original));
+            seq.SequenceData.Duration += durationTweak;
+            seq.UpdateGridPosition();
+            sequenceAppearanceSo.SetSequenceAppearance(seq);
+            BeatmapActionContainer.AddAction(new BeatmapObjectModifiedAction(seq.ObjectData, seq.ObjectData, original));
         }
     }
 
     public void OnToggleHyperWall(InputAction.CallbackContext context)
     {
         if (CustomStandaloneInputModule.IsPointerOverGameObject<GraphicRaycaster>(-1, true)) return;
-        RaycastFirstObject(out var obs);
-        if (obs != null && !obs.Dragging && context.performed) ToggleHyperWall(obs);
+        RaycastFirstObject(out var seq);
+        if (seq != null && !seq.Dragging && context.performed) ToggleHyperWall(seq);
     }
 
-    public void ToggleHyperWall(BeatmapObstacleContainer obs)
+    public void ToggleHyperWall(BeatmapSequenceContainer seq)
     {
-        if (BeatmapObject.GenerateCopy(obs.ObjectData) is BeatmapObstacle edited)
+        if (BeatmapObject.GenerateCopy(seq.ObjectData) is BeatmapSequence edited)
         {
-            edited.Time += obs.SequenceData.Duration;
+            edited.Time += seq.SequenceData.Duration;
             edited.Duration *= -1f;
 
-            BeatmapActionContainer.AddAction(new BeatmapObjectModifiedAction(edited, obs.ObjectData, obs.ObjectData),
-                true);
+            BeatmapActionContainer.AddAction(new BeatmapObjectModifiedAction(edited, seq.ObjectData, seq.ObjectData), true);
         }
     }
 }

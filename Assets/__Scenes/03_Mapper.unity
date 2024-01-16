@@ -202,11 +202,13 @@ GameObject:
   - component: {fileID: 25550673}
   - component: {fileID: 25550678}
   - component: {fileID: 25550680}
+  - component: {fileID: 25550681}
   - component: {fileID: 25550674}
   - component: {fileID: 25550677}
   - component: {fileID: 25550675}
   - component: {fileID: 25550676}
   - component: {fileID: 25550679}
+  - component: {fileID: 25550682}
   m_Layer: 0
   m_Name: Moveable Grid
   m_TagString: Untagged
@@ -436,8 +438,53 @@ MonoBehaviour:
     type: 3}
   behaviourAppearanceSo: {fileID: 11400000, guid: 71ddb85043188ae4ab49dda69d66290d,
     type: 2}
+  tracksManagerRight: {fileID: 25550682}
   labels: {fileID: 1627573154}
   countersPlus: {fileID: 471772270}
+  AllRotationEvents: []
+--- !u!114 &25550681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25550671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7afcb1490f9776478854dc416b61f90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioTimeSyncController: {fileID: 570484802}
+  SpawnCallbackController: {fileID: 1760665545}
+  DespawnCallbackController: {fileID: 1288723589}
+  GridTransform: {fileID: 1131942271}
+  PoolTransform: {fileID: 1996577492}
+  UseChunkLoadingWhenPlaying: 0
+  ChunksLoadedWhilePlaying: 2
+  IgnoreTrackFilter: 0
+  sequencePrefab: {fileID: 1446077081186018, guid: cb9e2cb892e474c428675dec450145c6,
+    type: 3}
+  sequenceAppearanceSo: {fileID: 11400000, guid: ed7e2d01293a5934d96b9e01ae902b8a,
+    type: 2}
+  tracksManagerRight: {fileID: 25550682}
+  countersPlus: {fileID: 471772270}
+--- !u!114 &25550682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25550671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b24d355b3089baf45a97fb919402b9a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackPrefab: {fileID: 4184632026203889353, guid: 1e1f172e929d0ac4785e387f14dbd39e,
+    type: 3}
+  tracksParent: {fileID: 1131942271}
+  behaviours: {fileID: 25550680}
+  atsc: {fileID: 570484802}
 --- !u!1 &36154594
 GameObject:
   m_ObjectHideFlags: 0
@@ -12708,6 +12755,7 @@ GameObject:
   - component: {fileID: 1546839088}
   - component: {fileID: 1546839087}
   - component: {fileID: 1546839089}
+  - component: {fileID: 1546839090}
   m_Layer: 0
   m_Name: Input
   m_TagString: Untagged
@@ -12815,6 +12863,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CustomStandaloneInputModule: {fileID: 806554}
+--- !u!114 &1546839090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546839082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a6a8d35dd84904ab49066971abd8ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CustomStandaloneInputModule: {fileID: 806554}
+  atsc: {fileID: 570484802}
+  bpmChangesContainer: {fileID: 25550675}
+  sequenceAppearanceSo: {fileID: 11400000, guid: ed7e2d01293a5934d96b9e01ae902b8a,
+    type: 2}
 --- !u!1 &1557773708
 GameObject:
   m_ObjectHideFlags: 0
@@ -13625,7 +13690,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1627573152}
-  - component: {fileID: 1627573153}
   - component: {fileID: 1627573154}
   m_Layer: 12
   m_Name: Behaviour Type Labels
@@ -13648,27 +13712,6 @@ Transform:
   m_Father: {fileID: 617466177}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!114 &1627573153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1627573151}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c605a05b2a6c0f747b1b9327208e517b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AvailableAsset: {fileID: 11400000, guid: 2f861693fb7e6ca4a9b2e5b47b59df3c, type: 2}
-  UtilityAsset: {fileID: 11400000, guid: e9f6574bf272d6940965eaa3cec51209, type: 2}
-  RedAsset: {fileID: 11400000, guid: ab5926d581308464fbbd388c7414de75, type: 2}
-  LayerInstantiate: {fileID: 2094783429}
-  EventGrid:
-  - {fileID: 2002895097}
-  - {fileID: 265865721}
-  darkTheme: {fileID: 0}
-  RotationCallback: {fileID: 226696885}
 --- !u!114 &1627573154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13926,6 +13969,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1649544842}
   - component: {fileID: 1649544845}
+  - component: {fileID: 1649544847}
   - component: {fileID: 1649544844}
   - component: {fileID: 1649544843}
   m_Layer: 11
@@ -14023,6 +14067,48 @@ MonoBehaviour:
   behaviourAppearanceSo: {fileID: 11400000, guid: 71ddb85043188ae4ab49dda69d66290d,
     type: 2}
   labels: {fileID: 1627573154}
+--- !u!114 &1649544847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649544841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70e04ccef9bbf9e489bc83548c107afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectContainerPrefab: {fileID: 1446077081186018, guid: cb9e2cb892e474c428675dec450145c6,
+    type: 3}
+  objectData:
+    HasAttachedContainer: 0
+    Time: 0
+    LineIndex: 0
+    Type: 0
+    Duration: 0
+    Width: 0
+  objectContainerCollection: {fileID: 25550681}
+  ParentTrack: {fileID: 1131942271}
+  InterfaceGridParent: {fileID: 1649544842}
+  AssignTo360Tracks: 0
+  objectDataType: 7
+  startingActiveState: 0
+  Atsc: {fileID: 570484802}
+  customStandaloneInputModule: {fileID: 806554}
+  TracksManager: {fileID: 25550679}
+  GridRotation: {fileID: 226696885}
+  GridChild: {fileID: 1649544844}
+  noteGridTransform: {fileID: 265865721}
+  Bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  IsActive: 0
+  sequenceAppearanceSo: {fileID: 11400000, guid: ed7e2d01293a5934d96b9e01ae902b8a,
+    type: 2}
+  precisionPlacement: {fileID: 2108936580}
+  colorPicker: {fileID: 1225848101}
+  dropdown: {fileID: 81479822}
 --- !u!1001 &1652816928
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19350,6 +19436,11 @@ PrefabInstance:
       propertyPath: obstaclePlacement
       value: 
       objectReference: {fileID: 2108936578}
+    - target: {fileID: 651050043790359290, guid: a5e876632e0c18d40ac12e6f78fae650,
+        type: 3}
+      propertyPath: sequencePlacement
+      value: 
+      objectReference: {fileID: 1649544847}
     - target: {fileID: 651050043790359290, guid: a5e876632e0c18d40ac12e6f78fae650,
         type: 3}
       propertyPath: behaviourPlacement

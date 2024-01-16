@@ -21,6 +21,7 @@ public class MapLoader : MonoBehaviour
             CustomData = map.CustomData.Clone(),
             Notes = new List<BeatmapNote>(map.Notes),
             Behaviours = new List<MapBehaviour>(map.Behaviours),
+            Sequences = new List<BeatmapSequence>(map.Sequences),
             Obstacles = new List<BeatmapObstacle>(map.Obstacles),
             Events = new List<MapEvent>(map.Events),
             BpmChanges = new List<BeatmapBPMChange>(map.BpmChanges),
@@ -33,6 +34,7 @@ public class MapLoader : MonoBehaviour
     {
         if (Settings.Instance.Load_Notes) yield return StartCoroutine(LoadObjects(map.Notes));
         if(Settings.Instance.Load_Behaviours) yield return StartCoroutine(LoadObjects(map.Behaviours));
+        if(Settings.Instance.Load_Sequences) yield return StartCoroutine(LoadObjects(map.Sequences));
         if (Settings.Instance.Load_Obstacles) yield return StartCoroutine(LoadObjects(map.Obstacles));
         if (Settings.Instance.Load_Events) yield return StartCoroutine(LoadObjects(map.Events));
         if (Settings.Instance.Load_Others)

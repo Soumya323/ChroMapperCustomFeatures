@@ -23,6 +23,7 @@ public class BeatSaberMap
     [FormerlySerializedAs("_events")] public List<MapEvent> Events = new List<MapEvent>();
     [FormerlySerializedAs("_notes")] public List<BeatmapNote> Notes = new List<BeatmapNote>();
     [FormerlySerializedAs("_behaviours")] public List<MapBehaviour> Behaviours = new List<MapBehaviour>();
+    [FormerlySerializedAs("_behaviours")] public List<BeatmapSequence> Sequences = new List<BeatmapSequence>();
     [FormerlySerializedAs("_obstacles")] public List<BeatmapObstacle> Obstacles = new List<BeatmapObstacle>();
     [FormerlySerializedAs("_waypoints")] public List<JSONNode> Waypoints = new List<JSONNode>(); // TODO: Add formal support
     [FormerlySerializedAs("_BPMChanges")] public List<BeatmapBPMChange> BpmChanges = new List<BeatmapBPMChange>();
@@ -57,6 +58,9 @@ public class BeatSaberMap
 
             var behaviours = new JSONArray();
             foreach (var b in Behaviours) behaviours.Add(b.ConvertToJson());
+            
+            var sequences = new JSONArray();
+            foreach (var s in Sequences) sequences.Add(s.ConvertToJson());
 
             var obstacles = new JSONArray();
             foreach (var o in Obstacles) obstacles.Add(o.ConvertToJson());
@@ -78,6 +82,7 @@ public class BeatSaberMap
 
             MainNode["_notes"] = CleanupArray(notes);
             MainNode["_behaviours"] = CleanupArray(behaviours);
+            MainNode["_sequences"] = CleanupArray(sequences);
             MainNode["_obstacles"] = CleanupArray(obstacles);
             MainNode["_events"] = CleanupArray(events);
             MainNode["_waypoints"] = waypoints; // TODO: Add formal support
@@ -167,6 +172,7 @@ public class BeatSaberMap
             var eventsList = new List<MapEvent>();
             var notesList = new List<BeatmapNote>();
             var behavioursList = new List<MapBehaviour>();
+            var sequencesList = new List<BeatmapSequence>();
             var obstaclesList = new List<BeatmapObstacle>();
             var waypointsList = new List<JSONNode>(); // TODO: Add formal support
             var bpmList = new List<BeatmapBPMChange>();
@@ -194,6 +200,9 @@ public class BeatSaberMap
                         break;
                     case "_behaviours":
                         foreach (JSONNode n in node) behavioursList.Add(new MapBehaviour(n));
+                        break;
+                    case "_sequences":
+                        foreach (JSONNode n in node) sequencesList.Add(new BeatmapSequence(n));
                         break;
                     case "_obstacles":
                         foreach (JSONNode n in node) obstaclesList.Add(new BeatmapObstacle(n));
@@ -251,6 +260,7 @@ public class BeatSaberMap
             map.Events = eventsList;
             map.Notes = notesList;
             map.Behaviours = behavioursList;
+            map.Sequences = sequencesList;
             map.Obstacles = obstaclesList;
             map.Waypoints = waypointsList; // TODO: Add formal support
             map.BpmChanges = bpmList.DistinctBy(x => x.Time).ToList();

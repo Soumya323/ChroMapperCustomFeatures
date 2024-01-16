@@ -1,15 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using SimpleJSON;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObstacleContainer, ObstaclesContainer>
+public class SequencePlacement : PlacementController<BeatmapSequence, BeatmapSequenceContainer, SequenceContainer>
 {
-    // Chroma Color Stuff
     public static readonly string ChromaColorKey = "PlaceChromaObjects";
-    [FormerlySerializedAs("obstacleAppearanceSO")] [SerializeField] private ObstacleAppearanceSO obstacleAppearanceSo;
+    [SerializeField] private SequenceAppearanceSO sequenceAppearanceSo;
     [SerializeField] private PrecisionPlacementGridController precisionPlacement;
     [SerializeField] private ColorPicker colorPicker;
     [SerializeField] private ToggleColourDropdown dropdown;
@@ -48,17 +47,17 @@ public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObs
     public override BeatmapAction GenerateAction(BeatmapObject spawned, IEnumerable<BeatmapObject> container) =>
         new BeatmapObjectPlacementAction(spawned, container, "Place a Wall.");
 
-    public override BeatmapObstacle GenerateOriginalData() =>
-        new BeatmapObstacle(0, 0, BeatmapObstacle.ValueFullBarrier, 0, 1);
+    public override BeatmapSequence GenerateOriginalData() =>
+        new BeatmapSequence(0, 0, BeatmapSequence.ValueFullBarrier, 0, 1);
 
     public override void OnPhysicsRaycast(Intersections.IntersectionHit hit, Vector3 transformedPoint)
     {
         Bounds = default;
-        TestForType<ObstaclePlacement>(hit, BeatmapObject.ObjectType.Obstacle);
+        TestForType<SequencePlacement>(hit, BeatmapObject.ObjectType.Sequence);
 
         instantiatedContainer.SequenceData = queuedData;
         instantiatedContainer.SequenceData.Duration = RoundedTime - startTime;
-        obstacleAppearanceSo.SetObstacleAppearance(instantiatedContainer);
+        sequenceAppearanceSo.SetSequenceAppearance(instantiatedContainer);
         var roundedHit = ParentTrack.InverseTransformPoint(hit.Point);
 
         // Check if ChromaToggle notes button is active and apply _color
@@ -112,7 +111,7 @@ public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObs
                 );
 
                 wallTransform.localPosition = new Vector3(
-                    originIndex - 2, queuedData.Type == BeatmapObstacle.ValueFullBarrier ? 0 : 1.5f,
+                    originIndex - 2, queuedData.Type == BeatmapSequence.ValueFullBarrier ? 0 : 1.5f,
                     startTime * EditorScaleController.EditorScale);
                 queuedData.Width = Mathf.CeilToInt(roundedHit.x + 2) - originIndex;
 
@@ -160,13 +159,12 @@ public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObs
         }
     }
 
-     //called when clicking and draging the wall / obstacle for creating
+    //called when clicking and draging the wall / sequence for creating
     public override void OnMousePositionUpdate(InputAction.CallbackContext context)
     {
         base.OnMousePositionUpdate(context);
         if (IsPlacing)
         {
-
             instantiatedContainer.transform.localPosition = new Vector3(instantiatedContainer.transform.localPosition.x,
                 instantiatedContainer.transform.localPosition.y,
                 startTime * EditorScaleController.EditorScale
@@ -177,7 +175,7 @@ public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObs
         }
     }
 
-     //Wall getting placed in the editor
+    //Wall getting placed in the editor
     internal override void ApplyToMap()
     {
         if (IsPlacing)
@@ -195,10 +193,9 @@ public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObs
             BeatmapActionContainer.AddAction(GenerateAction(queuedData, conflicting));
             queuedData = GenerateOriginalData();
             instantiatedContainer.SequenceData = queuedData;
-            obstacleAppearanceSo.SetObstacleAppearance(instantiatedContainer);
+            sequenceAppearanceSo.SetSequenceAppearance(instantiatedContainer);
             instantiatedContainer.transform.localScale = new Vector3(
                 1, instantiatedContainer.transform.localPosition.y == 0 ? 3.5f : 2, 0);
-
         }
         else
         {
@@ -208,7 +205,7 @@ public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObs
         }
     }
 
-    public override void TransferQueuedToDraggedObject(ref BeatmapObstacle dragged, BeatmapObstacle queued)
+    public override void TransferQueuedToDraggedObject(ref BeatmapSequence dragged, BeatmapSequence queued)
     {
         dragged.Time = queued.Time;
         dragged.LineIndex = queued.LineIndex;
@@ -222,7 +219,7 @@ public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObs
             IsPlacing = false;
             queuedData = GenerateOriginalData();
             instantiatedContainer.SequenceData = queuedData;
-            obstacleAppearanceSo.SetObstacleAppearance(instantiatedContainer);
+            sequenceAppearanceSo.SetSequenceAppearance(instantiatedContainer);
             instantiatedContainer.transform.localScale = new Vector3(
                 1, instantiatedContainer.transform.localPosition.y == 0 ? 3.5f : 2, 0);
         }
