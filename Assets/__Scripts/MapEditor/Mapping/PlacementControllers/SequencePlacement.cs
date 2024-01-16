@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using SimpleJSON;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 public class SequencePlacement : PlacementController<BeatmapSequence, BeatmapSequenceContainer, SequenceContainer>
 {

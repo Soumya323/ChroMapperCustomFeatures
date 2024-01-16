@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -10,12 +7,9 @@ public class BeatmapBehaviourContainer : BeatmapObjectContainer
     public BehavioursContainer BehavioursContainer;
 
     public override BeatmapObject ObjectData { get => BehaviourData; set => BehaviourData = (MapBehaviour)value; }
-
-    // [SerializeField] private GameObject cube;
-    // [SerializeField] private Material material;
+    
     [SerializeField] private MeshRenderer meshRenderer;
     [SerializeField] private TextMeshPro label;
-
 
     [Space(10)] [SerializeField] private Color moveColor;
     [SerializeField] private Color rotateColor;
@@ -25,12 +19,6 @@ public class BeatmapBehaviourContainer : BeatmapObjectContainer
     [SerializeField] private Color changeActiveStateColor;
     [SerializeField] private Color animationColor;
     [SerializeField] private Color sequenceColor;
-
-
-    private void Start()
-    {
-        // meshRenderer = cube.GetComponent<MeshRenderer>();
-    }
 
     public override void UpdateGridPosition()
     {

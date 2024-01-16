@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class SequenceBounds
 {
     public SequenceBounds(float position)

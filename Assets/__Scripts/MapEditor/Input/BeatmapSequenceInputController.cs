@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class BeatmapSequenceInputController : BeatmapInputController<BeatmapSequenceContainer>, CMInput.IObstacleObjectsActions

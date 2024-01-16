@@ -1,8 +1,6 @@
 using System;
 using SimpleJSON;
 using UnityEngine;
-using UnityEngine.Serialization;
-
 
 [Serializable]
 public class BeatmapSequence : BeatmapObject, IBeatmapObjectBounds

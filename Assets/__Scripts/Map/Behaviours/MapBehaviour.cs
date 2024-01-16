@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using SimpleJSON;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public enum BehaviourType : int
 {

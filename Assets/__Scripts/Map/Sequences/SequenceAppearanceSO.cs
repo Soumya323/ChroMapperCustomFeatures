@@ -1,6 +1,4 @@
-
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "SequenceAppearanceSO", menuName = "Map/Appearance/Sequence Appearance SO")]
 public class SequenceAppearanceSO : ScriptableObject
