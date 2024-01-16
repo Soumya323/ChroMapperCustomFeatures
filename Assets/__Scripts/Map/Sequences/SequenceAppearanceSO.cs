@@ -27,10 +27,10 @@ public class SequenceAppearanceSO : ScriptableObject
                 if (obj.SequenceData.CustomData.HasKey("_color"))
                     obj.SetColor(obj.SequenceData.CustomData["_color"].ReadColor(DefaultSequenceColor));
             }
-            else if (obj.SequenceData.Width < 0 && Settings.Instance.ColorFakeWalls)
-            {
-                obj.SetColor(negativeWidthColor);
-            }
+            // else if (obj.SequenceData.Width < 0 && Settings.Instance.ColorFakeWalls)
+            // {
+            //     obj.SetColor(negativeWidthColor);
+            // }
             else
             {
                 obj.SetColor(DefaultSequenceColor);

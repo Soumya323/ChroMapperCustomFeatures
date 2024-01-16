@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class SequenceBounds
 {
-    public SequenceBounds(float width, float height, float position, float startHeight)
+    public SequenceBounds(float position)
     {
-        Width = width;
-        Height = height;
+        Width = 1;
+        Height = 8.5f;
         Position = position;
-        StartHeight = startHeight;
+        StartHeight = 0;
     }
 
     public float Width { get; }

@@ -11,11 +11,13 @@ public class BeatmapSequence : BeatmapObject, IBeatmapObjectBounds
     public const int ValueHighBarrier = 1;
 
     public static readonly float MappingextensionsStartHeightMultiplier = 1.35f;
-    public static readonly float MappingextensionsUnitsToFullHeightWall = 1000 / 3.5f;
+    public static readonly float MappingextensionsUnitsToFullHeightWall = 1000 / 8.5f;
+
     public int LineIndex;
-    public int Type;
+
+    // public int Type;
     public float Duration;
-    public int Width;
+    // public int Width;
 
     /*
      * Sequence Logic
@@ -24,27 +26,27 @@ public class BeatmapSequence : BeatmapObject, IBeatmapObjectBounds
     public BeatmapSequence(JSONNode node)
     {
         Time = RetrieveRequiredNode(node, "_time").AsFloat;
-        LineIndex = RetrieveRequiredNode(node, "_lineIndex").AsInt;
-        Type = RetrieveRequiredNode(node, "_type").AsInt;
+        LineIndex = RetrieveRequiredNode(node, "_lineIndex").AsInt + 1;
+        // Type = RetrieveRequiredNode(node, "_type").AsInt;
         Duration = RetrieveRequiredNode(node, "_duration").AsFloat;
-        Width = RetrieveRequiredNode(node, "_width").AsInt;
+        // Width = RetrieveRequiredNode(node, "_width").AsInt;
         CustomData = node["_customData"];
     }
 
-    public BeatmapSequence(float time, int lineIndex, int type, float duration, int width, JSONNode customData = null)
+    public BeatmapSequence(float time, int lineIndex, float duration, JSONNode customData = null)
     {
         Time = time;
         LineIndex = lineIndex;
-        Type = type;
+        // Type = type;
         Duration = duration;
-        Width = width;
+        // Width = width;
         CustomData = customData;
     }
 
     public bool IsNoodleExtensionsWall => CustomData != null &&
                                           (CustomData.HasKey("_position") || CustomData.HasKey("_scale")
-                                                                           || CustomData.HasKey("_localRotation") ||
-                                                                           CustomData.HasKey("_rotation"));
+                                                                          || CustomData.HasKey("_localRotation") ||
+                                                                          CustomData.HasKey("_rotation"));
 
     public override ObjectType BeatmapType { get; set; } = ObjectType.Sequence;
 
@@ -59,13 +61,13 @@ public class BeatmapSequence : BeatmapObject, IBeatmapObjectBounds
     {
         JSONNode node = new JSONObject();
         node["_time"] = Math.Round(Time, DecimalPrecision);
-        node["_lineIndex"] = LineIndex;
-        node["_type"] = Type;
+        node["_lineIndex"] = LineIndex - 1;
+        // node["_type"] = Type;
         node["_duration"] = Math.Round(Duration, DecimalPrecision); //Get rid of float precision errors
-        node["_width"] = Width;
+        // node["_width"] = Width;
         if (CustomData != null) node["_customData"] = CustomData;
         /*if (Settings.Instance.AdvancedShit) //This will be left commented unless its 100%, absolutely, positively required.
-        {   
+        {
             //By request of Spooky Ghost to determine BeatWalls VS CM walls
             if (!node["_customData"].HasKey("_editor"))
             {
@@ -81,7 +83,7 @@ public class BeatmapSequence : BeatmapObject, IBeatmapObjectBounds
         {
             if (IsNoodleExtensionsWall || sequence.IsNoodleExtensionsWall)
                 return ConvertToJson().ToString() == other.ConvertToJson().ToString();
-            return LineIndex == sequence.LineIndex && Type == sequence.Type;
+            // return LineIndex == sequence.LineIndex && Type == sequence.Type;
         }
 
         return false;
@@ -93,8 +95,8 @@ public class BeatmapSequence : BeatmapObject, IBeatmapObjectBounds
 
         if (originalData is BeatmapSequence seq)
         {
-            Type = seq.Type;
-            Width = seq.Width;
+            // Type = seq.Type;
+            // Width = seq.Width;
             LineIndex = seq.LineIndex;
             Duration = seq.Duration;
         }
@@ -103,36 +105,36 @@ public class BeatmapSequence : BeatmapObject, IBeatmapObjectBounds
     public SequenceBounds GetShape()
     {
         var position = LineIndex - 2f; //Line index
-        var startHeight = Type == ValueFullBarrier ? 0 : 1.5f;
-        var height = Type == ValueFullBarrier ? 3.5f : 2;
-        float width = Width;
+        var startHeight = 0.0f;
+        var height = 8.5f;
+        // float width = Width;
 
         // ME
 
-        if (Width >= 1000) width = ((float)Width - 1000) / 1000;
+        // if (Width >= 1000) width = ((float)Width - 1000) / 1000;
         if (LineIndex >= 1000)
             position = (((float)LineIndex - 1000) / 1000f) - 2f;
         else if (LineIndex <= -1000)
             position = ((float)LineIndex - 1000) / 1000f;
 
-        if (Type > 1 && Type < 1000)
-        {
-            startHeight = Type / (750 / 3.5f); //start height 750 == standard wall height
-            height = 3.5f;
-        }
-        else if (Type >= 1000 && Type <= 4000)
-        {
-            startHeight = 0; //start height = floor
-            height = ((float)Type - 1000) /
-                     MappingextensionsUnitsToFullHeightWall; //1000 = no height, 2000 = full height
-        }
-        else if (Type > 4000)
-        {
-            float modifiedType = Type - 4001;
-            startHeight = modifiedType % 1000 / MappingextensionsUnitsToFullHeightWall *
-                          MappingextensionsStartHeightMultiplier;
-            height = modifiedType / 1000 / MappingextensionsUnitsToFullHeightWall;
-        }
+        // if (Type > 1 && Type < 1000)
+        // {
+        //     startHeight = Type / (750 / 3.5f); //start height 750 == standard wall height
+        //     height = 3.5f;
+        // }
+        // else if (Type >= 1000 && Type <= 4000)
+        // {
+        //     startHeight = 0; //start height = floor
+        //     height = ((float)Type - 1000) /
+        //              MappingextensionsUnitsToFullHeightWall; //1000 = no height, 2000 = full height
+        // }
+        // else if (Type > 4000)
+        // {
+        //     float modifiedType = Type - 4001;
+        //     startHeight = modifiedType % 1000 / MappingextensionsUnitsToFullHeightWall *
+        //                   MappingextensionsStartHeightMultiplier;
+        //     height = modifiedType / 1000 / MappingextensionsUnitsToFullHeightWall;
+        // }
 
         // NE
 
@@ -144,17 +146,17 @@ public class BeatmapSequence : BeatmapObject, IBeatmapObjectBounds
             {
                 var wallPos = CustomData["_position"]?.ReadVector2() ?? Vector2.zero;
                 position = wallPos.x;
-                startHeight = wallPos.y;
+                // startHeight = wallPos.y;
             }
 
-            if (CustomData.HasKey("_scale"))
-            {
-                var wallSize = CustomData["_scale"]?.ReadVector2() ?? Vector2.one;
-                width = wallSize.x;
-                height = wallSize.y;
-            }
+            // if (CustomData.HasKey("_scale"))
+            // {
+            //     var wallSize = CustomData["_scale"]?.ReadVector2() ?? Vector2.one;
+            //     // width = wallSize.x;
+            //     // height = wallSize.y;
+            // }
         }
 
-        return new SequenceBounds(width, height, position, startHeight);
+        return new SequenceBounds(position);
     }
 }

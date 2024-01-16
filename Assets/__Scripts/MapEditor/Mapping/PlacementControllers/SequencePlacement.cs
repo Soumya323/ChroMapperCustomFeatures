@@ -8,8 +8,10 @@ using UnityEngine.Serialization;
 public class SequencePlacement : PlacementController<BeatmapSequence, BeatmapSequenceContainer, SequenceContainer>
 {
     public static readonly string ChromaColorKey = "PlaceChromaObjects";
+
     [SerializeField] private SequenceAppearanceSO sequenceAppearanceSo;
-    [SerializeField] private PrecisionPlacementGridController precisionPlacement;
+
+    // [SerializeField] private PrecisionPlacementGridController precisionPlacement;
     [SerializeField] private ColorPicker colorPicker;
     [SerializeField] private ToggleColourDropdown dropdown;
 
@@ -48,7 +50,7 @@ public class SequencePlacement : PlacementController<BeatmapSequence, BeatmapSeq
         new BeatmapObjectPlacementAction(spawned, container, "Place a Wall.");
 
     public override BeatmapSequence GenerateOriginalData() =>
-        new BeatmapSequence(0, 0, BeatmapSequence.ValueFullBarrier, 0, 1);
+        new BeatmapSequence(0, BeatmapSequence.ValueFullBarrier, 1);
 
     public override void OnPhysicsRaycast(Intersections.IntersectionHit hit, Vector3 transformedPoint)
     {
@@ -63,7 +65,7 @@ public class SequencePlacement : PlacementController<BeatmapSequence, BeatmapSeq
         // Check if ChromaToggle notes button is active and apply _color
         if (CanPlaceChromaObjects && dropdown.Visible)
         {
-            // Doing the same a Chroma 2.0 events but with notes insted
+            // Doing the same a Chroma 2.0 events but with notes instead
             queuedData.GetOrCreateCustomData()["_color"] = colorPicker.CurrentColor;
         }
         else
@@ -99,8 +101,8 @@ public class SequencePlacement : PlacementController<BeatmapSequence, BeatmapSeq
                 scale[1] = Math.Round(newLocalScale.y, 3);
                 queuedData.CustomData["_scale"] = scale;
 
-                precisionPlacement.TogglePrecisionPlacement(true);
-                precisionPlacement.UpdateMousePosition(hit.Point);
+                // precisionPlacement.TogglePrecisionPlacement(true);
+                // precisionPlacement.UpdateMousePosition(hit.Point);
             }
             else
             {
@@ -110,15 +112,12 @@ public class SequencePlacement : PlacementController<BeatmapSequence, BeatmapSeq
                     RoundedTime * EditorScaleController.EditorScale
                 );
 
-                wallTransform.localPosition = new Vector3(
-                    originIndex - 2, queuedData.Type == BeatmapSequence.ValueFullBarrier ? 0 : 1.5f,
-                    startTime * EditorScaleController.EditorScale);
-                queuedData.Width = Mathf.CeilToInt(roundedHit.x + 2) - originIndex;
+                wallTransform.localPosition = new Vector3(originIndex - 2, 0, startTime * EditorScaleController.EditorScale);
+                // queuedData.Width = Mathf.CeilToInt(roundedHit.x + 2) - originIndex;
 
-                instantiatedContainer.SetScale(new Vector3(queuedData.Width,
-                    wallTransform.localScale.y, wallTransform.localScale.z));
+                instantiatedContainer.SetScale(new Vector3(1, 8.5f, wallTransform.localScale.z));
 
-                precisionPlacement.TogglePrecisionPlacement(false);
+                // precisionPlacement.TogglePrecisionPlacement(false);
             }
 
             return;
@@ -128,7 +127,7 @@ public class SequencePlacement : PlacementController<BeatmapSequence, BeatmapSeq
         {
             wallTransform.localPosition = roundedHit;
             instantiatedContainer.SetScale(Vector3.one / 2f);
-            queuedData.LineIndex = queuedData.Type = 0;
+            // queuedData.LineIndex = queuedData.Type = 0;
 
             if (queuedData.CustomData == null) queuedData.CustomData = new JSONObject();
 
@@ -137,25 +136,22 @@ public class SequencePlacement : PlacementController<BeatmapSequence, BeatmapSeq
             position[1] = Math.Round(roundedHit.y, 3);
             queuedData.CustomData["_position"] = position;
 
-            precisionPlacement.TogglePrecisionPlacement(true);
-            precisionPlacement.UpdateMousePosition(hit.Point);
+            // precisionPlacement.TogglePrecisionPlacement(true);
+            // precisionPlacement.UpdateMousePosition(hit.Point);
         }
         else
         {
-            var vanillaType = transformedPoint.y <= 1.5f ? 0 : 1;
+            // var vanillaType = transformedPoint.y <= 1.5f ? 0 : 1;
 
-            wallTransform.localPosition = new Vector3(
-                wallTransform.localPosition.x - 0.5f,
-                vanillaType * 1.5f,
-                wallTransform.localPosition.z);
+            wallTransform.localPosition = new Vector3(wallTransform.localPosition.x - 0.5f, 0, wallTransform.localPosition.z);
 
-            instantiatedContainer.SetScale(new Vector3(1, wallTransform.localPosition.y == 0 ? 3.5f : 2, 0));
+            instantiatedContainer.SetScale(new Vector3(1, 8.5f, 0));
 
             queuedData.CustomData = null;
             queuedData.LineIndex = Mathf.RoundToInt(wallTransform.localPosition.x + 2);
-            queuedData.Type = vanillaType;
+            // queuedData.Type = vanillaType;
 
-            precisionPlacement.TogglePrecisionPlacement(false);
+            // precisionPlacement.TogglePrecisionPlacement(false);
         }
     }
 
@@ -194,8 +190,7 @@ public class SequencePlacement : PlacementController<BeatmapSequence, BeatmapSeq
             queuedData = GenerateOriginalData();
             instantiatedContainer.SequenceData = queuedData;
             sequenceAppearanceSo.SetSequenceAppearance(instantiatedContainer);
-            instantiatedContainer.transform.localScale = new Vector3(
-                1, instantiatedContainer.transform.localPosition.y == 0 ? 3.5f : 2, 0);
+            instantiatedContainer.transform.localScale = new Vector3(1, 8.5f, 0);
         }
         else
         {
@@ -220,8 +215,7 @@ public class SequencePlacement : PlacementController<BeatmapSequence, BeatmapSeq
             queuedData = GenerateOriginalData();
             instantiatedContainer.SequenceData = queuedData;
             sequenceAppearanceSo.SetSequenceAppearance(instantiatedContainer);
-            instantiatedContainer.transform.localScale = new Vector3(
-                1, instantiatedContainer.transform.localPosition.y == 0 ? 3.5f : 2, 0);
+            instantiatedContainer.transform.localScale = new Vector3(1, 8.5f, 0);
         }
     }
 }
