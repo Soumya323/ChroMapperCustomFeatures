@@ -86,8 +86,9 @@ public class BeatmapBehaviourContainer : BeatmapObjectContainer
         if (BehaviourData.LineLayer > 0 && !_isInitiating)
         {
             FixIfInAir();
-            UpdateConnectingPole();
         }
+
+        UpdateConnectingPole();
     }
 
     public void UpdateConnectingPole()

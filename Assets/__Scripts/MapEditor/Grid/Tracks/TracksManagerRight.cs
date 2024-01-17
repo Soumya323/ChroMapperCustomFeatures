@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using UnityEngine;
@@ -126,14 +127,18 @@ public class TracksManagerRight : MonoBehaviour
         foreach (var track in loadedTracks.Values) track.UpdatePosition(position);
     }
 
-    public void OnBehaviourDelete(MapBehaviour _behaviour)
+    public void OnBehaviourDelete(MapBehaviour _behaviour) => StartCoroutine(OnBehaviourDeleteCoroutine(_behaviour));
+    
+    IEnumerator OnBehaviourDeleteCoroutine(MapBehaviour _behaviour)
     {
+        yield return new WaitForSeconds(0.1f);
+        
         var childs = tracksParent.GetComponentsInChildren<BeatmapBehaviourContainer>();
         var myStack = new List<BeatmapBehaviourContainer>();
 
         foreach (var child in childs)
         {
-            if (child.BehaviourData.LineIndex == _behaviour.LineIndex && child.BehaviourData.Time == _behaviour.Time && child.BehaviourData.LineLayer != _behaviour.LineLayer)
+            if (child.BehaviourData.Type != BehaviourType.None && child.BehaviourData.LineIndex == _behaviour.LineIndex && child.BehaviourData.Time == _behaviour.Time)
                 myStack.Add(child);
         }
 
