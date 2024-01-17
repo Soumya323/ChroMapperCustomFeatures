@@ -478,15 +478,18 @@ public class BeatSaberSong
     public BeatSaberMap GetMapFromDifficultyBeatmap(DifficultyBeatmap data)
     {
         var fullPath = Path.Combine(Directory, data.BeatmapFilename);
-
         var mainNode = GetNodeFromFile(fullPath);
+        
+        var choreographyFullPath = Path.Combine(Directory, "Choreography" + data.BeatmapFilename);
+        var choreographyNode = GetNodeFromFile(choreographyFullPath);
+        
         if (mainNode == null)
         {
             Debug.LogWarning("Failed to get difficulty json file " + fullPath);
             return null;
         }
 
-        return BeatSaberMap.GetBeatSaberMapFromJson(mainNode, fullPath);
+        return BeatSaberMap.GetBeatSaberMapFromJson(mainNode, choreographyNode, fullPath, choreographyFullPath);
     }
 
     private static JSONNode GetNodeFromFile(string file)

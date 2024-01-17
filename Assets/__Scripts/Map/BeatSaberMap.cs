@@ -12,6 +12,7 @@ using UnityEngine.Serialization;
 public class BeatSaberMap
 {
     [FormerlySerializedAs("directoryAndFile")] public string DirectoryAndFile;
+    public string ChoreographyDirectoryAndFile;
 
     [FormerlySerializedAs("_version")] public string Version = "2.2.0";
 
@@ -33,6 +34,7 @@ public class BeatSaberMap
     public JSONNode CustomData = new JSONObject();
 
     public JSONNode MainNode;
+    public JSONNode ChoreographyNode;
 
     public bool Save()
     {
@@ -80,12 +82,13 @@ public class BeatSaberMap
             var envEnhancements = new JSONArray();
             foreach (var e in EnvEnhancements) envEnhancements.Add(e.ConvertToJson());
 
-            MainNode["_notes"] = CleanupArray(notes);
-            MainNode["_behaviours"] = CleanupArray(behaviours);
-            MainNode["_sequences"] = CleanupArray(sequences);
             MainNode["_obstacles"] = CleanupArray(obstacles);
             MainNode["_events"] = CleanupArray(events);
             MainNode["_waypoints"] = waypoints; // TODO: Add formal support
+            MainNode["_notes"] = CleanupArray(notes);
+            
+            ChoreographyNode["_behaviours"] = CleanupArray(behaviours);
+            ChoreographyNode["_sequences"] = CleanupArray(sequences);
             /*
              * According to new the new BeatSaver schema, which will be enforced sometime soon™,
              * Bookmarks, Custom Events, and BPM Changes are now pushed to _customData instead of being on top level.
@@ -129,6 +132,11 @@ public class BeatSaberMap
                 File.WriteAllText(DirectoryAndFile, MainNode.ToString(2));
             else
                 File.WriteAllText(DirectoryAndFile, MainNode.ToString());
+            
+            if (Settings.Instance.FormatJson)
+                File.WriteAllText(ChoreographyDirectoryAndFile, ChoreographyNode.ToString(2));
+            else
+                File.WriteAllText(ChoreographyDirectoryAndFile, ChoreographyNode.ToString());
             /*using (StreamWriter writer = new StreamWriter(directoryAndFile, false))
             {
                 //Advanced users might want human readable JSON to perform easy modifications and reload them on the fly.
@@ -163,11 +171,17 @@ public class BeatSaberMap
         return array;
     }
 
-    public static BeatSaberMap GetBeatSaberMapFromJson(JSONNode mainNode, string directoryAndFile)
+    public static BeatSaberMap GetBeatSaberMapFromJson(JSONNode mainNode, JSONNode choreographyNode, string directoryAndFile, string choreographyDirectoryAndFile)
     {
         try
         {
-            var map = new BeatSaberMap { MainNode = mainNode, DirectoryAndFile = directoryAndFile };
+            var map = new BeatSaberMap 
+            { 
+                MainNode = mainNode, 
+                ChoreographyNode  = choreographyNode, 
+                DirectoryAndFile = directoryAndFile, 
+                ChoreographyDirectoryAndFile = choreographyDirectoryAndFile
+            };
 
             var eventsList = new List<MapEvent>();
             var notesList = new List<BeatmapNote>();
@@ -180,11 +194,11 @@ public class BeatSaberMap
             var customEventsList = new List<BeatmapCustomEvent>();
             var envEnhancementsList = new List<EnvEnhancement>();
 
-            var nodeEnum = mainNode.GetEnumerator();
-            while (nodeEnum.MoveNext())
+            var mainNodeEnum = mainNode.GetEnumerator();
+            while (mainNodeEnum.MoveNext())
             {
-                var key = nodeEnum.Current.Key;
-                var node = nodeEnum.Current.Value;
+                var key = mainNodeEnum.Current.Key;
+                var node = mainNodeEnum.Current.Value;
 
                 switch (key)
                 {
@@ -197,12 +211,6 @@ public class BeatSaberMap
                         break;
                     case "_notes":
                         foreach (JSONNode n in node) notesList.Add(new BeatmapNote(n));
-                        break;
-                    case "_behaviours":
-                        foreach (JSONNode n in node) behavioursList.Add(new MapBehaviour(n));
-                        break;
-                    case "_sequences":
-                        foreach (JSONNode n in node) sequencesList.Add(new BeatmapSequence(n));
                         break;
                     case "_obstacles":
                         foreach (JSONNode n in node) obstaclesList.Add(new BeatmapObstacle(n));
@@ -254,6 +262,26 @@ public class BeatSaberMap
                     case "_customEvents":
                         foreach (JSONNode n in node) customEventsList.Add(new BeatmapCustomEvent(n));
                         break;
+                }
+            }
+
+            if (choreographyNode != null)
+            {
+                var choreographyNodeEnum = choreographyNode.GetEnumerator();
+                while (choreographyNodeEnum.MoveNext())
+                {
+                    var key = choreographyNodeEnum.Current.Key;
+                    var node = choreographyNodeEnum.Current.Value;
+
+                    switch (key)
+                    {
+                        case "_behaviours":
+                            foreach (JSONNode n in node) behavioursList.Add(new MapBehaviour(n));
+                            break;
+                        case "_sequences":
+                            foreach (JSONNode n in node) sequencesList.Add(new BeatmapSequence(n));
+                            break;
+                    }
                 }
             }
 
