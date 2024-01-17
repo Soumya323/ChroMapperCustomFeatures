@@ -16,6 +16,8 @@ public class BehavioursContainer : BeatmapObjectContainerCollection, CMInput.IBe
     private int currentPage = 0;
     private const int maxPage = 10;
 
+    private bool isInitiating = true;
+    
     public override BeatmapObject.ObjectType ContainerType => BeatmapObject.ObjectType.Behaviour;
 
 
@@ -31,6 +33,7 @@ public class BehavioursContainer : BeatmapObjectContainerCollection, CMInput.IBe
         SpawnCallbackController.RecursiveNoteCheckFinished += RecursiveCheckFinished;
         DespawnCallbackController.NotePassedThreshold += DespawnCallback;
         AudioTimeSyncController.PlayToggle += OnPlayToggle;
+        LoadInitialMap.LevelLoadedEvent += OnLevelLoaded;
     }
 
     internal override void UnsubscribeToCallbacks()
@@ -39,8 +42,14 @@ public class BehavioursContainer : BeatmapObjectContainerCollection, CMInput.IBe
         SpawnCallbackController.RecursiveNoteCheckFinished += RecursiveCheckFinished;
         DespawnCallbackController.NotePassedThreshold -= DespawnCallback;
         AudioTimeSyncController.PlayToggle -= OnPlayToggle;
+        LoadInitialMap.LevelLoadedEvent -= OnLevelLoaded;
     }
 
+    private void OnLevelLoaded()
+    {
+        isInitiating = false;
+    }
+    
     private void SpawnCallback(bool initial, int index, BeatmapObject objectData)
     {
         if (!LoadedContainers.ContainsKey(objectData)) CreateContainerFromPool(objectData);
@@ -85,7 +94,7 @@ public class BehavioursContainer : BeatmapObjectContainerCollection, CMInput.IBe
         var behaviourData = obj as MapBehaviour;
 
         if (behaviour != null && behaviourData != null)
-            behaviour.UpdateBehaviour(behaviourData.Type);
+            behaviour.UpdateBehaviour(behaviourData.Type, isInitiating);
     }
 
     protected override void OnObjectSpawned(BeatmapObject obj)

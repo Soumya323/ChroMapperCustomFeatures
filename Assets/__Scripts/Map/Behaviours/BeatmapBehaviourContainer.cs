@@ -43,7 +43,7 @@ public class BeatmapBehaviourContainer : BeatmapObjectContainer
         return container;
     }
 
-    public void UpdateBehaviour(BehaviourType behaviourType)
+    public void UpdateBehaviour(BehaviourType behaviourType, bool _isInitiating)
     {
         switch (behaviourType)
         {
@@ -83,7 +83,7 @@ public class BeatmapBehaviourContainer : BeatmapObjectContainer
                 break;
         }
 
-        if (BehaviourData.LineLayer > 0)
+        if (BehaviourData.LineLayer > 0 && !_isInitiating)
         {
             FixIfInAir();
             UpdateConnectingPole();
