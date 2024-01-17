@@ -1,13 +1,16 @@
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
 public class BeatmapBehaviourContainer : BeatmapObjectContainer
 {
+    [SerializeField] private GameObject connectingPole;
     public MapBehaviour BehaviourData;
     public BehavioursContainer BehavioursContainer;
 
     public override BeatmapObject ObjectData { get => BehaviourData; set => BehaviourData = (MapBehaviour)value; }
-    
+
     [SerializeField] private MeshRenderer meshRenderer;
     [SerializeField] private TextMeshPro label;
 
@@ -79,5 +82,49 @@ public class BeatmapBehaviourContainer : BeatmapObjectContainer
             default:
                 break;
         }
+
+        if (BehaviourData.LineLayer > 0)
+        {
+            FixIfInAir();
+            UpdateConnectingPole();
+        }
+    }
+
+    public void UpdateConnectingPole()
+    {
+        connectingPole.SetActive(BehaviourData.LineLayer > 0);
+    }
+
+    private void FixIfInAir()
+    {
+        var parent = transform.parent;
+
+        var childs = parent.GetComponentsInChildren<BeatmapBehaviourContainer>();
+        var myStack = new List<BeatmapBehaviourContainer>();
+
+        foreach (var child in childs)
+        {
+            if (child.BehaviourData.LineIndex == BehaviourData.LineIndex && child.BehaviourData.Time == BehaviourData.Time && child != this)
+                myStack.Add(child);
+        }
+
+        if (myStack.Count == 0)
+        {
+            ChangeLineLayerTo(0);
+        }
+        else
+        {
+            myStack = myStack.OrderBy(obj => obj.BehaviourData.LineLayer).ToList();
+            int validLineLayer = myStack[myStack.Count - 1].BehaviourData.LineLayer + 1;
+
+            if (BehaviourData.LineLayer > validLineLayer)
+                ChangeLineLayerTo(validLineLayer);
+        }
+    }
+
+    public void ChangeLineLayerTo(int _layer)
+    {
+        BehaviourData.LineLayer = _layer;
+        transform.localPosition = new Vector3(transform.localPosition.x, _layer + 0.5f, transform.localPosition.z);
     }
 }

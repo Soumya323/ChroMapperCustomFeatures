@@ -3,7 +3,7 @@ public class SequenceBounds
     public SequenceBounds(float position)
     {
         Width = 1;
-        Height = 8.5f;
+        Height = 0.0f;
         Position = position;
         StartHeight = 0;
     }

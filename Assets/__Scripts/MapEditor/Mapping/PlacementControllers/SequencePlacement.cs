@@ -114,7 +114,7 @@ public class SequencePlacement : PlacementController<BeatmapSequence, BeatmapSeq
                 wallTransform.localPosition = new Vector3(originIndex - 2, 0, startTime * EditorScaleController.EditorScale);
                 // queuedData.Width = Mathf.CeilToInt(roundedHit.x + 2) - originIndex;
 
-                instantiatedContainer.SetScale(new Vector3(1, 8.5f, wallTransform.localScale.z));
+                instantiatedContainer.SetScale(new Vector3(1, 0.5f, wallTransform.localScale.z));
 
                 // precisionPlacement.TogglePrecisionPlacement(false);
             }
@@ -144,7 +144,7 @@ public class SequencePlacement : PlacementController<BeatmapSequence, BeatmapSeq
 
             wallTransform.localPosition = new Vector3(wallTransform.localPosition.x - 0.5f, 0, wallTransform.localPosition.z);
 
-            instantiatedContainer.SetScale(new Vector3(1, 8.5f, 0));
+            instantiatedContainer.SetScale(new Vector3(1, 0.5f, 0));
 
             queuedData.CustomData = null;
             queuedData.LineIndex = Mathf.RoundToInt(wallTransform.localPosition.x + 2);
@@ -189,7 +189,7 @@ public class SequencePlacement : PlacementController<BeatmapSequence, BeatmapSeq
             queuedData = GenerateOriginalData();
             instantiatedContainer.SequenceData = queuedData;
             sequenceAppearanceSo.SetSequenceAppearance(instantiatedContainer);
-            instantiatedContainer.transform.localScale = new Vector3(1, 8.5f, 0);
+            instantiatedContainer.transform.localScale = new Vector3(1, 0.5f, 0);
         }
         else
         {
@@ -214,7 +214,7 @@ public class SequencePlacement : PlacementController<BeatmapSequence, BeatmapSeq
             queuedData = GenerateOriginalData();
             instantiatedContainer.SequenceData = queuedData;
             sequenceAppearanceSo.SetSequenceAppearance(instantiatedContainer);
-            instantiatedContainer.transform.localScale = new Vector3(1, 8.5f, 0);
+            instantiatedContainer.transform.localScale = new Vector3(1, 0.5f, 0);
         }
     }
 }

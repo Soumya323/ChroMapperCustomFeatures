@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -119,11 +120,32 @@ public class TracksManagerRight : MonoBehaviour
         //float betterModulo = moduloAddBase - betterLargestFactor * m;
         x - (Mathf.Floor(x / m) * m) + m - (Mathf.Floor((x - (Mathf.Floor(x / m) * m) + m) / m) * m);
 
-    public void
-        UpdatePosition(
-            float position) //Take our position from AudioTimeSyncController and broadcast that to every track.
+    public void UpdatePosition(float position) //Take our position from AudioTimeSyncController and broadcast that to every track.
     {
         this.position = position;
         foreach (var track in loadedTracks.Values) track.UpdatePosition(position);
+    }
+
+    public void OnBehaviourDelete(MapBehaviour _behaviour)
+    {
+        var childs = tracksParent.GetComponentsInChildren<BeatmapBehaviourContainer>();
+        var myStack = new List<BeatmapBehaviourContainer>();
+
+        foreach (var child in childs)
+        {
+            if (child.BehaviourData.LineIndex == _behaviour.LineIndex && child.BehaviourData.Time == _behaviour.Time && child.BehaviourData.LineLayer != _behaviour.LineLayer)
+                myStack.Add(child);
+        }
+
+        if (myStack.Count != 0)
+        {
+            myStack = myStack.OrderBy(obj => obj.BehaviourData.LineLayer).ToList();
+
+            for (int i = 0; i < myStack.Count; i++)
+            {
+                myStack[i].ChangeLineLayerTo(i);
+                myStack[i].UpdateConnectingPole();
+            }
+        }
     }
 }

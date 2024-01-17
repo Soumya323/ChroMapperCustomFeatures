@@ -18958,8 +18958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50d01abdccf4a545a4e4a6e1f35a218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notePlacement: {fileID: 0}
-  placeMode: {fileID: 651050043790359290}
+  behaviourPlacement: {fileID: 0}
   positionSelectedImage: {fileID: 651050043185657684}
   rotationSelectedImage: {fileID: 651050042965805238}
   scaleSelectedImage: {fileID: 651050043871002778}
@@ -27081,6 +27080,8 @@ MonoBehaviour:
   bombPlacement: {fileID: 0}
   obstaclePlacement: {fileID: 0}
   deleteToolController: {fileID: 651050043790359291}
+  behaviourPlacement: {fileID: 0}
+  sequencePlacement: {fileID: 0}
   modePicker: {fileID: 651050043843172575}
 --- !u!114 &651050043790359291
 MonoBehaviour:
@@ -33478,7 +33479,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 651050044710257871}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -45816,7 +45817,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -62.499954}
+  m_AnchoredPosition: {x: 0, y: -62.49991}
   m_SizeDelta: {x: 190, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &651050044480429720
@@ -53994,7 +53995,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -17.820923, y: 34}
+  m_AnchoredPosition: {x: -17.820923, y: 0}
   m_SizeDelta: {x: 35.6428, y: 278.9318}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &651050044764310385

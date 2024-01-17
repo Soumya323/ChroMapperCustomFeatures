@@ -101,6 +101,11 @@ public class BehavioursContainer : BeatmapObjectContainerCollection, CMInput.IBe
 
     protected override void OnObjectDelete(BeatmapObject obj)
     {
+        if (obj is MapBehaviour b)
+        {
+            tracksManagerRight.OnBehaviourDelete(b);
+        }
+
         if (obj is MapEvent e)
         {
             if (e.IsRotationEvent)

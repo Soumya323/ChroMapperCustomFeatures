@@ -104,7 +104,7 @@ public class BeatmapSequence : BeatmapObject, IBeatmapObjectBounds
     {
         var position = LineIndex - 2f; //Line index
         var startHeight = 0.0f;
-        var height = 8.5f;
+        var height = 0.0f;
         // float width = Width;
 
         // ME
