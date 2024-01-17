@@ -36,10 +36,12 @@ public class BeatmapBehaviourContainer : BeatmapObjectContainer
         UpdateMaterials();
     }
 
-    public static BeatmapBehaviourContainer SpawnBeatmapBehaviour(MapBehaviour behaviourData, ref GameObject behaviourPrefab)
+    public static BeatmapBehaviourContainer SpawnBeatmapBehaviour(BehavioursContainer behavioursContainer, MapBehaviour behaviourData,
+        ref GameObject behaviourPrefab)
     {
         var container = Instantiate(behaviourPrefab).GetComponent<BeatmapBehaviourContainer>();
         container.BehaviourData = behaviourData;
+        container.BehavioursContainer = behavioursContainer;
         return container;
     }
 
@@ -89,6 +91,11 @@ public class BeatmapBehaviourContainer : BeatmapObjectContainer
         }
 
         UpdateConnectingPole();
+
+        if (BehaviourData.LineLayer < 0)
+        {
+            BehavioursContainer.DeleteObject(BehaviourData);
+        }
     }
 
     public void UpdateConnectingPole()

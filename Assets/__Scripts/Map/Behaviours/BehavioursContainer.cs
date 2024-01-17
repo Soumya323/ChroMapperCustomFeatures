@@ -23,7 +23,7 @@ public class BehavioursContainer : BeatmapObjectContainerCollection, CMInput.IBe
 
     public override BeatmapObjectContainer CreateContainer()
     {
-        BeatmapObjectContainer con = BeatmapBehaviourContainer.SpawnBeatmapBehaviour(null, ref behaviourPrefab);
+        BeatmapObjectContainer con = BeatmapBehaviourContainer.SpawnBeatmapBehaviour(this, null, ref behaviourPrefab);
         return con;
     }
 
