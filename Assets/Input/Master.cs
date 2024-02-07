@@ -1525,6 +1525,166 @@ public class @CMInput : IInputActionCollection, IDisposable
             ]
         },
         {
+            ""name"": ""ChoreographyWorkflows"",
+            ""id"": ""3101134f-205c-42fd-a8d9-327239b15580"",
+            ""actions"": [
+                {
+                    ""name"": ""Func1"",
+                    ""type"": ""Button"",
+                    ""id"": ""6399d996-f375-451c-bb8d-4a9d11bdf0cd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Func2"",
+                    ""type"": ""Button"",
+                    ""id"": ""320ac7b9-73cb-4cbb-be7e-6282876328f4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Func3"",
+                    ""type"": ""Button"",
+                    ""id"": ""44a492ab-7f31-4b4f-911f-6ef1696016cb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Func4"",
+                    ""type"": ""Button"",
+                    ""id"": ""98cb9a0e-9f33-4b81-8130-2578750e4286"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Func5"",
+                    ""type"": ""Button"",
+                    ""id"": ""f6698df2-cf67-4479-8051-c7c33d87a91e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Func6"",
+                    ""type"": ""Button"",
+                    ""id"": ""d33dcf56-df50-4a4f-ac27-8ce1f3005fbb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Func7"",
+                    ""type"": ""Button"",
+                    ""id"": ""2df45654-c016-4159-81b8-45ffcdacd094"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Func8"",
+                    ""type"": ""Button"",
+                    ""id"": ""1137f1de-6e5b-400a-a6d5-10ef9ca98651"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""2568b49e-c0aa-44e0-b0f5-94123705f172"",
+                    ""path"": ""<Keyboard>/f1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Func1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cc8870e1-a6be-4127-afd0-3bc1bebe6b64"",
+                    ""path"": ""<Keyboard>/f2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Func2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cf062d4c-edee-4aa1-acd5-35142b50e6cd"",
+                    ""path"": ""<Keyboard>/f3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Func3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d090b356-f837-471d-b379-769fa30d0486"",
+                    ""path"": ""<Keyboard>/f4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Func4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9de5a1df-352e-422c-8841-6c1e57e2b603"",
+                    ""path"": ""<Keyboard>/f5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Func5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef5ecf54-c2aa-4e1b-a823-b985c283471b"",
+                    ""path"": ""<Keyboard>/f6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Func6"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a5fe51d7-515f-4321-a2f9-04a9cc72b0b7"",
+                    ""path"": ""<Keyboard>/f7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Func7"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0726e895-cd8f-4bf7-954c-e5dcd0f9f081"",
+                    ""path"": ""<Keyboard>/f8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Func8"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
             ""name"": ""Event UI"",
             ""id"": ""5a91a51c-40c9-4e18-bff6-3c5204b446ce"",
             ""actions"": [
@@ -3946,6 +4106,16 @@ public class @CMInput : IInputActionCollection, IDisposable
         m_Workflows_Mirror = m_Workflows.FindAction("Mirror", throwIfNotFound: true);
         m_Workflows_MirrorinTime = m_Workflows.FindAction("Mirror in Time", throwIfNotFound: true);
         m_Workflows_MirrorColoursOnly = m_Workflows.FindAction("Mirror Colours Only", throwIfNotFound: true);
+        // ChoreographyWorkflows
+        m_ChoreographyWorkflows = asset.FindActionMap("ChoreographyWorkflows", throwIfNotFound: true);
+        m_ChoreographyWorkflows_Func1 = m_ChoreographyWorkflows.FindAction("Func1", throwIfNotFound: true);
+        m_ChoreographyWorkflows_Func2 = m_ChoreographyWorkflows.FindAction("Func2", throwIfNotFound: true);
+        m_ChoreographyWorkflows_Func3 = m_ChoreographyWorkflows.FindAction("Func3", throwIfNotFound: true);
+        m_ChoreographyWorkflows_Func4 = m_ChoreographyWorkflows.FindAction("Func4", throwIfNotFound: true);
+        m_ChoreographyWorkflows_Func5 = m_ChoreographyWorkflows.FindAction("Func5", throwIfNotFound: true);
+        m_ChoreographyWorkflows_Func6 = m_ChoreographyWorkflows.FindAction("Func6", throwIfNotFound: true);
+        m_ChoreographyWorkflows_Func7 = m_ChoreographyWorkflows.FindAction("Func7", throwIfNotFound: true);
+        m_ChoreographyWorkflows_Func8 = m_ChoreographyWorkflows.FindAction("Func8", throwIfNotFound: true);
         // Event UI
         m_EventUI = asset.FindActionMap("Event UI", throwIfNotFound: true);
         m_EventUI_TypeOn = m_EventUI.FindAction("Type On", throwIfNotFound: true);
@@ -4770,6 +4940,95 @@ public class @CMInput : IInputActionCollection, IDisposable
         }
     }
     public WorkflowsActions @Workflows => new WorkflowsActions(this);
+
+    // ChoreographyWorkflows
+    private readonly InputActionMap m_ChoreographyWorkflows;
+    private IChoreographyWorkflowsActions m_ChoreographyWorkflowsActionsCallbackInterface;
+    private readonly InputAction m_ChoreographyWorkflows_Func1;
+    private readonly InputAction m_ChoreographyWorkflows_Func2;
+    private readonly InputAction m_ChoreographyWorkflows_Func3;
+    private readonly InputAction m_ChoreographyWorkflows_Func4;
+    private readonly InputAction m_ChoreographyWorkflows_Func5;
+    private readonly InputAction m_ChoreographyWorkflows_Func6;
+    private readonly InputAction m_ChoreographyWorkflows_Func7;
+    private readonly InputAction m_ChoreographyWorkflows_Func8;
+    public struct ChoreographyWorkflowsActions
+    {
+        private @CMInput m_Wrapper;
+        public ChoreographyWorkflowsActions(@CMInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Func1 => m_Wrapper.m_ChoreographyWorkflows_Func1;
+        public InputAction @Func2 => m_Wrapper.m_ChoreographyWorkflows_Func2;
+        public InputAction @Func3 => m_Wrapper.m_ChoreographyWorkflows_Func3;
+        public InputAction @Func4 => m_Wrapper.m_ChoreographyWorkflows_Func4;
+        public InputAction @Func5 => m_Wrapper.m_ChoreographyWorkflows_Func5;
+        public InputAction @Func6 => m_Wrapper.m_ChoreographyWorkflows_Func6;
+        public InputAction @Func7 => m_Wrapper.m_ChoreographyWorkflows_Func7;
+        public InputAction @Func8 => m_Wrapper.m_ChoreographyWorkflows_Func8;
+        public InputActionMap Get() { return m_Wrapper.m_ChoreographyWorkflows; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ChoreographyWorkflowsActions set) { return set.Get(); }
+        public void SetCallbacks(IChoreographyWorkflowsActions instance)
+        {
+            if (m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface != null)
+            {
+                @Func1.started -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc1;
+                @Func1.performed -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc1;
+                @Func1.canceled -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc1;
+                @Func2.started -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc2;
+                @Func2.performed -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc2;
+                @Func2.canceled -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc2;
+                @Func3.started -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc3;
+                @Func3.performed -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc3;
+                @Func3.canceled -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc3;
+                @Func4.started -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc4;
+                @Func4.performed -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc4;
+                @Func4.canceled -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc4;
+                @Func5.started -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc5;
+                @Func5.performed -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc5;
+                @Func5.canceled -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc5;
+                @Func6.started -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc6;
+                @Func6.performed -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc6;
+                @Func6.canceled -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc6;
+                @Func7.started -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc7;
+                @Func7.performed -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc7;
+                @Func7.canceled -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc7;
+                @Func8.started -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc8;
+                @Func8.performed -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc8;
+                @Func8.canceled -= m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface.OnFunc8;
+            }
+            m_Wrapper.m_ChoreographyWorkflowsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Func1.started += instance.OnFunc1;
+                @Func1.performed += instance.OnFunc1;
+                @Func1.canceled += instance.OnFunc1;
+                @Func2.started += instance.OnFunc2;
+                @Func2.performed += instance.OnFunc2;
+                @Func2.canceled += instance.OnFunc2;
+                @Func3.started += instance.OnFunc3;
+                @Func3.performed += instance.OnFunc3;
+                @Func3.canceled += instance.OnFunc3;
+                @Func4.started += instance.OnFunc4;
+                @Func4.performed += instance.OnFunc4;
+                @Func4.canceled += instance.OnFunc4;
+                @Func5.started += instance.OnFunc5;
+                @Func5.performed += instance.OnFunc5;
+                @Func5.canceled += instance.OnFunc5;
+                @Func6.started += instance.OnFunc6;
+                @Func6.performed += instance.OnFunc6;
+                @Func6.canceled += instance.OnFunc6;
+                @Func7.started += instance.OnFunc7;
+                @Func7.performed += instance.OnFunc7;
+                @Func7.canceled += instance.OnFunc7;
+                @Func8.started += instance.OnFunc8;
+                @Func8.performed += instance.OnFunc8;
+                @Func8.canceled += instance.OnFunc8;
+            }
+        }
+    }
+    public ChoreographyWorkflowsActions @ChoreographyWorkflows => new ChoreographyWorkflowsActions(this);
 
     // Event UI
     private readonly InputActionMap m_EventUI;
@@ -6274,6 +6533,17 @@ public class @CMInput : IInputActionCollection, IDisposable
         void OnMirror(InputAction.CallbackContext context);
         void OnMirrorinTime(InputAction.CallbackContext context);
         void OnMirrorColoursOnly(InputAction.CallbackContext context);
+    }
+    public interface IChoreographyWorkflowsActions
+    {
+        void OnFunc1(InputAction.CallbackContext context);
+        void OnFunc2(InputAction.CallbackContext context);
+        void OnFunc3(InputAction.CallbackContext context);
+        void OnFunc4(InputAction.CallbackContext context);
+        void OnFunc5(InputAction.CallbackContext context);
+        void OnFunc6(InputAction.CallbackContext context);
+        void OnFunc7(InputAction.CallbackContext context);
+        void OnFunc8(InputAction.CallbackContext context);
     }
     public interface IEventUIActions
     {

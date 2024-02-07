@@ -18,7 +18,6 @@ public enum BehaviourType : int
 [Serializable]
 public class MapBehaviour : BeatmapObject
 {
-    
     public const int EventTypeEarlyRotation = 14;
     public const int EventTypeLateRotation = 15;
 
@@ -32,7 +31,7 @@ public class MapBehaviour : BeatmapObject
     public MapBehaviour(JSONNode node)
     {
         Time = RetrieveRequiredNode(node, "_time").AsFloat;
-        LineIndex = RetrieveRequiredNode(node, "_lineIndex").AsInt;
+        LineIndex = RetrieveRequiredNode(node, "_lineIndex").AsInt + 1;
         LineLayer = RetrieveRequiredNode(node, "_lineLayer").AsInt;
         Type = (BehaviourType)RetrieveRequiredNode(node, "_type").AsInt;
         CustomData = node["_customData"];
@@ -54,7 +53,7 @@ public class MapBehaviour : BeatmapObject
         JSONNode node = new JSONObject();
 
         node["_time"] = Math.Round(Time, DecimalPrecision);
-        node["_lineIndex"] = LineIndex;
+        node["_lineIndex"] = LineIndex - 1;
         node["_lineLayer"] = LineLayer;
         node["_type"] = (int)Type;
 

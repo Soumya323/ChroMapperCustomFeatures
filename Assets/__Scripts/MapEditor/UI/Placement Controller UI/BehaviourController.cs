@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class BehaviourController : MonoBehaviour
+public class BehaviourController : MonoBehaviour, CMInput.IChoreographyWorkflowsActions
 {
     [SerializeField] private BehaviourPlacement behaviourPlacement;
 
@@ -32,7 +33,7 @@ public class BehaviourController : MonoBehaviour
         UpdateValue(BehaviourType.MoveBehaviour);
     }
 
-    public void OnPosition()
+    public void OnMove()
     {
         UpdateValue(BehaviourType.MoveBehaviour);
     }
@@ -69,7 +70,7 @@ public class BehaviourController : MonoBehaviour
 
     public void OnSequenceTrigger()
     {
-        UpdateValue(BehaviourType.SequenceTriggerBehaviour);
+        // UpdateValue(BehaviourType.SequenceTriggerBehaviour);
     }
 
     public void UpdateValue(BehaviourType type)
@@ -89,5 +90,45 @@ public class BehaviourController : MonoBehaviour
         changeActiveStatesSelectedImage.enabled = behaviourPlacement.queuedData.Type == BehaviourType.ChangeActiveStateBehaviour;
         animationSelectedImage.enabled = behaviourPlacement.queuedData.Type == BehaviourType.AnimationBehaviour;
         sequenceSelectedImage.enabled = behaviourPlacement.queuedData.Type == BehaviourType.SequenceTriggerBehaviour;
+    }
+
+    public void OnFunc1(InputAction.CallbackContext context)
+    {
+        if (context.performed) OnMove();
+    }
+
+    public void OnFunc2(InputAction.CallbackContext context)
+    {
+        if (context.performed) OnRotation();
+    }
+
+    public void OnFunc3(InputAction.CallbackContext context)
+    {
+        if (context.performed) OnScale();
+    }
+
+    public void OnFunc4(InputAction.CallbackContext context)
+    {
+        if (context.performed) OnColor();
+    }
+
+    public void OnFunc5(InputAction.CallbackContext context)
+    {
+        if (context.performed) OnEvent();
+    }
+
+    public void OnFunc6(InputAction.CallbackContext context)
+    {
+        if (context.performed) OnChangeActiveState();
+    }
+
+    public void OnFunc7(InputAction.CallbackContext context)
+    {
+        if (context.performed) OnAnimationTrigger();
+    }
+
+    public void OnFunc8(InputAction.CallbackContext context)
+    {
+        if (context.performed) OnSequenceTrigger();
     }
 }
