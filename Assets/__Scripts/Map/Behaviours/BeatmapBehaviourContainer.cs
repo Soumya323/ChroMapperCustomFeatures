@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -45,7 +46,7 @@ public class BeatmapBehaviourContainer : BeatmapObjectContainer
         return container;
     }
 
-    public void UpdateBehaviour(BehaviourType behaviourType, bool _isInitiating)
+    public void UpdateBehaviour(BehaviourType behaviourType, bool _isInitiating, bool isPasted = false)
     {
         switch (behaviourType)
         {
@@ -84,11 +85,15 @@ public class BeatmapBehaviourContainer : BeatmapObjectContainer
             default:
                 break;
         }
-
-        if (BehaviourData.LineLayer > 0 && !_isInitiating)
-        {
+    
+        
+        if (BehaviourData.LineLayer > 0 && !_isInitiating && !isPasted)
             FixIfInAir();
-        }
+        
+
+        if(isPasted)
+            StartCoroutine(FixIfInAirAndPastedDelay());
+        
 
         UpdateConnectingPole();
 
@@ -103,11 +108,42 @@ public class BeatmapBehaviourContainer : BeatmapObjectContainer
         connectingPole.SetActive(BehaviourData.LineLayer > 0);
     }
 
+    IEnumerator FixIfInAirAndPastedDelay()
+    {
+        yield return new WaitForSeconds(0.01f * BehaviourData.LineLayer);
+
+        var childs = transform.parent.GetComponentsInChildren<BeatmapBehaviourContainer>();
+        var myStack = new List<BeatmapBehaviourContainer>();
+
+        foreach (var child in childs)
+        {
+            if (child.BehaviourData.LineIndex == BehaviourData.LineIndex && child.BehaviourData.Time == BehaviourData.Time)
+                myStack.Add(child);
+        }
+
+        if (myStack.Count == 0)
+        {
+            ChangeLineLayerTo(0);
+        }
+        else
+        {
+            myStack = myStack.OrderBy(obj => obj.BehaviourData.LineLayer).ToList();
+
+            for (int i = 0; i < myStack.Count; i++)
+            {
+                if(myStack[i] == this)
+                {
+                    ChangeLineLayerTo(i);  
+                    break;
+                }
+            }
+        }
+    }
+
     private void FixIfInAir()
     {
-        var parent = transform.parent;
 
-        var childs = parent.GetComponentsInChildren<BeatmapBehaviourContainer>();
+        var childs = transform.parent.GetComponentsInChildren<BeatmapBehaviourContainer>();
         var myStack = new List<BeatmapBehaviourContainer>();
 
         foreach (var child in childs)

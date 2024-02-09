@@ -265,7 +265,7 @@ public class EventsContainer : BeatmapObjectContainerCollection, CMInput.IEventG
     public override BeatmapObjectContainer CreateContainer() =>
         BeatmapEventContainer.SpawnEvent(this, null, ref eventPrefab, ref eventAppearanceSo, ref labels);
 
-    protected override void UpdateContainerData(BeatmapObjectContainer con, BeatmapObject obj)
+    protected override void UpdateContainerData(BeatmapObjectContainer con, BeatmapObject obj, bool isPasted = false)
     {
         eventAppearanceSo.SetEventAppearance(con as BeatmapEventContainer, true,
             AllBoostEvents.FindLast(x => x.Time <= obj.Time)?.Value == 1);

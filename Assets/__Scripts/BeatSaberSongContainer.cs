@@ -7,6 +7,9 @@ public class BeatSaberSongContainer : MonoBehaviour
     [FormerlySerializedAs("difficultyData")] public BeatSaberSong.DifficultyBeatmap DifficultyData;
     [FormerlySerializedAs("loadedSong")] public AudioClip LoadedSong;
     [FormerlySerializedAs("map")] public BeatSaberMap Map;
+
+    [HideInInspector] public int TotalSongBeats;
+
     public static BeatSaberSongContainer Instance { get; private set; }
 
     private void Awake()

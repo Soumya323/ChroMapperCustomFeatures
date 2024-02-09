@@ -88,13 +88,13 @@ public class BehavioursContainer : BeatmapObjectContainerCollection, CMInput.IBe
         labels.UpdateLabels(currentPage);
     }
 
-    protected override void UpdateContainerData(BeatmapObjectContainer con, BeatmapObject obj)
+    protected override void UpdateContainerData(BeatmapObjectContainer con, BeatmapObject obj, bool isPasted = false)
     {
         var behaviour = con as BeatmapBehaviourContainer;
         var behaviourData = obj as MapBehaviour;
 
         if (behaviour != null && behaviourData != null)
-            behaviour.UpdateBehaviour(behaviourData.Type, isInitiating);
+            behaviour.UpdateBehaviour(behaviourData.Type, isInitiating, isPasted);
     }
 
     protected override void OnObjectSpawned(BeatmapObject obj)

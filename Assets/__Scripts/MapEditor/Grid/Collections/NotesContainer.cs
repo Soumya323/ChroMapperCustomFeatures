@@ -84,7 +84,7 @@ public class NotesContainer : BeatmapObjectContainerCollection
         return con;
     }
 
-    protected override void UpdateContainerData(BeatmapObjectContainer con, BeatmapObject obj)
+    protected override void UpdateContainerData(BeatmapObjectContainer con, BeatmapObject obj, bool isPasted = false)
     {
         var note = con as BeatmapNoteContainer;
         var noteData = obj as BeatmapNote;

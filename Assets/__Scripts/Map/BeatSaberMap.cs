@@ -60,7 +60,14 @@ public class BeatSaberMap
 
             var behaviours = new JSONArray();
             foreach (var b in Behaviours) behaviours.Add(b.ConvertToJson());
-            
+
+            //Default walls
+            for (int i = 1; i <= 10; i++)
+            {
+                var beatmapSequence = new BeatmapSequence(0, i, BeatSaberSongContainer.Instance.TotalSongBeats);
+                Sequences.Add(beatmapSequence);
+            }
+
             var sequences = new JSONArray();
             foreach (var s in Sequences) sequences.Add(s.ConvertToJson());
 
@@ -86,6 +93,8 @@ public class BeatSaberMap
             MainNode["_events"] = CleanupArray(events);
             MainNode["_waypoints"] = waypoints; // TODO: Add formal support
             MainNode["_notes"] = CleanupArray(notes);
+
+            if(ChoreographyNode == null) ChoreographyNode = new JSONObject();
             
             ChoreographyNode["_behaviours"] = CleanupArray(behaviours);
             ChoreographyNode["_sequences"] = CleanupArray(sequences);
@@ -279,7 +288,10 @@ public class BeatSaberMap
                             foreach (JSONNode n in node) behavioursList.Add(new MapBehaviour(n));
                             break;
                         case "_sequences":
-                            foreach (JSONNode n in node) sequencesList.Add(new BeatmapSequence(n));
+                            foreach (JSONNode n in node) 
+                                if(n["_lineIndex"] > 11)
+                                    sequencesList.Add(new BeatmapSequence(n));
+                            
                             break;
                     }
                 }

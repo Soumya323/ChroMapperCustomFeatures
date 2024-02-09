@@ -73,6 +73,8 @@ public class MeasureLinesController : MonoBehaviour
             jsonBeat = ((modifiedBeats - last.Beat) / last.Bpm * songBpm) + last.Time;
         }
 
+        BeatSaberSongContainer.Instance.TotalSongBeats = (int)jsonBeat - 1;
+
         // Set proper spacing between Notes grid, Measure lines, and Events grid
         measureLinesGridChild.Size = modifiedBeats > 1000 ? 1 : 0;
         foreach (var leftovers in existing) Destroy(leftovers.gameObject);

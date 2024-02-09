@@ -258,13 +258,18 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
         var placementObj = hit.GameObject.GetComponentInParent<T>();
         if (placementObj != null)
         {
-            var boundLocal = placementObj.GetComponentsInChildren<Renderer>().FirstOrDefault(it => it.name == "Grid X")
+            var boundLocal_1 = placementObj.GetComponentsInChildren<Renderer>().FirstOrDefault(it => it.name == "Grid X")
                 .bounds;
+
+            var boundLocal_2 = placementObj.GetComponentsInChildren<Renderer>().LastOrDefault(it => it.name == "Grid X")
+                .bounds;
+
+            var totalBoundLocal = new Bounds(boundLocal_1.center + boundLocal_2.center, (boundLocal_1.extents + boundLocal_2.extents) * 2);
 
             // Transform the bounds into the pseudo-world space we use for selection
             var localTransform = placementObj.transform;
             var localScale = localTransform.localScale;
-            var boundsNew = localTransform.InverseTransformBounds(boundLocal);
+            var boundsNew = localTransform.InverseTransformBounds(type == BeatmapObject.ObjectType.Behaviour ? totalBoundLocal : boundLocal_1);
             boundsNew.center += localTransform.localPosition;
             boundsNew.extents = new Vector3(
                 boundsNew.extents.x * localScale.x,

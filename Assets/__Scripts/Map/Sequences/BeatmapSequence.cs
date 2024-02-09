@@ -52,7 +52,7 @@ public class BeatmapSequence : BeatmapObject, IBeatmapObjectBounds
     {
         var bounds = GetShape();
 
-        return new Vector2(bounds.Position + (bounds.Width / 2), bounds.StartHeight + (bounds.Height / 2));
+        return new Vector2(bounds.Position + (bounds.Width / 2) + 4, bounds.StartHeight + (bounds.Height / 2));
     }
 
     public override JSONNode ConvertToJson()

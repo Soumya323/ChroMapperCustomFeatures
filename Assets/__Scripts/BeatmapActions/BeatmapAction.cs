@@ -24,7 +24,7 @@ public abstract class BeatmapAction
         foreach (var unique in data.DistinctBy(x => x.BeatmapType))
         {
             var collection = BeatmapObjectContainerCollection.GetCollectionForType(unique.BeatmapType);
-            collection.RefreshPool(true);
+            collection.RefreshPool(forceRefresh: true);
 
             if (collection is BPMChangesContainer con) con.RefreshModifiedBeat();
         }

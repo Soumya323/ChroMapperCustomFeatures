@@ -71,7 +71,7 @@ public class BoxSelectionPlacementController : PlacementController<MapEvent, Bea
         var roundedHit = ParentTrack.InverseTransformPoint(hit.Point);
         roundedHit = new Vector3(
             Mathf.Ceil(Math.Min(Math.Max(roundedHit.x, Bounds.min.x + 0.01f), Bounds.max.x)),
-            Mathf.Ceil(Math.Min(Math.Max(roundedHit.y, 0.01f), 3f)),
+            Mathf.Ceil(Math.Min(Math.Max(roundedHit.y, 0.01f), 8f)),
             roundedHit.z
         );
         instantiatedContainer.transform.localPosition = roundedHit - new Vector3(0.5f, 1, 0);
@@ -84,6 +84,8 @@ public class BoxSelectionPlacementController : PlacementController<MapEvent, Bea
             TestForType<ObstaclePlacement>(hit, BeatmapObject.ObjectType.Obstacle);
             TestForType<CustomEventPlacement>(hit, BeatmapObject.ObjectType.CustomEvent);
             TestForType<BPMChangePlacement>(hit, BeatmapObject.ObjectType.BpmChange);
+            TestForType<BehaviourPlacement>(hit, BeatmapObject.ObjectType.Behaviour);
+            TestForType<SequencePlacement>(hit, BeatmapObject.ObjectType.Sequence);
 
             instantiatedContainer.transform.localScale = Vector3.right + Vector3.up;
             var localScale = instantiatedContainer.transform.localScale;
@@ -161,6 +163,9 @@ public class BoxSelectionPlacementController : PlacementController<MapEvent, Bea
                 }
 
                 // Check if calculated position is outside bounds
+                if(bo.BeatmapType == BeatmapObject.ObjectType.Obstacle)
+                    p.y = 0.5f;
+                
                 if (p.x < left || p.x > right || p.y < bottom || p.y >= top) return;
 
                 if (!alreadySelected.Contains(bo) && selected.Add(bo))

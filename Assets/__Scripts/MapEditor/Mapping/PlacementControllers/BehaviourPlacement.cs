@@ -21,7 +21,7 @@ public class BehaviourPlacement : PlacementController<MapBehaviour, BeatmapBehav
             trns.localPosition = new Vector3(trns.localPosition.x, 0.5f, trns.localPosition.z);
 
         queuedData.LineIndex = Mathf.RoundToInt(trns.localPosition.x + 1.5f);
-        queuedData.LineLayer = Mathf.RoundToInt(trns.localPosition.y - 0.5f);
+         queuedData.LineLayer = Mathf.RoundToInt(trns.localPosition.y - 0.5f);
     }
 
     public override void TransferQueuedToDraggedObject(ref MapBehaviour dragged, MapBehaviour queued)

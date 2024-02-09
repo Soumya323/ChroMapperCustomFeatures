@@ -31,7 +31,7 @@ public class SequenceContainer : BeatmapObjectContainerCollection
     public override BeatmapObjectContainer CreateContainer() =>
         BeatmapSequenceContainer.SpawnSequence(null, tracksManagerRight, ref sequencePrefab);
 
-    protected override void UpdateContainerData(BeatmapObjectContainer con, BeatmapObject obj)
+    protected override void UpdateContainerData(BeatmapObjectContainer con, BeatmapObject obj, bool isPasted = false)
     {
         var sequence = con as BeatmapSequenceContainer;
         if (!sequence.IsRotatedByNoodleExtensions)

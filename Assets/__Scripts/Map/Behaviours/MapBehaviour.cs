@@ -16,7 +16,7 @@ public enum BehaviourType : int
 }
 
 [Serializable]
-public class MapBehaviour : BeatmapObject
+public class MapBehaviour : BeatmapObject , IBeatmapObjectBounds
 {
     public const int EventTypeEarlyRotation = 14;
     public const int EventTypeLateRotation = 15;
@@ -32,7 +32,7 @@ public class MapBehaviour : BeatmapObject
     {
         Time = RetrieveRequiredNode(node, "_time").AsFloat;
         LineIndex = RetrieveRequiredNode(node, "_lineIndex").AsInt + 1;
-        LineLayer = RetrieveRequiredNode(node, "_lineLayer").AsInt;
+        LineLayer = RetrieveRequiredNode(node, "_layerIndex").AsInt;
         Type = (BehaviourType)RetrieveRequiredNode(node, "_type").AsInt;
         CustomData = node["_customData"];
     }
@@ -54,7 +54,7 @@ public class MapBehaviour : BeatmapObject
 
         node["_time"] = Math.Round(Time, DecimalPrecision);
         node["_lineIndex"] = LineIndex - 1;
-        node["_lineLayer"] = LineLayer;
+        node["_layerIndex"] = LineLayer;
         node["_type"] = (int)Type;
 
         return node;
@@ -67,6 +67,8 @@ public class MapBehaviour : BeatmapObject
             return Vector2.Distance(note.GetPosition(), GetPosition()) < 0.1;
         return false;
     }
+
+    public Vector2 GetCenter() => GetPosition() + new Vector2(4f, 0.5f);
 
     public Vector2 GetPosition()
     {

@@ -41,6 +41,8 @@ public abstract class BeatmapObject
     /// </summary>
     public JSONNode CustomData;
 
+    public BeatmapBehaviourContainer BeatmapBehaviourContainer;
+
     public abstract JSONNode ConvertToJson();
 
     protected abstract bool IsConflictingWithObjectAtSameTime(BeatmapObject other, bool deletion = false);
@@ -67,6 +69,9 @@ public abstract class BeatmapObject
             case BeatmapNote note:
                 objectData = new BeatmapNote(note.Time, note.LineIndex, note.LineLayer, note.Type,
                     note.CutDirection, originalData.CustomData?.Clone()) as T;
+                break;
+            case MapBehaviour behaviour: 
+                objectData = new MapBehaviour(behaviour.Time, behaviour.LineIndex, behaviour.LineLayer, behaviour.Type, originalData.CustomData?.Clone()) as T;
                 break;
             default:
                 objectData =

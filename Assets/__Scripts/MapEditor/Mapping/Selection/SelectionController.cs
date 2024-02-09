@@ -123,6 +123,8 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
             {
                 case BeatmapObject.ObjectType.Note:
                 case BeatmapObject.ObjectType.Obstacle:
+                case BeatmapObject.ObjectType.Behaviour:
+                case BeatmapObject.ObjectType.Sequence:
                 case BeatmapObject.ObjectType.CustomNote:
                     hasNoteOrObstacle = true;
                     break;
@@ -154,7 +156,7 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
         {
             clearTypes.AddRange(new[]
             {
-                BeatmapObject.ObjectType.Note, BeatmapObject.ObjectType.Obstacle, BeatmapObject.ObjectType.CustomNote
+                BeatmapObject.ObjectType.Note, BeatmapObject.ObjectType.Obstacle, BeatmapObject.ObjectType.CustomNote, BeatmapObject.ObjectType.Behaviour, BeatmapObject.ObjectType.Sequence
             });
         }
 
@@ -322,6 +324,8 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
             CopiedObjects.Add(copy);
         }
 
+        Debug.Log("CopiedObjects: " + CopiedObjects.Count);
+
         if (cut) Delete();
         var bpmChanges =
             BeatmapObjectContainerCollection.GetCollectionForType<BPMChangesContainer>(BeatmapObject.ObjectType.BpmChange);
@@ -439,8 +443,8 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
         }
 
         foreach (var collection in collections.Values)
-        {
-            collection.RefreshPool();
+        {   
+            collection.RefreshPool(isPasted: true);
 
             if (collection is BPMChangesContainer con) con.RefreshModifiedBeat();
         }
