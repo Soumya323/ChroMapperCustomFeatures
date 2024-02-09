@@ -41,8 +41,6 @@ public abstract class BeatmapObject
     /// </summary>
     public JSONNode CustomData;
 
-    public BeatmapBehaviourContainer BeatmapBehaviourContainer;
-
     public abstract JSONNode ConvertToJson();
 
     protected abstract bool IsConflictingWithObjectAtSameTime(BeatmapObject other, bool deletion = false);

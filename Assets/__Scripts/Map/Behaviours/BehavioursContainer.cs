@@ -14,7 +14,7 @@ public class BehavioursContainer : BeatmapObjectContainerCollection, CMInput.IBe
     public List<MapEvent> AllRotationEvents = new List<MapEvent>();
 
     private int currentPage = 0;
-    private const int maxPage = 10;
+    private const int maxPage = 5;
 
     private bool isInitiating = true;
     

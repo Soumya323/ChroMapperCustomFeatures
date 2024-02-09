@@ -45,9 +45,9 @@ public class CreateBehaviourLanesLabels : MonoBehaviour
             trans.localScale = localScale;
         }
 
-        if (_page < 0 || _page > 10) return;
+        if (_page < 0 || _page > 20) return;
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 20; i++)
         {
             GameObject instantiate = Instantiate(LayerInstantiate, LayerInstantiate.transform.parent);
             instantiate.SetActive(true);
@@ -57,7 +57,7 @@ public class CreateBehaviourLanesLabels : MonoBehaviour
             {
                 var textMesh = instantiate.GetComponentInChildren<TextMeshProUGUI>();
                 textMesh.font = AvailableAsset;
-                textMesh.text = "Lane " + ((_page * 10) + i + 1);
+                textMesh.text = "Lane " + ((_page * 20) + i + 1);
             }
             catch { }
         }

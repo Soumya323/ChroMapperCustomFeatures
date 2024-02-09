@@ -173,6 +173,9 @@ public class SequencePlacement : PlacementController<BeatmapSequence, BeatmapSeq
     //Wall getting placed in the editor
     internal override void ApplyToMap()
     {
+        if(queuedData.LineIndex < 12)
+            return;
+            
         if (IsPlacing)
         {
             IsPlacing = false;
