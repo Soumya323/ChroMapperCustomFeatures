@@ -28,6 +28,7 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
     [SerializeField] private GameObject greyNoteLabel;
     [SerializeField] private GameObject brownNoteLabel;
     [SerializeField] private bool debugShowCustomMesh = false;
+    private static Vector3 dir;
 
     public override BeatmapObject ObjectData { get => MapNoteData; set => MapNoteData = (BeatmapNote)value; }
 
@@ -91,6 +92,8 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
             if (cutDirection >= 1000) directionEuler += new Vector3(0, 0, 360 - (cutDirection - 1000));
         }
 
+        dir = directionEuler;
+
         return directionEuler;
     }
 
@@ -149,6 +152,36 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
     public void SetGreenSteerHoldNote(bool b)
     {
         greenNoteSteerHoldLabel.SetActive(b);
+
+        MeshRenderer mesh = greenNoteSteerHoldLabel.GetComponentInChildren<MeshRenderer>();
+
+        float angleY;
+
+        switch (MapNoteData.LineIndex)
+        {
+            case 0:
+                mesh.materials[1].color = Color.blue;
+                mesh.materials[2].color = Color.blue;
+                mesh.materials[3].color = Color.blue;
+                mesh.materials[4].color = Color.black;
+                angleY = 180;
+                break;
+            case 1:
+                mesh.materials[1].color = Color.red;
+                mesh.materials[2].color = Color.red;
+                mesh.materials[3].color = Color.red;
+                mesh.materials[4].color = Color.black;
+                angleY = 0;
+                break;
+            default:
+                mesh.materials[1].color = Color.red;
+                mesh.materials[2].color = Color.blue;
+                mesh.materials[3].color = Color.red;
+                mesh.materials[4].color = Color.blue;
+                angleY = 0;
+                break;
+        }
+
         if (b && debugShowCustomMesh)
         {
             TextMeshPro textMeshProComp = this.GetComponentInChildren<TextMeshPro>();
@@ -157,11 +190,32 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
             complexBlock.SetActive(false);
             arrowRenderer.enabled = false;
         }
+
+        greenNoteSteerHoldLabel.transform.localEulerAngles = new Vector3(0, angleY, -dir.z);
     }
     
     public void SetGreenSteerReleaseNote(bool b)
     {
         greenNoteSteerReleaseLabel.SetActive(b);
+
+        MeshRenderer mesh = greenNoteSteerReleaseLabel.GetComponentInChildren<MeshRenderer>();
+
+        switch (MapNoteData.LineIndex)
+        {
+            case 0:
+                mesh.materials[1].color = Color.blue;
+                mesh.materials[2].color = Color.blue;
+                break;
+            case 1:
+                mesh.materials[1].color = Color.red;
+                mesh.materials[2].color = Color.red;
+                break;
+            default:
+                mesh.materials[1].color = Color.red;
+                mesh.materials[2].color = Color.blue;
+                break;
+        }
+
         if (b && debugShowCustomMesh)
         {
             TextMeshPro textMeshProComp = this.GetComponentInChildren<TextMeshPro>();
@@ -170,6 +224,8 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
             complexBlock.SetActive(false);
             arrowRenderer.enabled = false;
         }
+
+        greenNoteSteerReleaseLabel.transform.localEulerAngles = new Vector3(0, 0, -dir.z);
     }
     
     public void SetGreenSteerEndNote(bool b)
@@ -217,6 +273,7 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
         var container = Instantiate(notePrefab).GetComponent<BeatmapNoteContainer>();
         container.MapNoteData = noteData;
         container.transform.localEulerAngles = Directionalize(noteData);
+
         return container;
     }
 
@@ -230,6 +287,7 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
 
         MaterialPropertyBlock.SetFloat("_ObjectTime", MapNoteData.Time);
         SetRotation(AssignedTrack != null ? AssignedTrack.RotationValue.y : 0);
+
         UpdateMaterials();
     }
 

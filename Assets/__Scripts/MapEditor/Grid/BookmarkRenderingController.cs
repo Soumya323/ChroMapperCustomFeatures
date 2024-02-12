@@ -141,8 +141,8 @@ public class BookmarkRenderingController : MonoBehaviour
             string spaces = spaceNumber <= 0 ? null : new string(' ', spaceNumber);
             //<voffset> to align the bumped up text to grid, <s> to draw a line across the grid, in the end putting transparent dot, so trailing spaces don't get trimmed, 
             text.text = (Settings.Instance.GridBookmarksHasLine)
-                ? $"<mark={hex}50><voffset=0.06><s> <indent=3.92> </s></voffset> {name}{spaces}<color=#00000000>.</color>"
-                : $"<mark={hex}50><voffset=0.06> <indent=3.92> </voffset> {name}{spaces}<color=#00000000>.</color>";
+                ? $"<mark={hex}50><voffset=0.06><s> <indent=25.92> </s></voffset> {name}{spaces}<color=#00000000>.</color>"
+                : $"<mark={hex}50><voffset=0.06> <indent=25.92> </voffset> {name}{spaces}<color=#00000000>.</color>";
         }
     }
 

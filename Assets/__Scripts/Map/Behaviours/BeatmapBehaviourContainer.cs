@@ -108,7 +108,7 @@ public class BeatmapBehaviourContainer : BeatmapObjectContainer
         connectingPole.SetActive(BehaviourData.LineLayer > 0);
     }
 
-    IEnumerator FixIfInAirAndPastedDelay()
+    private IEnumerator FixIfInAirAndPastedDelay()
     {
         yield return new WaitForSeconds(0.01f * BehaviourData.LineLayer);
 
