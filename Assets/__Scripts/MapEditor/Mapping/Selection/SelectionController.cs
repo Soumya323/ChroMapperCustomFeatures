@@ -445,7 +445,7 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
 
         foreach (var collection in collections.Values)
         {   
-            collection.RefreshPool(delay: true);
+            collection.RefreshPool();
 
             if (collection is BPMChangesContainer con) con.RefreshModifiedBeat();
         }

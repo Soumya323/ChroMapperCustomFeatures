@@ -32,7 +32,7 @@ public class ObstaclesContainer : BeatmapObjectContainerCollection
     public override BeatmapObjectContainer CreateContainer() =>
         BeatmapObstacleContainer.SpawnObstacle(null, tracksManager, ref obstaclePrefab);
 
-    protected override void UpdateContainerData(BeatmapObjectContainer con, BeatmapObject obj, bool isPasted = false)
+    protected override void UpdateContainerData(BeatmapObjectContainer con, BeatmapObject obj)
     {
         var obstacle = con as BeatmapObstacleContainer;
         if (!obstacle.IsRotatedByNoodleExtensions)

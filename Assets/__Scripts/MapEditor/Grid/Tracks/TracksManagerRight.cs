@@ -127,44 +127,39 @@ public class TracksManagerRight : MonoBehaviour
         foreach (var track in loadedTracks.Values) track.UpdatePosition(position);
     }
 
-    public void OnBehaviourSpwan(MapBehaviour _behaviour)
+    public IEnumerator OnBehaviourSpwan(MapBehaviour _behaviour)
     {   
-        //  var childs = tracksParent.GetComponentsInChildren<BeatmapBehaviourContainer>();
-        // var myStack = new List<BeatmapBehaviourContainer>();
+        
+        yield return new WaitForSeconds(0.01f * _behaviour.LineLayer);
 
-        // foreach (var child in childs)
-        // {
-        //     if (child.BehaviourData.Type != BehaviourType.None && child.BehaviourData.LineIndex == _behaviour.LineIndex && child.BehaviourData.Time == _behaviour.Time)
-        //         myStack.Add(child);
-        // }
+        var childs = tracksParent.GetComponentsInChildren<BeatmapBehaviourContainer>();
+        var myStack = new List<BeatmapBehaviourContainer>();
 
-        // if(myStack.Count == 0)
-        // {
-            
-        // }
+        foreach (var child in childs)
+        {
+            if (child.BehaviourData.Type != BehaviourType.None && child.BehaviourData.LineIndex == _behaviour.LineIndex && child.BehaviourData.Time == _behaviour.Time)
+                myStack.Add(child);
+        }
 
+        if (myStack.Count != 0)
+        {
+            myStack = myStack.OrderBy(obj => obj.BehaviourData.LineLayer).ToList();
 
-        // if (myStack.Count != 0)
-        // {
-        //     myStack = myStack.OrderBy(obj => obj.BehaviourData.LineLayer).ToList();
-
-        //     // for (int i = 0; i < myStack.Count; i++)
-        //     // {
-        //     //     myStack[i].ChangeLineLayerTo(i);
-        //     //     myStack[i].UpdateConnectingPole();
-        //     // }
-
-        //     int validLineLayer = myStack[myStack.Count - 1].BehaviourData.LineLayer + 1;
-
-        //     if (myStack[myStack.Count - 1].BehaviourData.LineLayer > validLineLayer)
-        //         myStack[myStack.Count - 1].ChangeLineLayerTo(validLineLayer);
-        // }
+            for (int i = 0; i < myStack.Count; i++)
+            {
+                if(myStack[i].BehaviourData == _behaviour)
+                {
+                    myStack[i].ChangeLineLayerTo(i);
+                    myStack[i].UpdateConnectingPole();
+                }
+            }
+        }
     }
 
 
     public void OnBehaviourDelete(MapBehaviour _behaviour) => StartCoroutine(OnBehaviourDeleteCoroutine(_behaviour));
     
-    IEnumerator OnBehaviourDeleteCoroutine(MapBehaviour _behaviour)
+    private IEnumerator OnBehaviourDeleteCoroutine(MapBehaviour _behaviour)
     {
         yield return new WaitForSeconds(0.1f);
         

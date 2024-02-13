@@ -46,7 +46,7 @@ public class BeatmapBehaviourContainer : BeatmapObjectContainer
         return container;
     }
 
-    public void UpdateBehaviour(BehaviourType behaviourType, bool _isInitiating, bool delay = false)
+    public void UpdateBehaviour(BehaviourType behaviourType, bool _isInitiating)
     {
         switch (behaviourType)
         {
@@ -85,15 +85,6 @@ public class BeatmapBehaviourContainer : BeatmapObjectContainer
             default:
                 break;
         }
-    
-        
-       if (BehaviourData.LineLayer > 0 && !_isInitiating && !delay)
-           FixIfInAir();
-        
-
-        if(delay)
-            StartCoroutine(FixIfInAirAndPastedDelay());
-        
 
         UpdateConnectingPole();
 
@@ -106,64 +97,6 @@ public class BeatmapBehaviourContainer : BeatmapObjectContainer
     public void UpdateConnectingPole()
     {
         connectingPole.SetActive(BehaviourData.LineLayer > 0);
-    }
-
-    private IEnumerator FixIfInAirAndPastedDelay()
-    {
-        yield return new WaitForSeconds(0.01f * BehaviourData.LineLayer);
-
-        var childs = transform.parent.GetComponentsInChildren<BeatmapBehaviourContainer>();
-        var myStack = new List<BeatmapBehaviourContainer>();
-
-        foreach (var child in childs)
-        {
-            if (child.BehaviourData.LineIndex == BehaviourData.LineIndex && child.BehaviourData.Time == BehaviourData.Time)
-                myStack.Add(child);
-        }
-
-        if (myStack.Count == 0)
-        {
-            ChangeLineLayerTo(0);
-        }
-        else
-        {
-            myStack = myStack.OrderBy(obj => obj.BehaviourData.LineLayer).ToList();
-
-            for (int i = 0; i < myStack.Count; i++)
-            {
-                if(myStack[i] == this)
-                {
-                    ChangeLineLayerTo(i);  
-                    break;
-                }
-            }
-        }
-    }
-
-    private void FixIfInAir()
-    {
-
-        var childs = transform.parent.GetComponentsInChildren<BeatmapBehaviourContainer>();
-        var myStack = new List<BeatmapBehaviourContainer>();
-
-        foreach (var child in childs)
-        {
-            if (child.BehaviourData.LineIndex == BehaviourData.LineIndex && child.BehaviourData.Time == BehaviourData.Time && child != this)
-                myStack.Add(child);
-        }
-
-        if (myStack.Count == 0)
-        {
-            ChangeLineLayerTo(0);
-        }
-        else
-        {
-            myStack = myStack.OrderBy(obj => obj.BehaviourData.LineLayer).ToList();
-            int validLineLayer = myStack[myStack.Count - 1].BehaviourData.LineLayer + 1;
-
-            if (BehaviourData.LineLayer > validLineLayer)
-                ChangeLineLayerTo(validLineLayer);
-        }
     }
 
     public void ChangeLineLayerTo(int _layer)

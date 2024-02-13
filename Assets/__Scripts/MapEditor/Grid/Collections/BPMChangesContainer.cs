@@ -293,7 +293,7 @@ public class BPMChangesContainer : BeatmapObjectContainerCollection
     public override BeatmapObjectContainer CreateContainer() =>
         BeatmapBPMChangeContainer.SpawnBpmChange(null, ref bpmPrefab);
 
-    protected override void UpdateContainerData(BeatmapObjectContainer con, BeatmapObject obj, bool isPasted = false)
+    protected override void UpdateContainerData(BeatmapObjectContainer con, BeatmapObject obj)
     {
         var container = con as BeatmapBPMChangeContainer;
         container.UpdateBpmText();
