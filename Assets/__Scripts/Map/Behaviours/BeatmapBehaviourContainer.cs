@@ -86,8 +86,6 @@ public class BeatmapBehaviourContainer : BeatmapObjectContainer
                 break;
         }
 
-        UpdateConnectingPole();
-
         if (BehaviourData.LineLayer < 0)
         {
             BehavioursContainer.DeleteObject(BehaviourData);
