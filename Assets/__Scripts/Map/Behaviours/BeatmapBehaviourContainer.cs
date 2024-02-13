@@ -23,7 +23,7 @@ public class BeatmapBehaviourContainer : BeatmapObjectContainer
     [SerializeField] private Color changeActiveStateColor;
     [SerializeField] private Color animationColor;
     [SerializeField] private Color sequenceColor;
-
+    
     public override void UpdateGridPosition()
     {
         transform.localPosition = (Vector3)BehaviourData.GetPosition() +
@@ -46,7 +46,7 @@ public class BeatmapBehaviourContainer : BeatmapObjectContainer
         return container;
     }
 
-    public void UpdateBehaviour(BehaviourType behaviourType, bool _isInitiating, bool isPasted = false)
+    public void UpdateBehaviour(BehaviourType behaviourType, bool _isInitiating, bool delay = false)
     {
         switch (behaviourType)
         {
@@ -87,11 +87,11 @@ public class BeatmapBehaviourContainer : BeatmapObjectContainer
         }
     
         
-        if (BehaviourData.LineLayer > 0 && !_isInitiating && !isPasted)
-            FixIfInAir();
+       if (BehaviourData.LineLayer > 0 && !_isInitiating && !delay)
+           FixIfInAir();
         
 
-        if(isPasted)
+        if(delay)
             StartCoroutine(FixIfInAirAndPastedDelay());
         
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -444,7 +445,7 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
 
         foreach (var collection in collections.Values)
         {   
-            collection.RefreshPool(isPasted: true);
+            collection.RefreshPool(delay: true);
 
             if (collection is BPMChangesContainer con) con.RefreshModifiedBeat();
         }
@@ -521,6 +522,35 @@ public class SelectionController : MonoBehaviour, CMInput.ISelectingActions, CMI
 
                     note.LineLayer += upDown;
                     if (Settings.Instance.VanillaOnlyShift) note.LineLayer = Mathf.Clamp(note.LineLayer, 0, 2);
+                }
+                else
+                {
+                    if (data.CustomData.HasKey("_position"))
+                    {
+                        data.CustomData["_position"][0] += 1f / atsc.GridMeasureSnapping * leftRight;
+                        data.CustomData["_position"][1] += 1f / atsc.GridMeasureSnapping * upDown;
+                    }
+                }
+            }
+            else if(data is MapBehaviour behaviour)
+            {
+                if (behaviour.CustomData is null || !behaviour.CustomData.HasKey("_position"))
+                {
+                    if (behaviour.LineIndex >= 1000)
+                    {
+                        behaviour.LineIndex += Mathf.RoundToInt(1f / atsc.GridMeasureSnapping * 1000 * leftRight);
+                        if (behaviour.LineIndex < 1000) behaviour.LineIndex = 1000;
+                    }
+                    else if (behaviour.LineIndex <= -1000)
+                    {
+                        behaviour.LineIndex += Mathf.RoundToInt(1f / atsc.GridMeasureSnapping * 1000 * leftRight);
+                        if (behaviour.LineIndex > -1000) behaviour.LineIndex = -1000;
+                    }
+                    else
+                    {
+                        behaviour.LineIndex += leftRight;
+                        if (Settings.Instance.VanillaOnlyShift) behaviour.LineIndex = Mathf.Clamp(behaviour.LineIndex, 2, 21);
+                    }
                 }
                 else
                 {

@@ -80,7 +80,7 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
         var nearestChunk = (int)Math.Round(previousAtscBeat / (double)ChunkSize, MidpointRounding.AwayFromZero);
         if (nearestChunk != previousChunk)
         {
-            RefreshPool();
+            RefreshPool(delay: true);
             previousChunk = nearestChunk;
         }
     }
@@ -140,7 +140,7 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
     ///     Refreshes the pool, with lower and upper bounds being automatically defined by chunks or spawn/despawn offsets.
     /// </summary>
     /// <param name="forceRefresh">All currently active containers will be recycled, even if they shouldn't be.</param>
-    public void RefreshPool(bool forceRefresh = false, bool isPasted = false)
+    public void RefreshPool(bool forceRefresh = false, bool delay = false)
     {
         var epsilon = Mathf.Pow(10, -9);
         if (AudioTimeSyncController.IsPlaying)
@@ -152,7 +152,7 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
                 ? -ChunksLoadedWhilePlaying * ChunkSize
                 : DespawnCallbackController.Offset;
             RefreshPool(AudioTimeSyncController.CurrentBeat + despawnOffset - epsilon,
-                AudioTimeSyncController.CurrentBeat + spawnOffset + epsilon, forceRefresh, isPasted);
+                AudioTimeSyncController.CurrentBeat + spawnOffset + epsilon, forceRefresh, delay);
         }
         else
         {
@@ -161,7 +161,7 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
             // both before and after the current one equal to the ChunkDistance setting
             var chunks = Mathf.RoundToInt(Settings.Instance.ChunkDistance / 2);
             RefreshPool(((nearestChunk - chunks) * ChunkSize) - epsilon,
-                ((nearestChunk + chunks) * ChunkSize) + epsilon, forceRefresh, isPasted);
+                ((nearestChunk + chunks) * ChunkSize) + epsilon, forceRefresh, delay);
         }
     }
 
@@ -179,7 +179,7 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
     /// <param name="lowerBound">Objects below this point in time will not be given a container.</param>
     /// <param name="upperBound">Objects above this point in time will not be given a container.</param>
     /// <param name="forceRefresh">All currently active containers will be recycled, even if they shouldn't be.</param>
-    public void RefreshPool(float lowerBound, float upperBound, bool forceRefresh = false, bool isPasted = false)
+    public void RefreshPool(float lowerBound, float upperBound, bool forceRefresh = false, bool delay = false)
     {
         foreach (var obj in UnsortedObjects)
         //for (int i = 0; i < LoadedObjects.Count; i++)
@@ -187,7 +187,7 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
             if (forceRefresh) RecycleContainer(obj);
             if (obj.Time >= lowerBound && obj.Time <= upperBound)
             {
-                if (!obj.HasAttachedContainer) CreateContainerFromPool(obj, isPasted);
+                if (!obj.HasAttachedContainer) CreateContainerFromPool(obj, delay);
             }
             else if (obj.HasAttachedContainer)
             {
@@ -197,7 +197,8 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
                     continue;
                 }
 
-                RecycleContainer(obj);
+                //if(obj.BeatmapType != BeatmapObject.ObjectType.Behaviour)
+                    RecycleContainer(obj);
             }
 
             if (obj is BeatmapObstacle obst && obst.Time < lowerBound && obst.Time + obst.Duration >= lowerBound)
@@ -209,7 +210,7 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
     ///     Dequeues a container from the pool and attaches it to a provided <see cref="BeatmapObject" />
     /// </summary>
     /// <param name="obj">Object to store within the container.</param>
-    protected void CreateContainerFromPool(BeatmapObject obj, bool isPasted = false)
+    protected void CreateContainerFromPool(BeatmapObject obj, bool delay = false)
     {
         if (obj.HasAttachedContainer) return;
         //Debug.Log($"Creating container with hash code {obj.GetHashCode()}");
@@ -219,7 +220,7 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
         dequeued.transform.localEulerAngles = Vector3.zero;
         dequeued.UpdateGridPosition();
         dequeued.SafeSetActive(true);
-        UpdateContainerData(dequeued, obj, isPasted);
+        UpdateContainerData(dequeued, obj, delay);
         dequeued.OutlineVisible = SelectionController.IsObjectSelected(obj);
         PluginLoader.BroadcastEvent<ObjectLoadedAttribute, BeatmapObjectContainer>(dequeued);
         LoadedContainers.Add(obj, dequeued);
@@ -380,7 +381,7 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
     /// <returns>A list of sorted objects</returns>
     public virtual IEnumerable<BeatmapObject> GrabSortedObjects() => LoadedObjects;
 
-    protected virtual void UpdateContainerData(BeatmapObjectContainer con, BeatmapObject obj, bool isPasted = false) { }
+    protected virtual void UpdateContainerData(BeatmapObjectContainer con, BeatmapObject obj, bool delay = false) { }
 
     protected virtual void OnObjectDelete(BeatmapObject obj) { }
 
