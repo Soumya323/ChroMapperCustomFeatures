@@ -90,6 +90,10 @@ public class BeatmapBehaviourContainer : BeatmapObjectContainer
         {
             BehavioursContainer.DeleteObject(BehaviourData);
         }
+        else
+        {
+            Invoke(nameof(UpdateConnectingPole), 0.2f);
+        }
     }
 
     public void UpdateConnectingPole()
