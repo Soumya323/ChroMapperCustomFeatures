@@ -86,7 +86,10 @@ public class BeatmapObjectCallbackController : MonoBehaviour
                     : Settings.Instance.Offset_Spawning;
             }
 
-            if (!useDespawnOffset) Shader.SetGlobalFloat("_ObstacleFadeRadius", Offset * EditorScaleController.EditorScale);
+            if (!useDespawnOffset)
+            {
+                Shader.SetGlobalFloat("_ObstacleFadeRadius", Offset * EditorScaleController.EditorScale);
+            }
         }
 
         if (queuedToClear.Count > 0)
@@ -177,7 +180,7 @@ public class BeatmapObjectCallbackController : MonoBehaviour
         RecursiveBehaviourCheckFinished?.Invoke(natural, nextBehaviourIndex - 1);
         nextBehaviours.Clear();
 
-        for (var i = 0; i < eventsToLookAhead; i++)
+        for (var i = 0; i < notesToLookAhead; i++)
         {
             if (allBehaviours.Count > 0) QueueNextObject(allBehaviours, nextBehaviours);
         }
@@ -209,12 +212,13 @@ public class BeatmapObjectCallbackController : MonoBehaviour
 
     private void RecursiveCheckBehaviours(bool init, bool natural)
     {
+        curTime = UseAudioTime ? timeSyncController.CurrentSongBeats : timeSyncController.CurrentBeat;
         var passed = nextBehaviours.Where(x => x.Time <= curTime + Offset).ToArray();
         foreach (var newlyAdded in passed)
         {
             if (natural) BehaviourPassedThreshold?.Invoke(init, nextBehaviourIndex, newlyAdded);
             nextBehaviours.Remove(newlyAdded);
-            if (allEvents.Count > 0 && natural) QueueNextObject(allBehaviours, nextBehaviours);
+            if (allBehaviours.Count > 0 && natural) QueueNextObject(allBehaviours, nextBehaviours);
             nextBehaviourIndex++;
         }
     }

@@ -185,6 +185,7 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
         //for (int i = 0; i < LoadedObjects.Count; i++)
         {
             if (forceRefresh) RecycleContainer(obj);
+
             if (obj.Time >= lowerBound && obj.Time <= upperBound)
             {
                 if (!obj.HasAttachedContainer) CreateContainerFromPool(obj);
@@ -197,11 +198,20 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
                     continue;
                 }
 
+                if (obj is BeatmapSequence seq && seq.Time < lowerBound &&
+                    seq.Time + seq.Duration >= lowerBound)
+                {
+                    continue;
+                }
+
                 //if(obj.BeatmapType != BeatmapObject.ObjectType.Behaviour)
                     RecycleContainer(obj);
             }
 
             if (obj is BeatmapObstacle obst && obst.Time < lowerBound && obst.Time + obst.Duration >= lowerBound)
+                CreateContainerFromPool(obj);
+
+            if (obj is BeatmapSequence sequ && sequ.Time < lowerBound && sequ.Time + sequ.Duration >= lowerBound)
                 CreateContainerFromPool(obj);
         }
     }
@@ -215,6 +225,7 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
         if (obj.HasAttachedContainer) return;
         //Debug.Log($"Creating container with hash code {obj.GetHashCode()}");
         if (!pooledContainers.Any()) CreateNewObject();
+
         var dequeued = pooledContainers.Dequeue();
         dequeued.ObjectData = obj;
         dequeued.transform.localEulerAngles = Vector3.zero;
@@ -225,8 +236,7 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
         PluginLoader.BroadcastEvent<ObjectLoadedAttribute, BeatmapObjectContainer>(dequeued);
         LoadedContainers.Add(obj, dequeued);
         obj.HasAttachedContainer = true;
-        OnContainerSpawn(dequeued, obj);
-    }
+        OnContainerSpawn(dequeued, obj);    }
 
     /// <summary>
     ///     Recycles the container belonging to a provided <see cref="BeatmapObject" />, putting it back into the container

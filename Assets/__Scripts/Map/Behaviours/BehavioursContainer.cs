@@ -29,18 +29,18 @@ public class BehavioursContainer : BeatmapObjectContainerCollection, CMInput.IBe
 
     internal override void SubscribeToCallbacks()
     {
-        SpawnCallbackController.NotePassedThreshold += SpawnCallback;
-        SpawnCallbackController.RecursiveNoteCheckFinished += RecursiveCheckFinished;
-        DespawnCallbackController.NotePassedThreshold += DespawnCallback;
+        SpawnCallbackController.BehaviourPassedThreshold += SpawnCallback;
+        SpawnCallbackController.RecursiveBehaviourCheckFinished += RecursiveCheckFinished;
+        DespawnCallbackController.BehaviourPassedThreshold += DespawnCallback;
         AudioTimeSyncController.PlayToggle += OnPlayToggle;
         LoadInitialMap.LevelLoadedEvent += OnLevelLoaded;
     }
 
     internal override void UnsubscribeToCallbacks()
     {
-        SpawnCallbackController.NotePassedThreshold -= SpawnCallback;
-        SpawnCallbackController.RecursiveNoteCheckFinished += RecursiveCheckFinished;
-        DespawnCallbackController.NotePassedThreshold -= DespawnCallback;
+        SpawnCallbackController.BehaviourPassedThreshold -= SpawnCallback;
+        SpawnCallbackController.RecursiveBehaviourCheckFinished += RecursiveCheckFinished;
+        DespawnCallbackController.BehaviourPassedThreshold -= DespawnCallback;
         AudioTimeSyncController.PlayToggle -= OnPlayToggle;
         LoadInitialMap.LevelLoadedEvent -= OnLevelLoaded;
     }

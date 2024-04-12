@@ -98,6 +98,8 @@ public class BeatmapBehaviourContainer : BeatmapObjectContainer
 
     public void UpdateConnectingPole()
     {
+        if (BehaviourData == null) return;
+
         connectingPole.SetActive(BehaviourData.LineLayer > 0);
     }
 
