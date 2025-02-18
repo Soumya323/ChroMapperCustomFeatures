@@ -168,8 +168,8 @@ public abstract class BeatmapObjectContainerCollection : MonoBehaviour
     public SortedSet<BeatmapObject> GetBetween(float time, float time2)
     {
         // Events etc. can still have a sort order between notes
-        var now = new BeatmapNote(time - 0.0000001f, 0, 0, 0, 0);
-        var window = new BeatmapNote(time2 + 0.0000001f, 0, 0, 0, 0);
+        var now = new BeatmapNote(time - 0.0000001f, 0, 0, 0, 0, 0);
+        var window = new BeatmapNote(time2 + 0.0000001f, 0, 0, 0, 0, 0);
         return LoadedObjects.GetViewBetween(now, window);
     }
 

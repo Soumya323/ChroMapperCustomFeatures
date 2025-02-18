@@ -258,31 +258,36 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
         var placementObj = hit.GameObject.GetComponentInParent<T>();
         if (placementObj != null)
         {
-            var boundLocal_1 = placementObj.GetComponentsInChildren<Renderer>().FirstOrDefault(it => it.name == "Grid X")
-                .bounds;
+            var gridXRenderers = placementObj.GetComponentsInChildren<Renderer>().Where(r => r.name == "Grid X").ToArray();
+            
+            if (gridXRenderers.Length > 0)
+            {
+                var totalBoundLocal = gridXRenderers[0].bounds;
+                for (int i = 1; i < gridXRenderers.Length; i++)
+                {
+                    totalBoundLocal.Encapsulate(gridXRenderers[i].bounds);
+                }
 
-            var boundLocal_2 = placementObj.GetComponentsInChildren<Renderer>().LastOrDefault(it => it.name == "Grid X")
-                .bounds;
+                // Transform the bounds into the pseudo-world space we use for selection
+                var localTransform = placementObj.transform;
+                var localScale = localTransform.localScale;
+                var boundsNew = localTransform.InverseTransformBounds(type == BeatmapObject.ObjectType.Behaviour || type == BeatmapObject.ObjectType.Obstacle ? totalBoundLocal : gridXRenderers[0].bounds);
+                boundsNew.center += localTransform.localPosition;
+                boundsNew.extents = new Vector3(
+                    boundsNew.extents.x * localScale.x,
+                    boundsNew.extents.y * localScale.y,
+                    boundsNew.extents.z * localScale.z
+                );
 
-            var totalBoundLocal = new Bounds(boundLocal_1.center + boundLocal_2.center, (boundLocal_1.extents + boundLocal_2.extents) * 2);
+                boundsNew.center /= 2f;
 
-            // Transform the bounds into the pseudo-world space we use for selection
-            var localTransform = placementObj.transform;
-            var localScale = localTransform.localScale;
-            var boundsNew = localTransform.InverseTransformBounds(type == BeatmapObject.ObjectType.Behaviour ? totalBoundLocal : boundLocal_1);
-            boundsNew.center += localTransform.localPosition;
-            boundsNew.extents = new Vector3(
-                boundsNew.extents.x * localScale.x,
-                boundsNew.extents.y * localScale.y,
-                boundsNew.extents.z * localScale.z
-            );
-
-            if (Bounds == default)
-                Bounds = boundsNew;
-            else
-                // Probably a bad idea but why not drag between lanes
-                Bounds.Encapsulate(boundsNew);
-            return true;
+                if (Bounds == default)
+                    Bounds = boundsNew;
+                else
+                    // Probably a bad idea but why not drag between lanes
+                    Bounds.Encapsulate(boundsNew);
+                return true;
+            }
         }
 
         return false;
@@ -359,6 +364,7 @@ public abstract class PlacementController<TBo, TBoc, TBocc> : MonoBehaviour, CMI
         objectContainerCollection.SpawnObject(objectData, out var conflicting);
         BeatmapActionContainer.AddAction(GenerateAction(objectData, conflicting));
         queuedData = BeatmapObject.GenerateCopy(queuedData);
+
     }
 
     public abstract TBo GenerateOriginalData();

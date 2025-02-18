@@ -66,7 +66,8 @@ public abstract class BeatmapObject
                 break;
             case BeatmapNote note:
                 objectData = new BeatmapNote(note.Time, note.LineIndex, note.LineLayer, note.Type,
-                    note.CutDirection, originalData.CustomData?.Clone()) as T;
+                    note.CutDirection, note.TrackNumber, originalData.CustomData?.Clone()) as T;
+
                 break;
             case MapBehaviour behaviour: 
                 objectData = new MapBehaviour(behaviour.Time, behaviour.LineIndex, behaviour.LineLayer, behaviour.Type, originalData.CustomData?.Clone()) as T;
@@ -83,7 +84,7 @@ public abstract class BeatmapObject
 
     protected JSONNode RetrieveRequiredNode(JSONNode node, string key)
     {
-        if (!node.HasKey(key)) throw new ArgumentException($"{GetType().Name} missing required node \"{key}\".");
+        if (!node.HasKey(key)) return null;
         return node[key];
     }
 

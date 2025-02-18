@@ -1,0 +1,72 @@
+# Ignore all meta files
+*.meta
+
+# Ignore all temporary files
+*.tmp
+*.bak
+*.log
+
+# Ignore materials
+*.mat
+
+# Ignore textures
+*.png
+*.jpg
+*.jpeg
+*.tga
+*.psd
+*.tif
+*.tiff
+*.bmp
+*.hdr
+*.exr
+
+# Ignore scenes
+*.unity
+
+# Ignore Unity script and shader cache
+Library/
+Temp/
+obj/
+*.csproj
+*.unityproj
+*.sln
+*.userprefs
+
+# Ignore build output folders
+Build/
+Builds/
+
+# Ignore Visual Studio and Rider specific files
+.vscode/
+.idea/
+*.csproj
+*.sln
+*.user
+*.suo
+*.pidb
+*.unityproj
+
+# Ignore version control and OS specific files
+.git/
+.gitignore
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Ignore Unity Package Manager cache
+Library/PackageCache/
+Library/ScriptAssemblies/
+
+# Ignore user settings files
+*.userprefs
+
+# Ignore anything else not required by Unity
+*.pdf
+*.doc
+*.docx
+*.xls
+*.xlsx
+*.csv
+*.json
+*.xml

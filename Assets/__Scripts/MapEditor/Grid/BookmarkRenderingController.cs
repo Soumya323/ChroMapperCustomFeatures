@@ -127,6 +127,8 @@ public class BookmarkRenderingController : MonoBehaviour
     {
         string hex = HEXFromColor(color, false);
 
+        
+
         SetText();
         text.ForceMeshUpdate();
 
@@ -138,11 +140,16 @@ public class BookmarkRenderingController : MonoBehaviour
 
         void SetText(int spaceNumber = 0)
         {
+            float intend = 25.92f + (BeatSaberSongContainer.Instance.DifficultyData.NumberOfTracks - 1) * 5f;
+
+            text.transform.position = new Vector3(text.transform.position.x - (BeatSaberSongContainer.Instance.DifficultyData.NumberOfTracks - 1) * 5f, text.transform.position.y, text.transform.position.z);
+
+            Debug.Log("intend: " + intend);
             string spaces = spaceNumber <= 0 ? null : new string(' ', spaceNumber);
             //<voffset> to align the bumped up text to grid, <s> to draw a line across the grid, in the end putting transparent dot, so trailing spaces don't get trimmed, 
             text.text = (Settings.Instance.GridBookmarksHasLine)
-                ? $"<mark={hex}50><voffset=0.06><s> <indent=3.92> </s> {name}{spaces}<s> <indent=25.92> </s></voffset> {name}{spaces}<color=#00000000>.</color>"
-                : $"<mark={hex}50><voffset=0.06><indent=3.92> {name}{spaces} <indent=25.92> </voffset> {name}{spaces}<color=#00000000>.</color>";
+                ? $"<mark={hex}50><voffset=0.06><s> <indent=3.92> </s> {name}{spaces}<s> <indent={intend}> </s></voffset> {name}{spaces}<color=#00000000>.</color>"
+                : $"<mark={hex}50><voffset=0.06><indent=3.92> {name}{spaces} <indent={intend}> </voffset> {name}{spaces}<color=#00000000>.</color>";
         }
     }
 

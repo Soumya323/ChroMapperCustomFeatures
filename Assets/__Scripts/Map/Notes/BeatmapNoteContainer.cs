@@ -52,6 +52,8 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
 
     internal static Vector3 Directionalize(BeatmapNote mapNoteData)
     {
+        return Vector3.zero;
+
         if (mapNoteData is null) return Vector3.zero;
         var directionEuler = Vector3.zero;
         var cutDirection = mapNoteData.CutDirection;
@@ -157,23 +159,31 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
 
         float angleY;
 
-        switch (MapNoteData.LineIndex)
+
+        switch (MapNoteData.LineIndex % 5)
         {
-            case 0:
+            case 0:  // for indices 0, 5, 10, 15
                 mesh.materials[1].color = Color.blue;
                 mesh.materials[2].color = Color.blue;
                 mesh.materials[3].color = Color.blue;
                 mesh.materials[4].color = Color.black;
                 angleY = 180;
                 break;
-            case 1:
+            case 1:  // for indices 1, 6, 11, 16
                 mesh.materials[1].color = Color.red;
                 mesh.materials[2].color = Color.red;
                 mesh.materials[3].color = Color.red;
                 mesh.materials[4].color = Color.black;
                 angleY = 0;
                 break;
-            default:
+            case 2:  // for indices 2, 7, 12, 17
+                mesh.materials[1].color = Color.red;
+                mesh.materials[2].color = Color.blue;
+                mesh.materials[3].color = Color.red;
+                mesh.materials[4].color = Color.blue;
+                angleY = 0;
+                break;
+            default:  // for all other indices (3,4, 8,9, 13,14, 18,19)
                 mesh.materials[1].color = Color.red;
                 mesh.materials[2].color = Color.blue;
                 mesh.materials[3].color = Color.red;
@@ -200,7 +210,7 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
 
         MeshRenderer mesh = greenNoteSteerReleaseLabel.GetComponentInChildren<MeshRenderer>();
 
-        switch (MapNoteData.LineIndex)
+        switch (MapNoteData.LineIndex % 5)
         {
             case 0:
                 mesh.materials[1].color = Color.blue;
@@ -209,6 +219,10 @@ public class BeatmapNoteContainer : BeatmapObjectContainer
             case 1:
                 mesh.materials[1].color = Color.red;
                 mesh.materials[2].color = Color.red;
+                break;
+            case 2:
+                mesh.materials[1].color = Color.red;
+                mesh.materials[2].color = Color.blue;
                 break;
             default:
                 mesh.materials[1].color = Color.red;

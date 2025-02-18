@@ -13,7 +13,7 @@ public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObs
     [SerializeField] private PrecisionPlacementGridController precisionPlacement;
     [SerializeField] private ColorPicker colorPicker;
     [SerializeField] private ToggleColourDropdown dropdown;
-
+    [SerializeField] private ManageMultipleTracks manageMultipleTracks;
     private int originIndex;
 
     private float startTime;
@@ -49,7 +49,7 @@ public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObs
         new BeatmapObjectPlacementAction(spawned, container, "Place a Wall.");
 
     public override BeatmapObstacle GenerateOriginalData() =>
-        new BeatmapObstacle(0, 0, BeatmapObstacle.ValueFullBarrier, 0, 1);
+        new BeatmapObstacle(0, 0, 1, BeatmapObstacle.ValueFullBarrier, 0, 1);
 
     public override void OnPhysicsRaycast(Intersections.IntersectionHit hit, Vector3 transformedPoint)
     {
@@ -111,10 +111,12 @@ public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObs
                     RoundedTime * EditorScaleController.EditorScale
                 );
 
+
                 wallTransform.localPosition = new Vector3(
                     originIndex - 2, queuedData.Type == BeatmapObstacle.ValueFullBarrier ? 0 : 1.5f,
                     startTime * EditorScaleController.EditorScale);
                 queuedData.Width = Mathf.CeilToInt(roundedHit.x + 2) - originIndex;
+                Debug.Log("queuedData.Width: " + queuedData.Width);
 
                 instantiatedContainer.SetScale(new Vector3(queuedData.Width,
                     wallTransform.localScale.y, wallTransform.localScale.z));
@@ -155,6 +157,8 @@ public class ObstaclePlacement : PlacementController<BeatmapObstacle, BeatmapObs
             queuedData.CustomData = null;
             queuedData.LineIndex = Mathf.RoundToInt(wallTransform.localPosition.x + 2);
             queuedData.Type = vanillaType;
+
+            queuedData.TrackNumber = manageMultipleTracks.GetTrackInfo(hit.GameObject);
 
             precisionPlacement.TogglePrecisionPlacement(false);
         }

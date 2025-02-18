@@ -671,8 +671,10 @@ public class SongInfoEditUI : MenuBase
                 Settings.Instance.LastLoadedChar = BeatSaberSongContainer.Instance.DifficultyData.ParentBeatmapSet
                     .BeatmapCharacteristicName;
                 Settings.Instance.LastLoadedDiff = BeatSaberSongContainer.Instance.DifficultyData.Difficulty;
-                BeatSaberSongContainer.Instance.Map = map;
+                //BeatSaberSongContainer.Instance.Map = map;
+                BeatSaberSongContainer.Instance.Map = BeatSaberSongContainer.Instance.Song.GetMapFromDifficultyBeatmap(BeatSaberSongContainer.Instance.DifficultyData);
                 SceneTransitionManager.Instance.LoadScene("03_Mapper", LoadAudio(false, true));
+
             }
         }
     }

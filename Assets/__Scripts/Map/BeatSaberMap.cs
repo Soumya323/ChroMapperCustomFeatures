@@ -219,10 +219,18 @@ public class BeatSaberMap
                         foreach (JSONNode n in node) eventsList.Add(new MapEvent(n));
                         break;
                     case "_notes":
-                        foreach (JSONNode n in node) notesList.Add(new BeatmapNote(n));
+                        foreach (JSONNode n in node)
+                        {
+                            if(n["_trackNumber"].AsInt <= BeatSaberSongContainer.Instance.DifficultyData.NumberOfTracks)
+                                notesList.Add(new BeatmapNote(n));
+                        }
                         break;
                     case "_obstacles":
-                        foreach (JSONNode n in node) obstaclesList.Add(new BeatmapObstacle(n));
+                        foreach (JSONNode n in node)
+                        {
+                            if(n["_trackNumber"].AsInt <= BeatSaberSongContainer.Instance.DifficultyData.NumberOfTracks)
+                                obstaclesList.Add(new BeatmapObstacle(n));
+                        }
                         break;
                     case "_waypoints":
                         foreach (JSONNode n in node) waypointsList.Add(n); // TODO: Add formal support

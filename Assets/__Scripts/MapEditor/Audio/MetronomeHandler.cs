@@ -24,8 +24,11 @@ public class MetronomeHandler : MonoBehaviour
 
     private void Start()
     {
-        metronomeUIAnimator = metronomeUI.GetComponent<Animator>();
         Settings.NotifyBySettingName("SongSpeed", UpdateSongSpeed);
+
+        if (metronomeUI == null) return;
+
+        metronomeUIAnimator = metronomeUI.GetComponent<Animator>();
 
         lastBpm = atsc.Song.BeatsPerMinute;
         atsc.PlayToggle += OnPlayToggle;
@@ -115,5 +118,16 @@ public class MetronomeHandler : MonoBehaviour
                 beatProgress = atsc.CurrentSongBeats % 1;
             }
         }
+    }
+
+    public void InitRefrences(AudioTimeSyncController atsc, GameObject metronomeUI)
+    {
+        this.metronomeUI = metronomeUI;
+        this.atsc = atsc;
+
+        metronomeUIAnimator = metronomeUI.GetComponent<Animator>();
+
+        lastBpm = atsc.Song.BeatsPerMinute;
+        atsc.PlayToggle += OnPlayToggle;
     }
 }

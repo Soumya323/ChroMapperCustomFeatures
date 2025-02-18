@@ -42,12 +42,15 @@ public class DingOnNotePassingGrid : MonoBehaviour
         NoteTypeToDing[BeatmapNote.NoteTypeSkaterSteerEnd] = Settings.Instance.Ding_GreenSteerEnd_Notes;
         NoteTypeToDing[BeatmapNote.NoteTypeBomb] = Settings.Instance.Ding_Bombs;
 
-        beatSaberCutCallbackController.Offset = container.AudioTimeSyncController.GetBeatFromSeconds(0.5f);
-        beatSaberCutCallbackController.UseAudioTime = true;
+        if(beatSaberCutCallbackController != null)
+        {
+            beatSaberCutCallbackController.Offset = container.AudioTimeSyncController.GetBeatFromSeconds(0.5f);
+            beatSaberCutCallbackController.UseAudioTime = true;
+            atsc.PlayToggle += OnPlayToggle;
+        }
 
         UpdateHitSoundType(Settings.Instance.NoteHitSound);
 
-        atsc.PlayToggle += OnPlayToggle;
     }
 
     private void OnEnable()
@@ -61,6 +64,8 @@ public class DingOnNotePassingGrid : MonoBehaviour
         Settings.NotifyBySettingName("Ding_Bombs", UpdateBombDing);
         Settings.NotifyBySettingName("NoteHitSound", UpdateHitSoundType);
         Settings.NotifyBySettingName("SongSpeed", UpdateSongSpeed);
+
+        if(beatSaberCutCallbackController == null) return;
 
         beatSaberCutCallbackController.NotePassedThreshold += PlaySound;
         defaultCallbackController.NotePassedThreshold += TriggerBongoCat;
@@ -161,5 +166,22 @@ public class DingOnNotePassingGrid : MonoBehaviour
         var timeUntilDing = objectData.Time - atsc.CurrentSongBeats;
         var hitTime = (atsc.GetSecondsFromBeat(timeUntilDing) / songSpeed) - offset;
         audioUtil.PlayOneShotSound(list.GetRandomClip(shortCut), Settings.Instance.NoteHitVolume, 1, hitTime);
+    }
+
+    public void InitRefrences(BeatmapObjectCallbackController defaultCallbackController, BeatmapObjectCallbackController beatSaberCutCallbackController, NotesContainer container, AudioTimeSyncController atsc, AudioUtil audioUtil)
+    {
+        this.defaultCallbackController = defaultCallbackController;
+        this.beatSaberCutCallbackController = beatSaberCutCallbackController;
+        this.atsc = atsc;
+
+        this.container = container;
+        this.audioUtil = audioUtil;
+        beatSaberCutCallbackController.NotePassedThreshold += PlaySound;
+        defaultCallbackController.NotePassedThreshold += TriggerBongoCat;
+
+        beatSaberCutCallbackController.Offset = container.AudioTimeSyncController.GetBeatFromSeconds(0.5f);
+        beatSaberCutCallbackController.UseAudioTime = true;
+
+        atsc.PlayToggle += OnPlayToggle;
     }
 }

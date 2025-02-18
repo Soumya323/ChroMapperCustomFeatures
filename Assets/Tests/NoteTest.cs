@@ -53,7 +53,7 @@ namespace Tests
                 NotePlacement notePlacement = root.GetComponentInChildren<NotePlacement>();
                 BeatmapNoteInputController inputController = root.GetComponentInChildren<BeatmapNoteInputController>();
 
-                BeatmapNote noteA = new BeatmapNote(2, BeatmapNote.NoteTypeA, BeatmapNote.LineIndexFarLeft, BeatmapNote.LineLayerBottom, BeatmapNote.NoteCutDirectionLeft);
+                BeatmapNote noteA = new BeatmapNote(2, BeatmapNote.NoteTypeA, BeatmapNote.LineIndexFarLeft, BeatmapNote.LineLayerBottom, BeatmapNote.NoteCutDirectionLeft, 0);
 
                 notePlacement.queuedData = noteA;
                 notePlacement.RoundedTime = notePlacement.queuedData.Time;
@@ -84,7 +84,7 @@ namespace Tests
                 NotePlacement notePlacement = root.GetComponentInChildren<NotePlacement>();
                 BeatmapNoteInputController inputController = root.GetComponentInChildren<BeatmapNoteInputController>();
 
-                BeatmapNote noteA = new BeatmapNote(2, BeatmapNote.NoteTypeA, BeatmapNote.LineIndexFarLeft, BeatmapNote.LineLayerBottom, BeatmapNote.NoteCutDirectionLeft);
+                BeatmapNote noteA = new BeatmapNote(2, BeatmapNote.NoteTypeA, BeatmapNote.LineIndexFarLeft, BeatmapNote.LineLayerBottom, BeatmapNote.NoteCutDirectionLeft, 0);
 
                 notePlacement.queuedData = noteA;
                 notePlacement.RoundedTime = notePlacement.queuedData.Time;

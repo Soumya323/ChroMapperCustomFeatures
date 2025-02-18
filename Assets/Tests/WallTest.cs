@@ -54,7 +54,7 @@ namespace Tests
                 BeatmapObstacleInputController inputController = root.GetComponentInChildren<BeatmapObstacleInputController>();
                 wallPlacement.RefreshVisuals();
 
-                BeatmapObstacle wallA = new BeatmapObstacle(2, BeatmapNote.LineIndexFarLeft, BeatmapObstacle.ValueFullBarrier, 2, 1);
+                BeatmapObstacle wallA = new BeatmapObstacle(2, BeatmapNote.LineIndexFarLeft, 1, BeatmapObstacle.ValueFullBarrier, 2, 1);
                 wallPlacement.queuedData = wallA;
                 wallPlacement.RoundedTime = wallPlacement.queuedData.Time;
                 wallPlacement.instantiatedContainer.transform.localScale = new Vector3(0, 0, wallPlacement.queuedData.Duration * EditorScaleController.EditorScale);

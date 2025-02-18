@@ -16,6 +16,7 @@ public class BeatmapObstacle : BeatmapObject, IBeatmapObjectBounds
     [FormerlySerializedAs("_type")] public int Type;
     [FormerlySerializedAs("_duration")] public float Duration;
     [FormerlySerializedAs("_width")] public int Width;
+    [FormerlySerializedAs("_trackNumber")] public int TrackNumber;
 
     /*
      * Obstacle Logic
@@ -28,16 +29,18 @@ public class BeatmapObstacle : BeatmapObject, IBeatmapObjectBounds
         Type = RetrieveRequiredNode(node, "_type").AsInt;
         Duration = RetrieveRequiredNode(node, "_duration").AsFloat;
         Width = RetrieveRequiredNode(node, "_width").AsInt;
+        TrackNumber = RetrieveRequiredNode(node, "_trackNumber")?.AsInt ?? 1;
         CustomData = node["_customData"];
     }
 
-    public BeatmapObstacle(float time, int lineIndex, int type, float duration, int width, JSONNode customData = null)
+    public BeatmapObstacle(float time, int lineIndex, int trackNumber, int type, float duration, int width, JSONNode customData = null)
     {
         Time = time;
         LineIndex = lineIndex;
         Type = type;
         Duration = duration;
         Width = width;
+        TrackNumber = trackNumber;
         CustomData = customData;
     }
 
@@ -63,6 +66,7 @@ public class BeatmapObstacle : BeatmapObject, IBeatmapObjectBounds
         node["_type"] = Type;
         node["_duration"] = Math.Round(Duration, DecimalPrecision); //Get rid of float precision errors
         node["_width"] = Width;
+        node["_trackNumber"] = TrackNumber;
         if (CustomData != null) node["_customData"] = CustomData;
         /*if (Settings.Instance.AdvancedShit) //This will be left commented unless its 100%, absolutely, positively required.
         {   
@@ -97,6 +101,7 @@ public class BeatmapObstacle : BeatmapObject, IBeatmapObjectBounds
             Width = obs.Width;
             LineIndex = obs.LineIndex;
             Duration = obs.Duration;
+            TrackNumber = obs.TrackNumber;
         }
     }
 

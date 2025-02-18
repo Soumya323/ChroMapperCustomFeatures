@@ -38,7 +38,7 @@ namespace Tests
             Transform root = notesContainer.transform.root;
             NotePlacement notePlacement = root.GetComponentInChildren<NotePlacement>();
 
-            BeatmapNote noteA = new BeatmapNote(2, -2345, BeatmapNote.LineLayerBottom, BeatmapNote.NoteTypeA, BeatmapNote.NoteCutDirectionLeft);
+            BeatmapNote noteA = new BeatmapNote(2, -2345, BeatmapNote.LineLayerBottom, BeatmapNote.NoteTypeA, BeatmapNote.NoteCutDirectionLeft, 0);
 
             notePlacement.queuedData = noteA;
             notePlacement.RoundedTime = notePlacement.queuedData.Time;
@@ -158,7 +158,7 @@ namespace Tests
                 // What the actual fuck - example from mirroring in MMA2
                 //{"_time":1.5,"_lineIndex":1446,"_type":595141,"_duration":0.051851850003004074,"_width":2596}
                 //{"_time":1.5,"_lineIndex":2958,"_type":595141,"_duration":0.051851850003004074,"_width":2596}
-                BeatmapObstacle wallA = new BeatmapObstacle(2, 1446, 595141, 1, 2596);
+                BeatmapObstacle wallA = new BeatmapObstacle(2, 1446, 1, 595141, 2596, 1);
 
                 wallPlacement.queuedData = wallA;
                 wallPlacement.RoundedTime = wallPlacement.queuedData.Time;

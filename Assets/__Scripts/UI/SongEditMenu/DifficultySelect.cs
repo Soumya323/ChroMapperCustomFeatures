@@ -331,6 +331,7 @@ public class DifficultySelect : MonoBehaviour
                 {
                     map.NoteJumpMovementSpeed = fromDiff.DifficultyBeatmap.NoteJumpMovementSpeed;
                     map.NoteJumpStartBeatOffset = fromDiff.DifficultyBeatmap.NoteJumpStartBeatOffset;
+                    map.NumberOfTracks = fromDiff.DifficultyBeatmap.NumberOfTracks;
 
                     map.CustomData = fromDiff.DifficultyBeatmap.CustomData?.Clone();
 

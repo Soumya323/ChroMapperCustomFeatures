@@ -203,6 +203,7 @@ public class BeatSaberSong
                     subNode["_beatmapFilename"] = diff.BeatmapFilename;
                     subNode["_noteJumpMovementSpeed"] = diff.NoteJumpMovementSpeed;
                     subNode["_noteJumpStartBeatOffset"] = diff.NoteJumpStartBeatOffset;
+                    subNode["_numberOfTracks"] = diff.NumberOfTracks;
                     subNode["_customData"] = diff.CustomData ?? new JSONObject();
 
                     /*
@@ -416,6 +417,7 @@ public class BeatSaberSong
                                     DifficultyRank = d["_difficultyRank"].AsInt,
                                     NoteJumpMovementSpeed = d["_noteJumpMovementSpeed"].AsFloat,
                                     NoteJumpStartBeatOffset = d["_noteJumpStartBeatOffset"].AsFloat,
+                                    NumberOfTracks = d["_numberOfTracks"].AsInt,
                                     CustomData = d["_customData"]
                                 };
                                 if (d["_customData"]["_colorLeft"] != null)
@@ -519,6 +521,7 @@ public class BeatSaberSong
         [FormerlySerializedAs("beatmapFilename")] public string BeatmapFilename = "Easy.dat";
         [FormerlySerializedAs("noteJumpMovementSpeed")] public float NoteJumpMovementSpeed = 16;
         [FormerlySerializedAs("noteJumpStartBeatOffset")] public float NoteJumpStartBeatOffset;
+        [FormerlySerializedAs("numberOfTracks")] public int NumberOfTracks = 4;
         [FormerlySerializedAs("colorLeft")] public Color? ColorLeft;
         [FormerlySerializedAs("colorRight")] public Color? ColorRight;
         [FormerlySerializedAs("envColorLeft")] public Color? EnvColorLeft;

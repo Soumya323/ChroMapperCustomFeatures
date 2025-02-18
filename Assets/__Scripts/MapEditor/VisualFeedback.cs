@@ -20,16 +20,22 @@ public class VisualFeedback : MonoBehaviour
 
     private float lastTime = -1;
     private Vector3 startScale;
-
+    private int trackNumber = 1;
     private float t;
 
     private void Start()
     {
         startScale = transform.localScale;
+
+        if (atsc != null)
         atsc.PlayToggle += OnPlayToggle;
     }
 
-    private void OnEnable() => callbackController.NotePassedThreshold += HandleCallback;
+    private void OnEnable()
+    {
+        if (callbackController == null) return;
+        callbackController.NotePassedThreshold += HandleCallback;
+    }
 
     private void OnDisable() => callbackController.NotePassedThreshold -= HandleCallback;
 
@@ -44,6 +50,11 @@ public class VisualFeedback : MonoBehaviour
         {
             return;
         }
+
+        if (objectData is BeatmapNote note && note.TrackNumber != trackNumber)
+            return;
+        
+
         /*
 * As for why we are not using "initial", it is so notes that are not supposed to ding do not prevent notes at
 * the same time that are supposed to ding from triggering the sound effects.
@@ -102,5 +113,13 @@ public class VisualFeedback : MonoBehaviour
                 //rend.material.SetColor("_GridColour", Color.Lerp(baseColor, color, a));
                 rend.material.color = Color.Lerp(baseColor, color, a);
         }
+    }
+
+    public void InitRefrences(BeatmapObjectCallbackController callbackController, AudioTimeSyncController atsc, int trackNumber)
+    {
+        this.callbackController = callbackController;
+        this.atsc = atsc;
+        this.trackNumber = trackNumber;
+        callbackController.NotePassedThreshold += HandleCallback;
     }
 }

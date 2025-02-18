@@ -56,6 +56,7 @@ public class BeatmapNote : BeatmapObject, IBeatmapObjectBounds
     [FormerlySerializedAs("_lineLayer")] public int LineLayer;
     [FormerlySerializedAs("_type")] public int Type;
     [FormerlySerializedAs("_cutDirection")] public int CutDirection;
+    [FormerlySerializedAs("_trackNumber")] public int TrackNumber;
 
     [FormerlySerializedAs("id")] public uint ID;
 
@@ -67,21 +68,23 @@ public class BeatmapNote : BeatmapObject, IBeatmapObjectBounds
 
     public BeatmapNote(JSONNode node)
     {
-        Time = RetrieveRequiredNode(node, "_time").AsFloat;
-        LineIndex = RetrieveRequiredNode(node, "_lineIndex").AsInt;
-        LineLayer = RetrieveRequiredNode(node, "_lineLayer").AsInt;
-        Type = RetrieveRequiredNode(node, "_type").AsInt;
-        CutDirection = RetrieveRequiredNode(node, "_cutDirection").AsInt;
+        Time = RetrieveRequiredNode(node, "_time")?.AsFloat ?? 0f;
+        LineIndex = RetrieveRequiredNode(node, "_lineIndex")?.AsInt ?? 0;
+        LineLayer = RetrieveRequiredNode(node, "_lineLayer")?.AsInt ?? 0;
+        Type = RetrieveRequiredNode(node, "_type")?.AsInt ?? 0;
+        CutDirection = RetrieveRequiredNode(node, "_cutDirection")?.AsInt ?? 0;
+        TrackNumber = RetrieveRequiredNode(node, "_trackNumber")?.AsInt ?? 1;
         CustomData = node["_customData"];
     }
 
-    public BeatmapNote(float time, int lineIndex, int lineLayer, int type, int cutDirection, JSONNode customData = null)
+    public BeatmapNote(float time, int lineIndex, int lineLayer, int type, int cutDirection, int trackNumber, JSONNode customData = null)
     {
         Time = time;
         LineIndex = lineIndex;
         LineLayer = lineLayer;
         Type = type;
         CutDirection = cutDirection;
+        TrackNumber = trackNumber;
         CustomData = customData;
     }
 
@@ -101,6 +104,7 @@ public class BeatmapNote : BeatmapObject, IBeatmapObjectBounds
         node["_lineLayer"] = LineLayer;
         node["_type"] = Type;
         node["_cutDirection"] = CutDirection;
+        node["_trackNumber"] = TrackNumber;
         if (CustomData != null) node["_customData"] = CustomData;
         return node;
     }
@@ -146,6 +150,7 @@ public class BeatmapNote : BeatmapObject, IBeatmapObjectBounds
             CutDirection = note.CutDirection;
             LineIndex = note.LineIndex;
             LineLayer = note.LineLayer;
+            TrackNumber = note.TrackNumber;
         }
     }
 }

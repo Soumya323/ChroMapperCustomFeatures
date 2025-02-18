@@ -24,6 +24,7 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
     [SerializeField] private BeatmapNoteInputController beatmapNoteInputController;
     [SerializeField] private ColorPicker colorPicker;
     [SerializeField] private ToggleColourDropdown dropdown;
+    [SerializeField] private ManageMultipleTracks manageMultipleTracks;
 
     // TODO: Perhaps move this into Settings as a user-configurable option
     private readonly float
@@ -121,7 +122,7 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
         new BeatmapObjectPlacementAction(spawned, container, "Placed a note.");
 
     public override BeatmapNote GenerateOriginalData() =>
-        new BeatmapNote(0, 0, 0, BeatmapNote.NoteTypeA, BeatmapNote.NoteCutDirectionDown);
+        new BeatmapNote(0, 0, 0, BeatmapNote.NoteTypeA, BeatmapNote.NoteCutDirectionDown, 0);
 
     public override void OnPhysicsRaycast(Intersections.IntersectionHit hit, Vector3 _)
     {
@@ -171,6 +172,9 @@ public class NotePlacement : PlacementController<BeatmapNote, BeatmapNoteContain
                     queuedData.CustomData = null;
             }
 
+            int trackNumber = manageMultipleTracks.GetTrackInfo(hit.GameObject);
+
+            queuedData.TrackNumber = trackNumber;
             queuedData.LineIndex = Mathf.RoundToInt(instantiatedContainer.transform.localPosition.x + 1.5f);
             queuedData.LineLayer = Mathf.RoundToInt(instantiatedContainer.transform.localPosition.y - 0.5f);
         }
